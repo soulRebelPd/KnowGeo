@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04F9CF961ADEEFF000B6ED9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF951ADEEFF000B6ED9E /* main.m */; };
+		04F9CF991ADEEFF000B6ED9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */; };
+		04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */; };
+		04F9CF9F1ADEEFF000B6ED9E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF9E1ADEEFF000B6ED9E /* ViewController.m */; };
+		04F9CFA21ADEEFF000B6ED9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F9CFA01ADEEFF000B6ED9E /* Main.storyboard */; };
+		04F9CFA41ADEEFF000B6ED9E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F9CFA31ADEEFF000B6ED9E /* Images.xcassets */; };
+		04F9CFA71ADEEFF000B6ED9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F9CFA51ADEEFF000B6ED9E /* LaunchScreen.xib */; };
+		04F9CFB31ADEEFF100B6ED9E /* KnowGeoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CFB21ADEEFF100B6ED9E /* KnowGeoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04F9CFAD1ADEEFF100B6ED9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04F9CF881ADEEFF000B6ED9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04F9CF8F1ADEEFF000B6ED9E;
+			remoteInfo = KnowGeo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04F9CF901ADEEFF000B6ED9E /* KnowGeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowGeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04F9CF941ADEEFF000B6ED9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04F9CF951ADEEFF000B6ED9E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		04F9CF971ADEEFF000B6ED9E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		04F9CF9B1ADEEFF000B6ED9E /* KnowGeo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KnowGeo.xcdatamodel; sourceTree = "<group>"; };
+		04F9CF9D1ADEEFF000B6ED9E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		04F9CF9E1ADEEFF000B6ED9E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		04F9CFA11ADEEFF000B6ED9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		04F9CFA31ADEEFF000B6ED9E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		04F9CFA61ADEEFF000B6ED9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		04F9CFAC1ADEEFF100B6ED9E /* KnowGeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnowGeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04F9CFB11ADEEFF100B6ED9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04F9CFB21ADEEFF100B6ED9E /* KnowGeoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KnowGeoTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04F9CF8D1ADEEFF000B6ED9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04F9CFA91ADEEFF100B6ED9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04F9CF871ADEEFF000B6ED9E = {
+			isa = PBXGroup;
+			children = (
+				04F9CF921ADEEFF000B6ED9E /* KnowGeo */,
+				04F9CFAF1ADEEFF100B6ED9E /* KnowGeoTests */,
+				04F9CF911ADEEFF000B6ED9E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		04F9CF911ADEEFF000B6ED9E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04F9CF901ADEEFF000B6ED9E /* KnowGeo.app */,
+				04F9CFAC1ADEEFF100B6ED9E /* KnowGeoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04F9CF921ADEEFF000B6ED9E /* KnowGeo */ = {
+			isa = PBXGroup;
+			children = (
+				04F9CF971ADEEFF000B6ED9E /* AppDelegate.h */,
+				04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */,
+				04F9CF9D1ADEEFF000B6ED9E /* ViewController.h */,
+				04F9CF9E1ADEEFF000B6ED9E /* ViewController.m */,
+				04F9CFA01ADEEFF000B6ED9E /* Main.storyboard */,
+				04F9CFA31ADEEFF000B6ED9E /* Images.xcassets */,
+				04F9CFA51ADEEFF000B6ED9E /* LaunchScreen.xib */,
+				04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */,
+				04F9CF931ADEEFF000B6ED9E /* Supporting Files */,
+			);
+			path = KnowGeo;
+			sourceTree = "<group>";
+		};
+		04F9CF931ADEEFF000B6ED9E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				04F9CF941ADEEFF000B6ED9E /* Info.plist */,
+				04F9CF951ADEEFF000B6ED9E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04F9CFAF1ADEEFF100B6ED9E /* KnowGeoTests */ = {
+			isa = PBXGroup;
+			children = (
+				04F9CFB21ADEEFF100B6ED9E /* KnowGeoTests.m */,
+				04F9CFB01ADEEFF100B6ED9E /* Supporting Files */,
+			);
+			path = KnowGeoTests;
+			sourceTree = "<group>";
+		};
+		04F9CFB01ADEEFF100B6ED9E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				04F9CFB11ADEEFF100B6ED9E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04F9CF8F1ADEEFF000B6ED9E /* KnowGeo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04F9CFB61ADEEFF100B6ED9E /* Build configuration list for PBXNativeTarget "KnowGeo" */;
+			buildPhases = (
+				04F9CF8C1ADEEFF000B6ED9E /* Sources */,
+				04F9CF8D1ADEEFF000B6ED9E /* Frameworks */,
+				04F9CF8E1ADEEFF000B6ED9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KnowGeo;
+			productName = KnowGeo;
+			productReference = 04F9CF901ADEEFF000B6ED9E /* KnowGeo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		04F9CFAB1ADEEFF100B6ED9E /* KnowGeoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04F9CFB91ADEEFF100B6ED9E /* Build configuration list for PBXNativeTarget "KnowGeoTests" */;
+			buildPhases = (
+				04F9CFA81ADEEFF100B6ED9E /* Sources */,
+				04F9CFA91ADEEFF100B6ED9E /* Frameworks */,
+				04F9CFAA1ADEEFF100B6ED9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04F9CFAE1ADEEFF100B6ED9E /* PBXTargetDependency */,
+			);
+			name = KnowGeoTests;
+			productName = KnowGeoTests;
+			productReference = 04F9CFAC1ADEEFF100B6ED9E /* KnowGeoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04F9CF881ADEEFF000B6ED9E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Ten Pandas";
+				TargetAttributes = {
+					04F9CF8F1ADEEFF000B6ED9E = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					04F9CFAB1ADEEFF100B6ED9E = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 04F9CF8F1ADEEFF000B6ED9E;
+					};
+				};
+			};
+			buildConfigurationList = 04F9CF8B1ADEEFF000B6ED9E /* Build configuration list for PBXProject "KnowGeo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04F9CF871ADEEFF000B6ED9E;
+			productRefGroup = 04F9CF911ADEEFF000B6ED9E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04F9CF8F1ADEEFF000B6ED9E /* KnowGeo */,
+				04F9CFAB1ADEEFF100B6ED9E /* KnowGeoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04F9CF8E1ADEEFF000B6ED9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04F9CFA21ADEEFF000B6ED9E /* Main.storyboard in Resources */,
+				04F9CFA71ADEEFF000B6ED9E /* LaunchScreen.xib in Resources */,
+				04F9CFA41ADEEFF000B6ED9E /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04F9CFAA1ADEEFF100B6ED9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04F9CF8C1ADEEFF000B6ED9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04F9CF991ADEEFF000B6ED9E /* AppDelegate.m in Sources */,
+				04F9CF961ADEEFF000B6ED9E /* main.m in Sources */,
+				04F9CF9F1ADEEFF000B6ED9E /* ViewController.m in Sources */,
+				04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04F9CFA81ADEEFF100B6ED9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04F9CFB31ADEEFF100B6ED9E /* KnowGeoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04F9CFAE1ADEEFF100B6ED9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04F9CF8F1ADEEFF000B6ED9E /* KnowGeo */;
+			targetProxy = 04F9CFAD1ADEEFF100B6ED9E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		04F9CFA01ADEEFF000B6ED9E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04F9CFA11ADEEFF000B6ED9E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		04F9CFA51ADEEFF000B6ED9E /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04F9CFA61ADEEFF000B6ED9E /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		04F9CFB41ADEEFF100B6ED9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04F9CFB51ADEEFF100B6ED9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		04F9CFB71ADEEFF100B6ED9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KnowGeo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		04F9CFB81ADEEFF100B6ED9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KnowGeo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		04F9CFBA1ADEEFF100B6ED9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KnowGeoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KnowGeo.app/KnowGeo";
+			};
+			name = Debug;
+		};
+		04F9CFBB1ADEEFF100B6ED9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KnowGeoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KnowGeo.app/KnowGeo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04F9CF8B1ADEEFF000B6ED9E /* Build configuration list for PBXProject "KnowGeo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04F9CFB41ADEEFF100B6ED9E /* Debug */,
+				04F9CFB51ADEEFF100B6ED9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04F9CFB61ADEEFF100B6ED9E /* Build configuration list for PBXNativeTarget "KnowGeo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04F9CFB71ADEEFF100B6ED9E /* Debug */,
+				04F9CFB81ADEEFF100B6ED9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		04F9CFB91ADEEFF100B6ED9E /* Build configuration list for PBXNativeTarget "KnowGeoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04F9CFBA1ADEEFF100B6ED9E /* Debug */,
+				04F9CFBB1ADEEFF100B6ED9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04F9CF9B1ADEEFF000B6ED9E /* KnowGeo.xcdatamodel */,
+			);
+			currentVersion = 04F9CF9B1ADEEFF000B6ED9E /* KnowGeo.xcdatamodel */;
+			path = KnowGeo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 04F9CF881ADEEFF000B6ED9E /* Project object */;
+}

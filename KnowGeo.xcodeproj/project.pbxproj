@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04E517D91AE16BC200C56FBC /* KGCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517D81AE16BC200C56FBC /* KGCalloutView.xib */; };
+		04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517DB1AE16BD100C56FBC /* KGCalloutView.m */; };
 		04F9CF961ADEEFF000B6ED9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF951ADEEFF000B6ED9E /* main.m */; };
 		04F9CF991ADEEFF000B6ED9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */; };
 		04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */; };
@@ -28,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04E517D81AE16BC200C56FBC /* KGCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGCalloutView.xib; sourceTree = "<group>"; };
+		04E517DA1AE16BD100C56FBC /* KGCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGCalloutView.h; sourceTree = "<group>"; };
+		04E517DB1AE16BD100C56FBC /* KGCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGCalloutView.m; sourceTree = "<group>"; };
 		04F9CF901ADEEFF000B6ED9E /* KnowGeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowGeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F9CF941ADEEFF000B6ED9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F9CF951ADEEFF000B6ED9E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,6 +97,9 @@
 				04F9CFA51ADEEFF000B6ED9E /* LaunchScreen.xib */,
 				04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */,
 				04F9CF931ADEEFF000B6ED9E /* Supporting Files */,
+				04E517D81AE16BC200C56FBC /* KGCalloutView.xib */,
+				04E517DA1AE16BD100C56FBC /* KGCalloutView.h */,
+				04E517DB1AE16BD100C56FBC /* KGCalloutView.m */,
 			);
 			path = KnowGeo;
 			sourceTree = "<group>";
@@ -205,6 +213,7 @@
 				04F9CFA21ADEEFF000B6ED9E /* Main.storyboard in Resources */,
 				04F9CFA71ADEEFF000B6ED9E /* LaunchScreen.xib in Resources */,
 				04F9CFA41ADEEFF000B6ED9E /* Images.xcassets in Resources */,
+				04E517D91AE16BC200C56FBC /* KGCalloutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +235,7 @@
 				04F9CF961ADEEFF000B6ED9E /* main.m in Sources */,
 				04F9CF9F1ADEEFF000B6ED9E /* ViewController.m in Sources */,
 				04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */,
+				04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +366,7 @@
 				INFOPLIST_FILE = KnowGeo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -366,6 +377,7 @@
 				INFOPLIST_FILE = KnowGeo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -422,6 +434,7 @@
 				04F9CFB81ADEEFF100B6ED9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04F9CFB91ADEEFF100B6ED9E /* Build configuration list for PBXNativeTarget "KnowGeoTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +443,7 @@
 				04F9CFBB1ADEEFF100B6ED9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

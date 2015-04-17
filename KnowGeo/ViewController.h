@@ -15,7 +15,11 @@
 
 - (IBAction)testClearState:(id)sender;
 - (IBAction)testRegularLocationAny:(id)sender;
-
+- (IBAction)testRegularLineDropped:(id)sender;
+- (IBAction)testDrawingLineDropped:(id)sender;
+- (IBAction)testRegularLineSelected_NoParent:(id)sender;
+- (IBAction)testRegularLineSelected_WithParent:(id)sender;
+- (IBAction)testColoringLineSelected:(id)sender;
 
 @end
 

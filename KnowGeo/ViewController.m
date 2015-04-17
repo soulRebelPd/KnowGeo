@@ -37,4 +37,24 @@
 - (IBAction)testRegularLocationAny:(id)sender {
     [self.myCustomControl moveToState:@"Regular-Location-Dropped"];
 }
+
+- (IBAction)testRegularLineDropped:(id)sender {
+    [self.myCustomControl moveToState:@"Regular-Line-Dropped"];
+}
+
+- (IBAction)testDrawingLineDropped:(id)sender {
+    [self.myCustomControl moveToState:@"Drawing-Line-Dropped"];
+}
+
+- (IBAction)testRegularLineSelected_NoParent:(id)sender {
+        [self.myCustomControl moveToState:@"Regular-Line-Selected_NoParent"];
+}
+
+- (IBAction)testRegularLineSelected_WithParent:(id)sender {
+    [self.myCustomControl moveToState:@"Regular-Line-Selected_WithParent"];
+}
+
+- (IBAction)testColoringLineSelected:(id)sender {
+    [self.myCustomControl moveToState:@"Coloring-Line-Selected"];
+}
 @end

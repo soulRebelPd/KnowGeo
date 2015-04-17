@@ -7,7 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KGCalloutView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KGCalloutView">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="318"/>
+            <rect key="frame" x="0.0" y="0.0" width="475" height="448"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" id="QJE-9J-pmz">
@@ -20,8 +20,15 @@
                     <rect key="frame" x="172" y="260" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </switch>
-                <pickerView contentMode="scaleToFill" id="LBk-FZ-SDo">
-                    <rect key="frame" x="53" y="129" width="194" height="113"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Line Pin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KAY-ea-XOc">
+                    <rect key="frame" x="80" y="265" width="62" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <pickerView contentMode="left" id="LBk-FZ-SDo">
+                    <rect key="frame" x="53" y="129" width="196.5" height="113"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                 </pickerView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cjr-Mm-PpO">
@@ -38,13 +45,41 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Line Pin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KAY-ea-XOc">
-                    <rect key="frame" x="80" y="265" width="62" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qQl-xh-f4z">
+                    <rect key="frame" x="343" y="52" width="81" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <state key="normal" title="Start A Line">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xoi-eF-ba4">
+                    <rect key="frame" x="337" y="105" width="92" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Select Parent">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ff1-fG-NYm">
+                    <rect key="frame" x="353" y="153" width="60" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="End Line">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jU0-oH-3NH">
+                    <rect key="frame" x="313" y="209" width="129" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Start Line Coloring">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZkU-7F-ltR">
+                    <rect key="frame" x="322" y="265" width="123" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="End Line Coloring">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -55,13 +90,18 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="chooseTypeLabel" destination="Cjr-Mm-PpO" id="Ah8-r6-ora"/>
+                <outlet property="endLineButton" destination="Ff1-fG-NYm" id="4fx-ZX-EAC"/>
+                <outlet property="endLineColoring" destination="ZkU-7F-ltR" id="Pc2-DD-yJN"/>
                 <outlet property="isLinePinLabel" destination="KAY-ea-XOc" id="Sfs-AE-0Iy"/>
                 <outlet property="isLinePinSwitch" destination="L7M-VF-1ZQ" id="AvP-Dt-lXX"/>
                 <outlet property="pinTypeLabel" destination="Eai-E0-qqE" id="m6Q-2n-QID"/>
+                <outlet property="selectParentButton" destination="xoi-eF-ba4" id="Djm-jE-WhK"/>
+                <outlet property="startLineButton" destination="qQl-xh-f4z" id="7rE-8I-wK6"/>
+                <outlet property="startLineColoring" destination="jU0-oH-3NH" id="uTM-d1-e4M"/>
                 <outlet property="titleField" destination="QJE-9J-pmz" id="Rl9-eW-Oot"/>
                 <outlet property="typePickerView" destination="LBk-FZ-SDo" id="Tkn-cO-hqg"/>
             </connections>
-            <point key="canvasLocation" x="414" y="217"/>
+            <point key="canvasLocation" x="501.5" y="282"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -22,8 +22,12 @@ IB_DESIGNABLE
 @property (weak, nonatomic) IBOutlet UIPickerView *typePickerView;
 @property (weak, nonatomic) IBOutlet UILabel *isLinePinLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *isLinePinSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *startLineButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectParentButton;
+@property (weak, nonatomic) IBOutlet UIButton *endLineButton;
+@property (weak, nonatomic) IBOutlet UIButton *startLineColoring;
+@property (weak, nonatomic) IBOutlet UIButton *endLineColoring;
 
 -(void)moveToState:(NSString *)state;
-
 
 @end

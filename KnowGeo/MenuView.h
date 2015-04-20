@@ -10,7 +10,7 @@
 
 IB_DESIGNABLE
 
-@interface KGCalloutView : UIView <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface MenuView : UIView
 
 @property (nonatomic) IBInspectable NSInteger lineWidth;
 @property (nonatomic) IBInspectable UIColor *fillColor;
@@ -29,7 +29,5 @@ IB_DESIGNABLE
 @property (weak, nonatomic) IBOutlet UIButton *endLineColoring;
 
 -(void)moveToState:(NSString *)state;
-
-@property NSArray *pickerData;
 
 @end

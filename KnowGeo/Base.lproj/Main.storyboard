@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
@@ -10,73 +10,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="9Wp-wd-eTO"/>
+                        <viewControllerLayoutGuide type="bottom" id="c3A-TK-Z7A"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVQ-EY-kOj">
-                                <rect key="frame" x="431" y="562" width="109" height="30"/>
-                                <state key="normal" title="Test Clear State">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testClearState:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kfx-DC-n4g"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXx-Pr-66v">
-                                <rect key="frame" x="23" y="562" width="171" height="30"/>
-                                <state key="normal" title="Test RegularLocationAny">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testRegularLocationAny:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rlp-Wh-HDP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iT-G9-Dzh">
-                                <rect key="frame" x="229" y="562" width="169" height="30"/>
-                                <state key="normal" title="TestRegularLineDropped">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testRegularLineDropped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ilJ-IM-Rph"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rqi-9y-95P" customClass="KGCalloutView">
-                                <rect key="frame" x="0.0" y="0.0" width="475" height="448"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YA4-JZ-DEE" customClass="MenuView">
+                                <rect key="frame" x="415" y="-84" width="1024" height="600"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh0-Bq-oQG">
-                                <rect key="frame" x="113" y="524" width="173" height="30"/>
-                                <state key="normal" title="TestDrawingLineDropped">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testDrawingLineDropped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YQk-jE-bVj"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYD-Ya-wPj">
-                                <rect key="frame" x="347" y="524" width="242" height="30"/>
-                                <state key="normal" title="TestRegularLineSelected_NoParent">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testRegularLineSelected_NoParent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OwI-Sm-ctY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoU-fV-d12">
-                                <rect key="frame" x="38" y="479" width="253" height="30"/>
-                                <state key="normal" title="TestRegularLineSelected_WithParent">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testRegularLineSelected_WithParent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qd3-1j-1G1"/>
-                                </connections>
-                            </button>
+                            <view autoresizesSubviews="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rqi-9y-95P" customClass="KGCalloutView">
+                                <rect key="frame" x="165" y="150" width="300" height="275"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TestBackground" translatesAutoresizingMaskIntoConstraints="NO" id="2Hj-5x-2rq">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1024"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yf-tb-igk">
-                                <rect key="frame" x="398" y="479" width="175" height="30"/>
+                                <rect key="frame" x="481" y="601" width="175" height="30"/>
                                 <state key="normal" title="TestColoringLineSelected">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -84,10 +41,76 @@
                                     <action selector="testColoringLineSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZcT-EA-XDR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoU-fV-d12">
+                                <rect key="frame" x="121" y="601" width="253" height="30"/>
+                                <state key="normal" title="TestRegularLineSelected_WithParent">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testRegularLineSelected_WithParent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qd3-1j-1G1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYD-Ya-wPj">
+                                <rect key="frame" x="430" y="646" width="242" height="30"/>
+                                <state key="normal" title="TestRegularLineSelected_NoParent">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testRegularLineSelected_NoParent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OwI-Sm-ctY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh0-Bq-oQG">
+                                <rect key="frame" x="196" y="646" width="173" height="30"/>
+                                <state key="normal" title="TestDrawingLineDropped">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testDrawingLineDropped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YQk-jE-bVj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iT-G9-Dzh">
+                                <rect key="frame" x="312" y="684" width="169" height="30"/>
+                                <state key="normal" title="TestRegularLineDropped">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testRegularLineDropped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ilJ-IM-Rph"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXx-Pr-66v">
+                                <rect key="frame" x="106" y="684" width="171" height="30"/>
+                                <state key="normal" title="Test RegularLocationAny">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testRegularLocationAny:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rlp-Wh-HDP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVQ-EY-kOj">
+                                <rect key="frame" x="514" y="684" width="109" height="30"/>
+                                <state key="normal" title="Test Clear State">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testClearState:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kfx-DC-n4g"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="menu" destination="YA4-JZ-DEE" id="y6M-TY-tGH"/>
+                    </connections>
                 </viewController>
             </objects>
+            <point key="canvasLocation" x="416" y="679"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TestBackground" width="1984" height="1292"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
 </document>

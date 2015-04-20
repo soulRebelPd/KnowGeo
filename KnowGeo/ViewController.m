@@ -20,7 +20,13 @@
     NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"KGCalloutView" owner:self options:nil];
     KGCalloutView *view = [nibContents objectAtIndex:0];
     self.myCustomControl = view;
+    self.myCustomControl.frame = CGRectMake(35, 150, 300, 275);
     [self.view addSubview:view];
+    
+    NSArray *nibContentsForMenu = [[NSBundle mainBundle] loadNibNamed:@"MenuView" owner:self options:nil];
+    MenuView *menu = [nibContentsForMenu objectAtIndex:0];
+    self.menu = menu;
+    [self.view addSubview:menu];
 
     // Do any additional setup after loading the view, typically from a nib.
 }

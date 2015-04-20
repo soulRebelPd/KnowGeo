@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "KGCalloutView.h"
+#import "MenuView.h"
 
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet KGCalloutView *myCustomControl;
+@property (weak, nonatomic) IBOutlet MenuView *menu;
+
 
 - (IBAction)testClearState:(id)sender;
 - (IBAction)testRegularLocationAny:(id)sender;

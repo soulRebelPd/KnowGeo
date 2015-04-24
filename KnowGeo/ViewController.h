@@ -8,21 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "KGCalloutView.h"
-#import "MenuView.h"
+#import "KGMenuView.h"
+#import "KGCalloutTesterView.h"
+#import "KGMenuButton.h"
+#import <MapKit/MapKit.h>
+#import "KGOverlay.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate, MKOverlay>
 
-@property (weak, nonatomic) IBOutlet KGCalloutView *myCustomControl;
-@property (weak, nonatomic) IBOutlet MenuView *menu;
+@property (weak, nonatomic) IBOutlet KGCalloutView *callout;
+@property (weak, nonatomic) IBOutlet KGMenuView *menu;
+@property (strong, nonatomic) IBOutlet KGCalloutTesterView *tester;
+@property (strong, nonatomic) IBOutlet KGMenuButton *button;
+@property (weak, nonatomic) IBOutlet MKMapView *map;
 
-
-- (IBAction)testClearState:(id)sender;
-- (IBAction)testRegularLocationAny:(id)sender;
-- (IBAction)testRegularLineDropped:(id)sender;
-- (IBAction)testDrawingLineDropped:(id)sender;
-- (IBAction)testRegularLineSelected_NoParent:(id)sender;
-- (IBAction)testRegularLineSelected_WithParent:(id)sender;
-- (IBAction)testColoringLineSelected:(id)sender;
+@property (strong, nonatomic) NSArray *mapItems;
 
 @end
-

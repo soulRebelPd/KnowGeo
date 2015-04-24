@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIColor+KGColors.h"
 
 IB_DESIGNABLE
 
 @interface KGCalloutView : UIView <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (nonatomic) IBInspectable NSInteger lineWidth;
-@property (nonatomic) IBInspectable UIColor *fillColor;
 @property (nonatomic) IBInspectable NSString *title;
+@property NSArray *pickerData;
+@property (strong, nonatomic) IBOutlet KGCalloutView *view;
 
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UILabel *pinTypeLabel;
@@ -29,7 +30,5 @@ IB_DESIGNABLE
 @property (weak, nonatomic) IBOutlet UIButton *endLineColoring;
 
 -(void)moveToState:(NSString *)state;
-
-@property NSArray *pickerData;
 
 @end

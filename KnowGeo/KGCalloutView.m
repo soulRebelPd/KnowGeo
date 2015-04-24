@@ -11,21 +11,102 @@
 
 @implementation KGCalloutView
 
+//@synthesize view;
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super initWithCoder:aDecoder])) {
+    }
+    
+    [[NSBundle mainBundle] loadNibNamed:@"KGCalloutView" owner:self options:nil];
+    
+    return self;
+}
+
+//BOOL _initialize;
+
+//- (void)awakeFromNib {
+//    @synchronized(self) {
+//        if (!_initialize) {
+//            _initialize = YES;
+//            [[NSBundle mainBundle] loadNibNamed:@"KGCalloutView" owner:self options:nil];
+//            [self.view setFrame:[self bounds]];
+//            [self addSubview:self.view];
+//        }
+//    }
+//}
+
+
+//- (void)awakeFromNib {
+//    if ([[NSBundle mainBundle] loadNibNamed:@"KGCalloutView" owner:self options:nil]) {
+//        [self.view setFrame:[self bounds]];
+//        [self addSubview:self.view];
+//    }
+//}
+
 -(void)layoutSubviews{
+    self.backgroundColor = [UIColor kgBrownColor];
+    
     self.titleField.text = _title;
     [self.layer setCornerRadius:10.0f];
     
+    self.titleField.textColor = [UIColor kgOrangeColor];
+    self.pinTypeLabel.textColor = [UIColor kgOrangeColor];
+    self.chooseTypeLabel.textColor = [UIColor kgOrangeColor];
+    
+    //@property (weak, nonatomic) IBOutlet UIPickerView *typePickerView;
+    
+    self.isLinePinLabel.textColor = [UIColor kgOrangeColor];
+    
+    //@property (weak, nonatomic) IBOutlet UISwitch *isLinePinSwitch;
+    
     self.startLineButton.layer.cornerRadius = buttonCornerRadius;
+    self.startLineButton.backgroundColor = [UIColor kgOrangeColor];
+    
     self.selectParentButton.layer.cornerRadius = buttonCornerRadius;
+    self.selectParentButton.backgroundColor = [UIColor kgOrangeColor];
+    
     self.endLineButton.layer.cornerRadius = buttonCornerRadius;
+    self.endLineButton.backgroundColor = [UIColor kgOrangeColor];
+    
     self.startLineColoring.layer.cornerRadius = buttonCornerRadius;
+    self.startLineColoring.backgroundColor = [UIColor kgOrangeColor];
+    
     self.endLineColoring.layer.cornerRadius = buttonCornerRadius;
+    self.endLineColoring.backgroundColor = [UIColor kgOrangeColor];
 
-    self.pickerData = @[@"Item 1", @"Item 2", @"Item 3", @"Item 4", @"Item 5", @"Item 6"];
+    self.pickerData = @[@"Select Type", @"Bar", @"Bait", @"Charters", @"Dock", @"Hospital", @"Pier", @"Restaurant"];
     self.typePickerView.dataSource = self;
     self.typePickerView.delegate = self;
     
+    [self moveToStateRegularLineDropped];
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    UILabel* tView = (UILabel*)view;
+    if (!tView){
+        tView = [[UILabel alloc] init];
+        // Setup label properties - frame, font, colors etc
+        
+        UIColor *color = [UIColor kgOrangeColor];
+        tView.textColor = color;
+        tView.textAlignment = NSTextAlignmentCenter;
+        
+    }
     
+    NSString *title = self.pickerData[row];
+    
+    if([title isEqualToString:@"Select Type"]){
+        tView.font = [UIFont boldSystemFontOfSize:17.0];
+    }
+    
+    tView.text = title;
+    
+    return tView;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return (40.0);
 }
 
 - (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -36,16 +117,6 @@
 - (int)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     return self.pickerData.count;
-}
-
-- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString *title = self.pickerData[row];
-    UIColor *color = [UIColor colorWithRed:0.996 green:0.392 blue:0.282 alpha:1];
-    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
-    
-    return attString;
-    
 }
 
 -(void)setTitle:(NSString *)title{
@@ -96,7 +167,7 @@
 -(void)moveToStateRegularLocationAny{
     self.titleField.hidden = NO;
     //self.pinTypeLabel.hidden = NO;
-    self.chooseTypeLabel.hidden = NO;
+    self.chooseTypeLabel.hidden = YES;
     self.typePickerView.hidden = NO;
     self.isLinePinLabel.hidden = NO;
     self.isLinePinSwitch.hidden = NO;
@@ -183,6 +254,16 @@
     self.startLineColoring.hidden = YES;
     self.endLineColoring.hidden = NO;
 }
+
+//- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    NSString *title = self.pickerData[row];
+//    UIColor *color = [UIColor colorWithRed:0.996 green:0.392 blue:0.282 alpha:1];
+//    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
+//
+//    return attString;
+//
+//}
 
 //-(void)prepareForInterfaceBuilder{
 //}

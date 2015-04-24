@@ -7,10 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048EAE271AE7FE7C00974E03 /* KGMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048EAE261AE7FE7C00974E03 /* KGMenuButton.xib */; };
+		048EAE2D1AE7FF1400974E03 /* KGMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE2C1AE7FF1400974E03 /* KGMenuButton.m */; };
+		048EAE331AE9549300974E03 /* UIColor+KGColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE321AE9549300974E03 /* UIColor+KGColors.m */; };
+		048EAE451AE9948800974E03 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048EAE441AE9948800974E03 /* MapKit.framework */; };
+		048EAE4F1AEAA13F00974E03 /* PVParkMapOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE4A1AEAA13F00974E03 /* PVParkMapOverlay.m */; };
+		048EAE501AEAA13F00974E03 /* PVParkMapOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE4C1AEAA13F00974E03 /* PVParkMapOverlayView.m */; };
+		048EAE511AEAA13F00974E03 /* PVParkMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE4E1AEAA13F00974E03 /* PVParkMapViewController.m */; };
+		048EAE541AEAA44C00974E03 /* KGOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE531AEAA44C00974E03 /* KGOverlay.m */; };
+		048EAE561AEAEE4900974E03 /* overlay_park.png in Resources */ = {isa = PBXBuildFile; fileRef = 048EAE551AEAEE4900974E03 /* overlay_park.png */; };
+		048EAE591AEAEE8B00974E03 /* KGMapOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE581AEAEE8B00974E03 /* KGMapOverlayView.m */; };
 		04E517D91AE16BC200C56FBC /* KGCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517D81AE16BC200C56FBC /* KGCalloutView.xib */; };
 		04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517DB1AE16BD100C56FBC /* KGCalloutView.m */; };
-		04E517E71AE57AB000C56FBC /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517E51AE57AB000C56FBC /* MenuView.m */; };
-		04E517E81AE57AB000C56FBC /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517E61AE57AB000C56FBC /* MenuView.xib */; };
+		04E517E71AE57AB000C56FBC /* KGMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517E51AE57AB000C56FBC /* KGMenuView.m */; };
+		04E517E81AE57AB000C56FBC /* KGMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517E61AE57AB000C56FBC /* KGMenuView.xib */; };
+		04E517EC1AE6DE8300C56FBC /* KGCalloutTesterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517EB1AE6DE8300C56FBC /* KGCalloutTesterView.xib */; };
+		04E517EF1AE6DEA300C56FBC /* KGCalloutTesterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517EE1AE6DEA300C56FBC /* KGCalloutTesterView.m */; };
 		04F9CF961ADEEFF000B6ED9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF951ADEEFF000B6ED9E /* main.m */; };
 		04F9CF991ADEEFF000B6ED9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */; };
 		04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */; };
@@ -32,12 +44,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		048EAE261AE7FE7C00974E03 /* KGMenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGMenuButton.xib; sourceTree = "<group>"; };
+		048EAE2B1AE7FF1400974E03 /* KGMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMenuButton.h; sourceTree = "<group>"; };
+		048EAE2C1AE7FF1400974E03 /* KGMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGMenuButton.m; sourceTree = "<group>"; };
+		048EAE311AE9549300974E03 /* UIColor+KGColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KGColors.h"; sourceTree = "<group>"; };
+		048EAE321AE9549300974E03 /* UIColor+KGColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KGColors.m"; sourceTree = "<group>"; };
+		048EAE441AE9948800974E03 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		048EAE491AEAA13F00974E03 /* PVParkMapOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVParkMapOverlay.h; sourceTree = "<group>"; };
+		048EAE4A1AEAA13F00974E03 /* PVParkMapOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PVParkMapOverlay.m; sourceTree = "<group>"; };
+		048EAE4B1AEAA13F00974E03 /* PVParkMapOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVParkMapOverlayView.h; sourceTree = "<group>"; };
+		048EAE4C1AEAA13F00974E03 /* PVParkMapOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PVParkMapOverlayView.m; sourceTree = "<group>"; };
+		048EAE4D1AEAA13F00974E03 /* PVParkMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVParkMapViewController.h; sourceTree = "<group>"; };
+		048EAE4E1AEAA13F00974E03 /* PVParkMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PVParkMapViewController.m; sourceTree = "<group>"; };
+		048EAE521AEAA44C00974E03 /* KGOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGOverlay.h; sourceTree = "<group>"; };
+		048EAE531AEAA44C00974E03 /* KGOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGOverlay.m; sourceTree = "<group>"; };
+		048EAE551AEAEE4900974E03 /* overlay_park.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlay_park.png; sourceTree = "<group>"; };
+		048EAE571AEAEE8B00974E03 /* KGMapOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMapOverlayView.h; sourceTree = "<group>"; };
+		048EAE581AEAEE8B00974E03 /* KGMapOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGMapOverlayView.m; sourceTree = "<group>"; };
 		04E517D81AE16BC200C56FBC /* KGCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGCalloutView.xib; sourceTree = "<group>"; };
 		04E517DA1AE16BD100C56FBC /* KGCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGCalloutView.h; sourceTree = "<group>"; };
 		04E517DB1AE16BD100C56FBC /* KGCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGCalloutView.m; sourceTree = "<group>"; };
-		04E517E41AE57AB000C56FBC /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
-		04E517E51AE57AB000C56FBC /* MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuView.m; sourceTree = "<group>"; };
-		04E517E61AE57AB000C56FBC /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		04E517E41AE57AB000C56FBC /* KGMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMenuView.h; sourceTree = "<group>"; };
+		04E517E51AE57AB000C56FBC /* KGMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGMenuView.m; sourceTree = "<group>"; };
+		04E517E61AE57AB000C56FBC /* KGMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGMenuView.xib; sourceTree = "<group>"; };
+		04E517EB1AE6DE8300C56FBC /* KGCalloutTesterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGCalloutTesterView.xib; sourceTree = "<group>"; };
+		04E517ED1AE6DEA300C56FBC /* KGCalloutTesterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGCalloutTesterView.h; sourceTree = "<group>"; };
+		04E517EE1AE6DEA300C56FBC /* KGCalloutTesterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGCalloutTesterView.m; sourceTree = "<group>"; };
 		04F9CF901ADEEFF000B6ED9E /* KnowGeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowGeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F9CF941ADEEFF000B6ED9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F9CF951ADEEFF000B6ED9E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -59,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048EAE451AE9948800974E03 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +108,7 @@
 		04F9CF871ADEEFF000B6ED9E = {
 			isa = PBXGroup;
 			children = (
+				048EAE441AE9948800974E03 /* MapKit.framework */,
 				04F9CF921ADEEFF000B6ED9E /* KnowGeo */,
 				04F9CFAF1ADEEFF100B6ED9E /* KnowGeoTests */,
 				04F9CF911ADEEFF000B6ED9E /* Products */,
@@ -93,9 +127,13 @@
 		04F9CF921ADEEFF000B6ED9E /* KnowGeo */ = {
 			isa = PBXGroup;
 			children = (
-				04E517E61AE57AB000C56FBC /* MenuView.xib */,
-				04E517E41AE57AB000C56FBC /* MenuView.h */,
-				04E517E51AE57AB000C56FBC /* MenuView.m */,
+				048EAE551AEAEE4900974E03 /* overlay_park.png */,
+				048EAE491AEAA13F00974E03 /* PVParkMapOverlay.h */,
+				048EAE4A1AEAA13F00974E03 /* PVParkMapOverlay.m */,
+				048EAE4B1AEAA13F00974E03 /* PVParkMapOverlayView.h */,
+				048EAE4C1AEAA13F00974E03 /* PVParkMapOverlayView.m */,
+				048EAE4D1AEAA13F00974E03 /* PVParkMapViewController.h */,
+				048EAE4E1AEAA13F00974E03 /* PVParkMapViewController.m */,
 				04F9CF971ADEEFF000B6ED9E /* AppDelegate.h */,
 				04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */,
 				04F9CF9D1ADEEFF000B6ED9E /* ViewController.h */,
@@ -108,6 +146,21 @@
 				04E517D81AE16BC200C56FBC /* KGCalloutView.xib */,
 				04E517DA1AE16BD100C56FBC /* KGCalloutView.h */,
 				04E517DB1AE16BD100C56FBC /* KGCalloutView.m */,
+				04E517EB1AE6DE8300C56FBC /* KGCalloutTesterView.xib */,
+				04E517ED1AE6DEA300C56FBC /* KGCalloutTesterView.h */,
+				04E517EE1AE6DEA300C56FBC /* KGCalloutTesterView.m */,
+				04E517E61AE57AB000C56FBC /* KGMenuView.xib */,
+				04E517E41AE57AB000C56FBC /* KGMenuView.h */,
+				04E517E51AE57AB000C56FBC /* KGMenuView.m */,
+				048EAE261AE7FE7C00974E03 /* KGMenuButton.xib */,
+				048EAE2B1AE7FF1400974E03 /* KGMenuButton.h */,
+				048EAE2C1AE7FF1400974E03 /* KGMenuButton.m */,
+				048EAE311AE9549300974E03 /* UIColor+KGColors.h */,
+				048EAE321AE9549300974E03 /* UIColor+KGColors.m */,
+				048EAE521AEAA44C00974E03 /* KGOverlay.h */,
+				048EAE531AEAA44C00974E03 /* KGOverlay.m */,
+				048EAE571AEAEE8B00974E03 /* KGMapOverlayView.h */,
+				048EAE581AEAEE8B00974E03 /* KGMapOverlayView.m */,
 			);
 			path = KnowGeo;
 			sourceTree = "<group>";
@@ -187,6 +240,11 @@
 				TargetAttributes = {
 					04F9CF8F1ADEEFF000B6ED9E = {
 						CreatedOnToolsVersion = 6.3;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					04F9CFAB1ADEEFF100B6ED9E = {
 						CreatedOnToolsVersion = 6.3;
@@ -219,10 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F9CFA21ADEEFF000B6ED9E /* Main.storyboard in Resources */,
+				04E517EC1AE6DE8300C56FBC /* KGCalloutTesterView.xib in Resources */,
+				048EAE561AEAEE4900974E03 /* overlay_park.png in Resources */,
 				04F9CFA71ADEEFF000B6ED9E /* LaunchScreen.xib in Resources */,
-				04E517E81AE57AB000C56FBC /* MenuView.xib in Resources */,
+				04E517E81AE57AB000C56FBC /* KGMenuView.xib in Resources */,
 				04F9CFA41ADEEFF000B6ED9E /* Images.xcassets in Resources */,
 				04E517D91AE16BC200C56FBC /* KGCalloutView.xib in Resources */,
+				048EAE271AE7FE7C00974E03 /* KGMenuButton.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,12 +301,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048EAE591AEAEE8B00974E03 /* KGMapOverlayView.m in Sources */,
+				04E517EF1AE6DEA300C56FBC /* KGCalloutTesterView.m in Sources */,
+				048EAE511AEAA13F00974E03 /* PVParkMapViewController.m in Sources */,
+				048EAE331AE9549300974E03 /* UIColor+KGColors.m in Sources */,
 				04F9CF991ADEEFF000B6ED9E /* AppDelegate.m in Sources */,
+				048EAE4F1AEAA13F00974E03 /* PVParkMapOverlay.m in Sources */,
+				048EAE541AEAA44C00974E03 /* KGOverlay.m in Sources */,
 				04F9CF961ADEEFF000B6ED9E /* main.m in Sources */,
 				04F9CF9F1ADEEFF000B6ED9E /* ViewController.m in Sources */,
+				048EAE2D1AE7FF1400974E03 /* KGMenuButton.m in Sources */,
 				04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */,
 				04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */,
-				04E517E71AE57AB000C56FBC /* MenuView.m in Sources */,
+				04E517E71AE57AB000C56FBC /* KGMenuView.m in Sources */,
+				048EAE501AEAA13F00974E03 /* PVParkMapOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@
 IB_DESIGNABLE
 
 @interface KGCalloutView : UIView <UIPickerViewDataSource, UIPickerViewDelegate>
+//displays option to Delete or Choose Parent or Clear Parent or Drop A Child Pin
 
 @property (nonatomic) IBInspectable NSString *title;
 @property NSArray *pickerData;
@@ -31,4 +32,11 @@ IB_DESIGNABLE
 
 -(void)moveToState:(NSString *)state;
 
+-(void)didSetName;
+-(void)didSetLocationType;
+-(bool)deletePin;
+-(void)changeToState;
+
 @end
+
+

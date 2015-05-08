@@ -20,10 +20,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sIs-qU-wFO">
                                 <rect key="frame" x="20" y="20" width="728" height="1004"/>
                             </mapView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iu1-dd-o8N" customClass="KGCalloutView">
-                                <rect key="frame" x="37" y="345" width="300" height="275"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sIs-qU-wFO" firstAttribute="top" secondItem="9Wp-wd-eTO" secondAttribute="bottom" id="Ak8-tk-o77"/>
@@ -33,7 +29,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="callout" destination="iu1-dd-o8N" id="97v-Rc-pTd"/>
                         <outlet property="map" destination="sIs-qU-wFO" id="Jam-Sb-N9z"/>
                     </connections>
                 </viewController>

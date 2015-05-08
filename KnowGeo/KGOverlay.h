@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "SBPark.h"
 
 @interface KGOverlay : NSObject <MKOverlay>
+
+- (instancetype)initWithPark:(SBPark *)park;
 
 // coordinate;
 //@synthesize boundingMapRect;

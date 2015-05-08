@@ -14,14 +14,24 @@
 #import <MapKit/MapKit.h>
 #import "KGOverlay.h"
 
-@interface ViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate, MKOverlay>
+@interface ViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet KGCalloutView *callout;
 @property (weak, nonatomic) IBOutlet KGMenuView *menu;
 @property (strong, nonatomic) IBOutlet KGCalloutTesterView *tester;
 @property (strong, nonatomic) IBOutlet KGMenuButton *button;
 @property (weak, nonatomic) IBOutlet MKMapView *map;
-
 @property (strong, nonatomic) NSArray *mapItems;
+
+-(void)didLongTouch;
+-(void)didTouch;
+-(void)uploadToCloud;
+-(void)reloadData;
+-(bool)reloadCloudData;
+-(void)addedAnnotationView;
+-(void)movePin;
+-(void)clear;
+-(void)showLogViewController;
+-(void)toggledDeleteWarnings;
 
 @end

@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "235"
             endingLineNumber = "235"
-            landmarkName = "-clear"
+            landmarkName = "-testCoreDataFind"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "203"
             endingLineNumber = "203"
-            landmarkName = "-menuView:buttonPressed:"
+            landmarkName = "-testPinDrop"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -77,7 +77,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "168"
             endingLineNumber = "168"
-            landmarkName = "-kGCalloutTesterView:testRegularLineDroppedPressed:"
+            landmarkName = "-mapView:annotationView:calloutAccessoryControlTapped:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

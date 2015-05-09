@@ -12,37 +12,17 @@
 @implementation KGCalloutView
 
 -(void)layoutSubviews{
+    self.typePickerView.dataSource = self;
+    self.typePickerView.delegate = self;
+    
     [self.layer setCornerRadius:10.0f];
     self.backgroundColor = [UIColor kgBrownColor];
     
     self.titleField.text = _title;
-    self.titleField.textColor = [UIColor kgOrangeColor];
-
     self.pickerData = @[@"Select Type", @"Bar", @"Bait", @"Charters", @"Dock", @"Hospital", @"Pier", @"Restaurant"];
-    self.typePickerView.dataSource = self;
-    self.typePickerView.delegate = self;
     
+    [self setSubviewColors];
     [self moveToStateRegularLocationAny];
-    
-    //    self.pinTypeLabel.textColor = [UIColor kgOrangeColor];
-    //    self.chooseTypeLabel.textColor = [UIColor kgOrangeColor];
-    
-    //    self.isLinePinLabel.textColor = [UIColor kgOrangeColor];
-    //
-    //    self.startLineButton.layer.cornerRadius = buttonCornerRadius;
-    //    self.startLineButton.backgroundColor = [UIColor kgOrangeColor];
-    //
-    //    self.selectParentButton.layer.cornerRadius = buttonCornerRadius;
-    //    self.selectParentButton.backgroundColor = [UIColor kgOrangeColor];
-    //
-    //    self.endLineButton.layer.cornerRadius = buttonCornerRadius;
-    //    self.endLineButton.backgroundColor = [UIColor kgOrangeColor];
-    //
-    //    self.startLineColoring.layer.cornerRadius = buttonCornerRadius;
-    //    self.startLineColoring.backgroundColor = [UIColor kgOrangeColor];
-    //
-    //    self.endLineColoring.layer.cornerRadius = buttonCornerRadius;
-    //    self.endLineColoring.backgroundColor = [UIColor kgOrangeColor];
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
@@ -114,118 +94,146 @@
     
 }
 
--(void)moveToStateEmpy{
-    self.titleField.hidden = YES;
-    self.typePickerView.hidden = YES;
-    
-    self.chooseTypeLabel.hidden = YES;
-    self.isLinePinLabel.hidden = YES;
-    self.isLinePinSwitch.hidden = YES;
-    self.startLineButton.hidden = YES;
-    self.selectParentButton.hidden = YES;
-    self.endLineButton.hidden = YES;
-    self.startLineColoring.hidden = YES;
-    self.endLineColoring.hidden = YES;
-}
-
--(void)moveToStateRegularLocationAny{
-    self.titleField.hidden = NO;
-    self.typePickerView.hidden = NO;
-    
-    self.chooseTypeLabel.hidden = YES;
-    self.isLinePinLabel.hidden = NO;
-    self.isLinePinSwitch.hidden = NO;
-    self.startLineButton.hidden = YES;
-    self.selectParentButton.hidden = YES;
-    self.endLineButton.hidden = YES;
-    self.startLineColoring.hidden = YES;
-    self.endLineColoring.hidden = YES;
-}
-
--(void)moveToStateRegularLineDropped{
-    self.titleField.hidden = YES;
-    self.chooseTypeLabel.hidden = YES;
-    self.typePickerView.hidden = YES;
-    self.isLinePinLabel.hidden = YES;
-    self.isLinePinSwitch.hidden = YES;
-    
-    self.startLineButton.hidden = NO;
-    self.selectParentButton.hidden = NO;
-    self.endLineButton.hidden = YES;
-    self.startLineColoring.hidden = YES;
-    self.endLineColoring.hidden = YES;
-}
-
--(void)moveToStateDrawingLineDropped{
-    self.titleField.hidden = YES;
-    self.chooseTypeLabel.hidden = YES;
-    self.typePickerView.hidden = YES;
-    self.isLinePinLabel.hidden = YES;
-    self.isLinePinSwitch.hidden = YES;
-    
-    self.startLineButton.hidden = YES;
-    self.selectParentButton.hidden = YES;
-    self.endLineButton.hidden = NO;
-    self.startLineColoring.hidden = YES;
-    self.endLineColoring.hidden = YES;
-}
-
--(void)moveToStateRegularLineSelected_NoParent{
-    self.titleField.hidden = YES;
-    self.chooseTypeLabel.hidden = YES;
-    self.typePickerView.hidden = YES;
-    self.isLinePinLabel.hidden = NO;
-    self.isLinePinSwitch.hidden = NO;
-    
-    self.startLineButton.hidden = YES;
-    self.selectParentButton.hidden = YES;
-    self.endLineButton.hidden = YES;
-    self.startLineColoring.hidden = YES;
-    self.endLineColoring.hidden = YES;
-    self.endLineColoring.hidden = YES;
-}
-
--(void)moveToStateRegularLineSelected_WithParent{
-    self.titleField.hidden = YES;
-    self.chooseTypeLabel.hidden = YES;
-    self.typePickerView.hidden = YES;
-    self.isLinePinLabel.hidden = YES;
-    self.isLinePinSwitch.hidden = YES;
-    
-    self.startLineButton.hidden = YES;
-    self.selectParentButton.hidden = YES;
-    self.endLineButton.hidden = YES;
-    self.startLineColoring.hidden = NO;
-    self.endLineColoring.hidden = YES;
-}
-
--(void)moveToStateColoringLineSelected{
-    self.titleField.hidden = YES;
-    self.chooseTypeLabel.hidden = YES;
-    self.typePickerView.hidden = YES;
-    self.isLinePinLabel.hidden = YES;
-    self.isLinePinSwitch.hidden = YES;
-    
-    self.startLineButton.hidden = YES;
-    self.selectParentButton.hidden = YES;
-    self.endLineButton.hidden = YES;
-    self.startLineColoring.hidden = YES;
-    self.endLineColoring.hidden = NO;
-}
-
 -(void)didSetName{
 }
 
 -(void)didSetLocationType{
 }
 
--(bool)deletePin{
-    return YES;
-}
-
 -(void)changeToState{
     //“Regular - Drop - Location Pin”
     //“Regular - Select - Location Pin” / same as “Regular - Dropped - Location Pin”
+}
+
+- (IBAction)deletePin:(id)sender {
+    
+}
+
+- (IBAction)closeCallout:(id)sender {
+    
+}
+
+- (void)setSubviewColors{
+    self.titleField.textColor = [UIColor kgOrangeColor];
+    
+    //    self.pinTypeLabel.textColor = [UIColor kgOrangeColor];
+    //    self.chooseTypeLabel.textColor = [UIColor kgOrangeColor];
+    
+    //    self.isLinePinLabel.textColor = [UIColor kgOrangeColor];
+    //
+    //    self.startLineButton.layer.cornerRadius = buttonCornerRadius;
+    //    self.startLineButton.backgroundColor = [UIColor kgOrangeColor];
+    //
+    //    self.selectParentButton.layer.cornerRadius = buttonCornerRadius;
+    //    self.selectParentButton.backgroundColor = [UIColor kgOrangeColor];
+    //
+    //    self.endLineButton.layer.cornerRadius = buttonCornerRadius;
+    //    self.endLineButton.backgroundColor = [UIColor kgOrangeColor];
+    //
+    //    self.startLineColoring.layer.cornerRadius = buttonCornerRadius;
+    //    self.startLineColoring.backgroundColor = [UIColor kgOrangeColor];
+    //
+    //    self.endLineColoring.layer.cornerRadius = buttonCornerRadius;
+    //    self.endLineColoring.backgroundColor = [UIColor kgOrangeColor];
+}
+
+-(void)moveToStateEmpy{
+    self.titleField.hidden = YES;
+    self.typePickerView.hidden = YES;
+    
+    //    self.chooseTypeLabel.hidden = YES;
+    //    self.isLinePinLabel.hidden = YES;
+    //    self.isLinePinSwitch.hidden = YES;
+    //    self.startLineButton.hidden = YES;
+    //    self.selectParentButton.hidden = YES;
+    //    self.endLineButton.hidden = YES;
+    //    self.startLineColoring.hidden = YES;
+    //    self.endLineColoring.hidden = YES;
+}
+
+-(void)moveToStateRegularLocationAny{
+    self.titleField.hidden = NO;
+    self.typePickerView.hidden = NO;
+    
+    //    self.chooseTypeLabel.hidden = YES;
+    //    self.isLinePinLabel.hidden = NO;
+    //    self.isLinePinSwitch.hidden = NO;
+    //    self.startLineButton.hidden = YES;
+    //    self.selectParentButton.hidden = YES;
+    //    self.endLineButton.hidden = YES;
+    //    self.startLineColoring.hidden = YES;
+    //    self.endLineColoring.hidden = YES;
+}
+
+-(void)moveToStateRegularLineDropped{
+    //    self.titleField.hidden = YES;
+    //    self.chooseTypeLabel.hidden = YES;
+    //    self.typePickerView.hidden = YES;
+    //    self.isLinePinLabel.hidden = YES;
+    //    self.isLinePinSwitch.hidden = YES;
+    //
+    //    self.startLineButton.hidden = NO;
+    //    self.selectParentButton.hidden = NO;
+    //    self.endLineButton.hidden = YES;
+    //    self.startLineColoring.hidden = YES;
+    //    self.endLineColoring.hidden = YES;
+}
+
+-(void)moveToStateDrawingLineDropped{
+    //    self.titleField.hidden = YES;
+    //    self.chooseTypeLabel.hidden = YES;
+    //    self.typePickerView.hidden = YES;
+    //    self.isLinePinLabel.hidden = YES;
+    //    self.isLinePinSwitch.hidden = YES;
+    //
+    //    self.startLineButton.hidden = YES;
+    //    self.selectParentButton.hidden = YES;
+    //    self.endLineButton.hidden = NO;
+    //    self.startLineColoring.hidden = YES;
+    //    self.endLineColoring.hidden = YES;
+}
+
+-(void)moveToStateRegularLineSelected_NoParent{
+    //    self.titleField.hidden = YES;
+    //    self.chooseTypeLabel.hidden = YES;
+    //    self.typePickerView.hidden = YES;
+    //    self.isLinePinLabel.hidden = NO;
+    //    self.isLinePinSwitch.hidden = NO;
+    //
+    //    self.startLineButton.hidden = YES;
+    //    self.selectParentButton.hidden = YES;
+    //    self.endLineButton.hidden = YES;
+    //    self.startLineColoring.hidden = YES;
+    //    self.endLineColoring.hidden = YES;
+    //    self.endLineColoring.hidden = YES;
+}
+
+-(void)moveToStateRegularLineSelected_WithParent{
+    //    self.titleField.hidden = YES;
+    //    self.chooseTypeLabel.hidden = YES;
+    //    self.typePickerView.hidden = YES;
+    //    self.isLinePinLabel.hidden = YES;
+    //    self.isLinePinSwitch.hidden = YES;
+    //
+    //    self.startLineButton.hidden = YES;
+    //    self.selectParentButton.hidden = YES;
+    //    self.endLineButton.hidden = YES;
+    //    self.startLineColoring.hidden = NO;
+    //    self.endLineColoring.hidden = YES;
+}
+
+-(void)moveToStateColoringLineSelected{
+    //    self.titleField.hidden = YES;
+    //    self.chooseTypeLabel.hidden = YES;
+    //    self.typePickerView.hidden = YES;
+    //    self.isLinePinLabel.hidden = YES;
+    //    self.isLinePinSwitch.hidden = YES;
+    //    
+    //    self.startLineButton.hidden = YES;
+    //    self.selectParentButton.hidden = YES;
+    //    self.endLineButton.hidden = YES;
+    //    self.startLineColoring.hidden = YES;
+    //    self.endLineColoring.hidden = NO;
 }
 
 //- (id)initWithCoder:(NSCoder *)aDecoder {

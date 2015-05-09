@@ -16,15 +16,35 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dEl-hS-IoH">
-                    <rect key="frame" x="22" y="34" width="253" height="216"/>
+                    <rect key="frame" x="22" y="61" width="253" height="189"/>
                 </pickerView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7i-dW-h7e">
+                    <rect key="frame" x="8" y="23" width="44" height="30"/>
+                    <state key="normal" title="Delete">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="deletePin:" destination="iN0-l3-epB" eventType="touchUpInside" id="Aps-vg-0pn"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJR-V8-UzG">
+                    <rect key="frame" x="253" y="23" width="40" height="30"/>
+                    <state key="normal" title="Close">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="closeCallout:" destination="iN0-l3-epB" eventType="touchUpInside" id="sNb-JW-Lu1"/>
+                    </connections>
+                </button>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="closeButton" destination="KJR-V8-UzG" id="teF-pA-EF0"/>
+                <outlet property="deleteButton" destination="o7i-dW-h7e" id="DqD-un-QcA"/>
                 <outlet property="titleField" destination="QJE-9J-pmz" id="BRx-d0-7uj"/>
                 <outlet property="typePickerView" destination="dEl-hS-IoH" id="esf-jl-dda"/>
             </connections>
-            <point key="canvasLocation" x="439" y="171.5"/>
+            <point key="canvasLocation" x="451" y="176.5"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -7,12 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreData/CoreData.h>
+
+#import "AppDelegate.h"
+
 #import "KGCalloutView.h"
 #import "KGMenuView.h"
 #import "KGCalloutTesterView.h"
 #import "KGMenuButton.h"
-#import <MapKit/MapKit.h>
 #import "KGOverlay.h"
+#import "KGMapOverlayView.h"
+#import "KGAnnotationView.h"
+
+#import "SBPark.h"
+#import "SBCalloutView.h"
+#import "TestObject.h"
+#import "Pin.h"
+
+#import "UIColor+KGColors.h"
 
 @interface ViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate>
 
@@ -22,6 +35,7 @@
 @property (strong, nonatomic) IBOutlet KGMenuButton *button;
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 @property (strong, nonatomic) NSArray *mapItems;
+@property (strong, nonatomic) NSManagedObjectContext *context;
 
 -(void)didLongTouch;
 -(void)didTouch;

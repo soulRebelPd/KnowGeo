@@ -8,19 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import <CoreData/CoreData.h>
 
-@interface Pin : NSObject
+@interface Pin : NSManagedObject
 
-@property NSString *name;
-@property CLLocationCoordinate2D coordinate;
+@property (copy, nonatomic) NSString *title;
+@property NSString *subTitle;
+@property NSNumber *latitude;
+@property NSNumber *longitude;
 @property NSNumber *locationTypeId;
+@property bool isCloudSaved;
+@property bool isLocallySaved;
 
 -(void)initWithPin:(Pin *)pin;
--(bool)isLocallySaved;
--(bool)isCloudSaved;
 -(bool)saveToCloud;
 -(bool)saveToDisk;
 -(bool)delete;
+
+//NOTE: created for tutorial
+//- (id)initWithCoordinate:(CLLocationCoordinate2D)coord;
+//- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
 
 @end
 

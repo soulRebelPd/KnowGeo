@@ -13,6 +13,8 @@
 		0403B51F1AFC1672001875AD /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B51E1AFC1672001875AD /* Settings.m */; };
 		0403B5221AFC1706001875AD /* Pins.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B5211AFC1706001875AD /* Pins.m */; };
 		0403B5261AFC1A56001875AD /* LogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B5251AFC1A56001875AD /* LogTableViewController.m */; };
+		0403B52C1AFD48C5001875AD /* SBCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B52B1AFD48C5001875AD /* SBCalloutView.m */; };
+		0403B52F1AFE598F001875AD /* KGAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B52E1AFE598F001875AD /* KGAnnotationView.m */; };
 		048EAE271AE7FE7C00974E03 /* KGMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048EAE261AE7FE7C00974E03 /* KGMenuButton.xib */; };
 		048EAE2D1AE7FF1400974E03 /* KGMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE2C1AE7FF1400974E03 /* KGMenuButton.m */; };
 		048EAE331AE9549300974E03 /* UIColor+KGColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE321AE9549300974E03 /* UIColor+KGColors.m */; };
@@ -63,6 +65,10 @@
 		0403B5211AFC1706001875AD /* Pins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pins.m; sourceTree = "<group>"; };
 		0403B5241AFC1A56001875AD /* LogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewController.h; sourceTree = "<group>"; };
 		0403B5251AFC1A56001875AD /* LogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewController.m; sourceTree = "<group>"; };
+		0403B52A1AFD48C5001875AD /* SBCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCalloutView.h; sourceTree = "<group>"; };
+		0403B52B1AFD48C5001875AD /* SBCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCalloutView.m; sourceTree = "<group>"; };
+		0403B52D1AFE598F001875AD /* KGAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGAnnotationView.h; sourceTree = "<group>"; };
+		0403B52E1AFE598F001875AD /* KGAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGAnnotationView.m; sourceTree = "<group>"; };
 		048EAE261AE7FE7C00974E03 /* KGMenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGMenuButton.xib; sourceTree = "<group>"; };
 		048EAE2B1AE7FF1400974E03 /* KGMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMenuButton.h; sourceTree = "<group>"; };
 		048EAE2C1AE7FF1400974E03 /* KGMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGMenuButton.m; sourceTree = "<group>"; };
@@ -160,6 +166,8 @@
 				04E517E41AE57AB000C56FBC /* KGMenuView.h */,
 				04E517E51AE57AB000C56FBC /* KGMenuView.m */,
 				04E517E61AE57AB000C56FBC /* KGMenuView.xib */,
+				0403B52A1AFD48C5001875AD /* SBCalloutView.h */,
+				0403B52B1AFD48C5001875AD /* SBCalloutView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -202,6 +210,8 @@
 				048EAE581AEAEE8B00974E03 /* KGMapOverlayView.m */,
 				048EAE521AEAA44C00974E03 /* KGOverlay.h */,
 				048EAE531AEAA44C00974E03 /* KGOverlay.m */,
+				0403B52D1AFE598F001875AD /* KGAnnotationView.h */,
+				0403B52E1AFE598F001875AD /* KGAnnotationView.m */,
 				0403B5231AFC1712001875AD /* Models */,
 				0403B5271AFC1B88001875AD /* Views */,
 				04F9CF931ADEEFF000B6ED9E /* Supporting Files */,
@@ -352,6 +362,7 @@
 			files = (
 				04C7A4391AF9515E00538A36 /* TestObject.m in Sources */,
 				048EAE591AEAEE8B00974E03 /* KGMapOverlayView.m in Sources */,
+				0403B52C1AFD48C5001875AD /* SBCalloutView.m in Sources */,
 				04E517EF1AE6DEA300C56FBC /* KGCalloutTesterView.m in Sources */,
 				0403B51C1AFC1567001875AD /* LogEntries.m in Sources */,
 				048EAE331AE9549300974E03 /* UIColor+KGColors.m in Sources */,
@@ -365,6 +376,7 @@
 				04F9CF9F1ADEEFF000B6ED9E /* ViewController.m in Sources */,
 				0403B51F1AFC1672001875AD /* Settings.m in Sources */,
 				048EAE2D1AE7FF1400974E03 /* KGMenuButton.m in Sources */,
+				0403B52F1AFE598F001875AD /* KGAnnotationView.m in Sources */,
 				04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */,
 				0403B5221AFC1706001875AD /* Pins.m in Sources */,
 				04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */,

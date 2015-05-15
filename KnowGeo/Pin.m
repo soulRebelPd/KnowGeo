@@ -2,83 +2,76 @@
 //  Pin.m
 //  KnowGeo
 //
-//  Created by Corey Norford on 5/7/15.
+//  Created by Corey Norford on 5/12/15.
 //  Copyright (c) 2015 Ten Pandas. All rights reserved.
 //
 
 #import "Pin.h"
-#import "AppDelegate.h"
 
 @implementation Pin
 
-@synthesize locationTypeId;
-@synthesize subTitle;
-@synthesize title;
-@synthesize latitude;
-@synthesize longitude;
-@synthesize isCloudSaved;
-@synthesize isLocallySaved;
+@dynamic isCloudSaved;
+@dynamic isLocallySaved;
+@dynamic locationTypeId;
+@dynamic subTitle;
+@dynamic title;
+@dynamic latitude;
+@dynamic longitude;
+@synthesize objectContext;
 
-//-(id)init{
-//    self = [super init];
-//    
-//    return self;
-//}
-
--(void)initWithPin:(Pin *)pin{
-}
-
--(bool)saveToCloud{
-    return YES;
-}
-
--(bool)saveToDisk{
-    // NOTE: should be created with context as class variable?
-    // NOTE: should pass in through constructor?
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+- (id)initWithEntity:(NSEntityDescription*)entity insertIntoManagedObjectContext:(NSManagedObjectContext*)context
+{
+    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
+    if (self != nil) {
+        self.objectContext = context;
+    }
     
-    self.isLocallySaved = YES;
+    return self;
+}
+
+-(id)init{
+    self = [super init];
+    
+    return self;
+}
+
+-(void)save{
+    NSError *error = nil;
+    
+    if (![self.objectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
+-(void)delete{
+    if([self.isCloudSaved isEqualToNumber:@1]){
+    }
+    else{
+        [self.objectContext deleteObject:(NSManagedObject *)self];
+        [self.objectContext save:nil];
+    }
+}
+
++(void)delete:(NSArray*)pins{
+    for(Pin *pin in pins){
+        [pin delete];
+    }
+}
+
++(NSMutableArray *)fetchAllWithContext:(NSManagedObjectContext *)context{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Pin" inManagedObjectContext:context];
+    [request setEntity:entityDescription];
     
     NSError *error;
-    [context save:&error];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
     
-    //TODO: check if error before returning YES
-    return YES;
+    for (Pin *pin in objects) {
+        NSLog(@"Pin %@ was retrieved, the object count is %d.", pin.title, objects.count);
+    }
+    
+    return [(NSArray*)objects mutableCopy];
 }
-
--(bool)delete{
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
-    //TODO: add error object
-    [context deleteObject:(NSManagedObject *)self];
-    [context save:nil];
-    
-    return YES;
-}
-
-//NOTE: added for tutorial
-//- (NSString *)subtitle{
-//    return nil;
-//}
-//
-//- (NSString *)title{
-//    return nil;
-//}
-
-//-(id)initWithCoordinate:(CLLocationCoordinate2D)coord {
-//    coordinate=coord;
-//    return self;
-//}
-
-//-(CLLocationCoordinate2D)coord
-//{
-//    return coordinate;
-//}
-
-//- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
-//    coordinate = newCoordinate;
-//}
 
 @end

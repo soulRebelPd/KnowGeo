@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Ten Pandas. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MyViewController.h"
 
-@interface LogTableViewController : ViewController
+@interface LogTableViewController : UIViewController
 
 @end

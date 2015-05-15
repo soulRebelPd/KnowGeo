@@ -16,6 +16,7 @@ IB_DESIGNABLE
 
 @protocol MenuViewDelegate <NSObject>
 - (BOOL)menuView:(KGMenuView *)menuView buttonPressed:(KGMenuButton*)button;
+//- (BOOL)menuView:(KGMenuView *)menuView clearPressed:(KGMenuButton*)button;
 @end
 
 @interface KGMenuView : UIView <UICollectionViewDelegateFlowLayout, KGMenuButtonDelegate>

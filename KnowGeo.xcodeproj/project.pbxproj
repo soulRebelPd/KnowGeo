@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0403B5161AFC1396001875AD /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B5151AFC1396001875AD /* Pin.m */; };
 		0403B5191AFC14EE001875AD /* LogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B5181AFC14EE001875AD /* LogEntry.m */; };
 		0403B51C1AFC1567001875AD /* LogEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B51B1AFC1567001875AD /* LogEntries.m */; };
 		0403B51F1AFC1672001875AD /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B51E1AFC1672001875AD /* Settings.m */; };
-		0403B5221AFC1706001875AD /* Pins.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B5211AFC1706001875AD /* Pins.m */; };
 		0403B5261AFC1A56001875AD /* LogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B5251AFC1A56001875AD /* LogTableViewController.m */; };
 		0403B52C1AFD48C5001875AD /* SBCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B52B1AFD48C5001875AD /* SBCalloutView.m */; };
 		0403B52F1AFE598F001875AD /* KGAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B52E1AFE598F001875AD /* KGAnnotationView.m */; };
+		045F95391B04EDF400B6B8D7 /* KGMyMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F95381B04EDF400B6B8D7 /* KGMyMapView.m */; };
+		045F953A1B05365400B6B8D7 /* KGMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517E51AE57AB000C56FBC /* KGMenuView.m */; };
+		045F953D1B06317500B6B8D7 /* Pins.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F953C1B06317500B6B8D7 /* Pins.m */; };
+		045F95401B0641C200B6B8D7 /* KGPinToAnnotationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F953F1B0641C200B6B8D7 /* KGPinToAnnotationConverter.m */; };
 		048EAE271AE7FE7C00974E03 /* KGMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048EAE261AE7FE7C00974E03 /* KGMenuButton.xib */; };
 		048EAE2D1AE7FF1400974E03 /* KGMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE2C1AE7FF1400974E03 /* KGMenuButton.m */; };
 		048EAE331AE9549300974E03 /* UIColor+KGColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE321AE9549300974E03 /* UIColor+KGColors.m */; };
@@ -26,20 +28,22 @@
 		04C7A4341AF91FD400538A36 /* MagicMountain.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A4331AF91FD400538A36 /* MagicMountain.plist */; };
 		04C7A4361AF920E600538A36 /* RiversideLine.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A4351AF920E600538A36 /* RiversideLine.plist */; };
 		04C7A4391AF9515E00538A36 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7A4381AF9515E00538A36 /* TestObject.m */; };
+		04D5C6401B0241C200B4E842 /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5C63F1B0241C200B4E842 /* Pin.m */; };
 		04E517D91AE16BC200C56FBC /* KGCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517D81AE16BC200C56FBC /* KGCalloutView.xib */; };
 		04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517DB1AE16BD100C56FBC /* KGCalloutView.m */; };
-		04E517E71AE57AB000C56FBC /* KGMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517E51AE57AB000C56FBC /* KGMenuView.m */; };
 		04E517E81AE57AB000C56FBC /* KGMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517E61AE57AB000C56FBC /* KGMenuView.xib */; };
 		04E517EC1AE6DE8300C56FBC /* KGCalloutTesterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517EB1AE6DE8300C56FBC /* KGCalloutTesterView.xib */; };
 		04E517EF1AE6DEA300C56FBC /* KGCalloutTesterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517EE1AE6DEA300C56FBC /* KGCalloutTesterView.m */; };
 		04F9CF961ADEEFF000B6ED9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF951ADEEFF000B6ED9E /* main.m */; };
 		04F9CF991ADEEFF000B6ED9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */; };
 		04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */; };
-		04F9CF9F1ADEEFF000B6ED9E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF9E1ADEEFF000B6ED9E /* ViewController.m */; };
+		04F9CF9F1ADEEFF000B6ED9E /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF9E1ADEEFF000B6ED9E /* MyViewController.m */; };
 		04F9CFA21ADEEFF000B6ED9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F9CFA01ADEEFF000B6ED9E /* Main.storyboard */; };
 		04F9CFA41ADEEFF000B6ED9E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F9CFA31ADEEFF000B6ED9E /* Images.xcassets */; };
 		04F9CFA71ADEEFF000B6ED9E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F9CFA51ADEEFF000B6ED9E /* LaunchScreen.xib */; };
 		04F9CFB31ADEEFF100B6ED9E /* KnowGeoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CFB21ADEEFF100B6ED9E /* KnowGeoTests.m */; };
+		04FA6ECF1B03B948002F213B /* KGPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA6ECE1B03B948002F213B /* KGPointAnnotation.m */; };
+		04FA6ED21B03D7B9002F213B /* SBPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA6ED11B03D7B9002F213B /* SBPin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,22 +57,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0403B5141AFC1396001875AD /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
-		0403B5151AFC1396001875AD /* Pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pin.m; sourceTree = "<group>"; };
 		0403B5171AFC14EE001875AD /* LogEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEntry.h; sourceTree = "<group>"; };
 		0403B5181AFC14EE001875AD /* LogEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEntry.m; sourceTree = "<group>"; };
 		0403B51A1AFC1567001875AD /* LogEntries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEntries.h; sourceTree = "<group>"; };
 		0403B51B1AFC1567001875AD /* LogEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEntries.m; sourceTree = "<group>"; };
 		0403B51D1AFC1672001875AD /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		0403B51E1AFC1672001875AD /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
-		0403B5201AFC1706001875AD /* Pins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pins.h; sourceTree = "<group>"; };
-		0403B5211AFC1706001875AD /* Pins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pins.m; sourceTree = "<group>"; };
 		0403B5241AFC1A56001875AD /* LogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewController.h; sourceTree = "<group>"; };
 		0403B5251AFC1A56001875AD /* LogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewController.m; sourceTree = "<group>"; };
 		0403B52A1AFD48C5001875AD /* SBCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCalloutView.h; sourceTree = "<group>"; };
 		0403B52B1AFD48C5001875AD /* SBCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCalloutView.m; sourceTree = "<group>"; };
 		0403B52D1AFE598F001875AD /* KGAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGAnnotationView.h; sourceTree = "<group>"; };
 		0403B52E1AFE598F001875AD /* KGAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGAnnotationView.m; sourceTree = "<group>"; };
+		045F95371B04EDF400B6B8D7 /* KGMyMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMyMapView.h; sourceTree = "<group>"; };
+		045F95381B04EDF400B6B8D7 /* KGMyMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGMyMapView.m; sourceTree = "<group>"; };
+		045F953B1B06317500B6B8D7 /* Pins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pins.h; sourceTree = "<group>"; };
+		045F953C1B06317500B6B8D7 /* Pins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pins.m; sourceTree = "<group>"; };
+		045F953E1B0641C200B6B8D7 /* KGPinToAnnotationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGPinToAnnotationConverter.h; sourceTree = "<group>"; };
+		045F953F1B0641C200B6B8D7 /* KGPinToAnnotationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGPinToAnnotationConverter.m; sourceTree = "<group>"; };
 		048EAE261AE7FE7C00974E03 /* KGMenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGMenuButton.xib; sourceTree = "<group>"; };
 		048EAE2B1AE7FF1400974E03 /* KGMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMenuButton.h; sourceTree = "<group>"; };
 		048EAE2C1AE7FF1400974E03 /* KGMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGMenuButton.m; sourceTree = "<group>"; };
@@ -86,6 +92,8 @@
 		04C7A4351AF920E600538A36 /* RiversideLine.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RiversideLine.plist; sourceTree = "<group>"; };
 		04C7A4371AF9515E00538A36 /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
 		04C7A4381AF9515E00538A36 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
+		04D5C63E1B0241C200B4E842 /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
+		04D5C63F1B0241C200B4E842 /* Pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pin.m; sourceTree = "<group>"; };
 		04E517D81AE16BC200C56FBC /* KGCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGCalloutView.xib; sourceTree = "<group>"; };
 		04E517DA1AE16BD100C56FBC /* KGCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGCalloutView.h; sourceTree = "<group>"; };
 		04E517DB1AE16BD100C56FBC /* KGCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGCalloutView.m; sourceTree = "<group>"; };
@@ -101,14 +109,18 @@
 		04F9CF971ADEEFF000B6ED9E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04F9CF9B1ADEEFF000B6ED9E /* KnowGeo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KnowGeo.xcdatamodel; sourceTree = "<group>"; };
-		04F9CF9D1ADEEFF000B6ED9E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		04F9CF9E1ADEEFF000B6ED9E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		04F9CF9D1ADEEFF000B6ED9E /* MyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		04F9CF9E1ADEEFF000B6ED9E /* MyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		04F9CFA11ADEEFF000B6ED9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04F9CFA31ADEEFF000B6ED9E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04F9CFA61ADEEFF000B6ED9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		04F9CFAC1ADEEFF100B6ED9E /* KnowGeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnowGeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F9CFB11ADEEFF100B6ED9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F9CFB21ADEEFF100B6ED9E /* KnowGeoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KnowGeoTests.m; sourceTree = "<group>"; };
+		04FA6ECD1B03B948002F213B /* KGPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGPointAnnotation.h; sourceTree = "<group>"; };
+		04FA6ECE1B03B948002F213B /* KGPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGPointAnnotation.m; sourceTree = "<group>"; };
+		04FA6ED01B03D7B9002F213B /* SBPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPin.h; sourceTree = "<group>"; };
+		04FA6ED11B03D7B9002F213B /* SBPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,12 +149,14 @@
 				0403B51B1AFC1567001875AD /* LogEntries.m */,
 				0403B5171AFC14EE001875AD /* LogEntry.h */,
 				0403B5181AFC14EE001875AD /* LogEntry.m */,
-				0403B5141AFC1396001875AD /* Pin.h */,
-				0403B5151AFC1396001875AD /* Pin.m */,
-				0403B5201AFC1706001875AD /* Pins.h */,
-				0403B5211AFC1706001875AD /* Pins.m */,
+				04D5C63E1B0241C200B4E842 /* Pin.h */,
+				04D5C63F1B0241C200B4E842 /* Pin.m */,
+				045F953B1B06317500B6B8D7 /* Pins.h */,
+				045F953C1B06317500B6B8D7 /* Pins.m */,
 				04C7A42C1AF900C200538A36 /* SBPark.h */,
 				04C7A42D1AF900C200538A36 /* SBPark.m */,
+				04FA6ED01B03D7B9002F213B /* SBPin.h */,
+				04FA6ED11B03D7B9002F213B /* SBPin.m */,
 				0403B51D1AFC1672001875AD /* Settings.h */,
 				0403B51E1AFC1672001875AD /* Settings.m */,
 				04C7A4371AF9515E00538A36 /* TestObject.h */,
@@ -200,8 +214,8 @@
 				04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */,
 				04F9CFA51ADEEFF000B6ED9E /* LaunchScreen.xib */,
 				04F9CFA01ADEEFF000B6ED9E /* Main.storyboard */,
-				04F9CF9D1ADEEFF000B6ED9E /* ViewController.h */,
-				04F9CF9E1ADEEFF000B6ED9E /* ViewController.m */,
+				04F9CF9D1ADEEFF000B6ED9E /* MyViewController.h */,
+				04F9CF9E1ADEEFF000B6ED9E /* MyViewController.m */,
 				0403B5241AFC1A56001875AD /* LogTableViewController.h */,
 				0403B5251AFC1A56001875AD /* LogTableViewController.m */,
 				048EAE311AE9549300974E03 /* UIColor+KGColors.h */,
@@ -212,6 +226,12 @@
 				048EAE531AEAA44C00974E03 /* KGOverlay.m */,
 				0403B52D1AFE598F001875AD /* KGAnnotationView.h */,
 				0403B52E1AFE598F001875AD /* KGAnnotationView.m */,
+				04FA6ECD1B03B948002F213B /* KGPointAnnotation.h */,
+				04FA6ECE1B03B948002F213B /* KGPointAnnotation.m */,
+				045F95371B04EDF400B6B8D7 /* KGMyMapView.h */,
+				045F95381B04EDF400B6B8D7 /* KGMyMapView.m */,
+				045F953E1B0641C200B6B8D7 /* KGPinToAnnotationConverter.h */,
+				045F953F1B0641C200B6B8D7 /* KGPinToAnnotationConverter.m */,
 				0403B5231AFC1712001875AD /* Models */,
 				0403B5271AFC1B88001875AD /* Views */,
 				04F9CF931ADEEFF000B6ED9E /* Supporting Files */,
@@ -360,27 +380,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				045F953A1B05365400B6B8D7 /* KGMenuView.m in Sources */,
 				04C7A4391AF9515E00538A36 /* TestObject.m in Sources */,
 				048EAE591AEAEE8B00974E03 /* KGMapOverlayView.m in Sources */,
+				045F953D1B06317500B6B8D7 /* Pins.m in Sources */,
 				0403B52C1AFD48C5001875AD /* SBCalloutView.m in Sources */,
+				04D5C6401B0241C200B4E842 /* Pin.m in Sources */,
+				04FA6ED21B03D7B9002F213B /* SBPin.m in Sources */,
 				04E517EF1AE6DEA300C56FBC /* KGCalloutTesterView.m in Sources */,
 				0403B51C1AFC1567001875AD /* LogEntries.m in Sources */,
 				048EAE331AE9549300974E03 /* UIColor+KGColors.m in Sources */,
 				04F9CF991ADEEFF000B6ED9E /* AppDelegate.m in Sources */,
 				04C7A42E1AF900C200538A36 /* SBPark.m in Sources */,
 				0403B5261AFC1A56001875AD /* LogTableViewController.m in Sources */,
+				045F95401B0641C200B6B8D7 /* KGPinToAnnotationConverter.m in Sources */,
 				0403B5191AFC14EE001875AD /* LogEntry.m in Sources */,
 				048EAE541AEAA44C00974E03 /* KGOverlay.m in Sources */,
-				0403B5161AFC1396001875AD /* Pin.m in Sources */,
 				04F9CF961ADEEFF000B6ED9E /* main.m in Sources */,
-				04F9CF9F1ADEEFF000B6ED9E /* ViewController.m in Sources */,
+				04FA6ECF1B03B948002F213B /* KGPointAnnotation.m in Sources */,
+				04F9CF9F1ADEEFF000B6ED9E /* MyViewController.m in Sources */,
 				0403B51F1AFC1672001875AD /* Settings.m in Sources */,
 				048EAE2D1AE7FF1400974E03 /* KGMenuButton.m in Sources */,
+				045F95391B04EDF400B6B8D7 /* KGMyMapView.m in Sources */,
 				0403B52F1AFE598F001875AD /* KGAnnotationView.m in Sources */,
 				04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */,
-				0403B5221AFC1706001875AD /* Pins.m in Sources */,
 				04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */,
-				04E517E71AE57AB000C56FBC /* KGMenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

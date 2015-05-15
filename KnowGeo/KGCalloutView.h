@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+
 #import "UIColor+KGColors.h"
 
 IB_DESIGNABLE
+
+@class KGCalloutView;
+
+@protocol KGCalloutViewDelegate <NSObject>
+-(void)kgCalloutView:(KGCalloutView *)kGCalloutView deleteButtonPressed:(BOOL)variable;
+@end
 
 @interface KGCalloutView : UIView <UIPickerViewDataSource, UIPickerViewDelegate>
 //displays option to Delete or Choose Parent or Clear Parent or Drop A Child Pin
@@ -17,11 +25,13 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable NSString *title;
 @property NSArray *pickerData;
 @property (strong, nonatomic) IBOutlet KGCalloutView *view;
+@property MKAnnotationView *parent;
 
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UIPickerView *typePickerView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (nonatomic, weak) NSObject <KGCalloutViewDelegate> *delegate;
 
 - (void)didSetName;
 - (void)didSetLocationType;

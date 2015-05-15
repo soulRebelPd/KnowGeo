@@ -24,27 +24,4 @@
     return self;
 }
 
-//- (instancetype)init {
-//    self = [super init];
-//    if (self) {
-//        //NOTE: this is where coordinate and boundingMapRect were being set
-//        [self setBoundingMapRect2];
-//    }
-//
-//    return self;
-//}
-//
-//-(void)setCoordinate:(CLLocationCoordinate2D)newCoordinate{
-//    coordinate = newCoordinate;
-//}
-//
-//- (void)setBoundingMapRect2
-//{
-//
-//    MKMapPoint upperLeft = MKMapPointForCoordinate(self.coordinate);
-//
-//    MKMapRect bounds = MKMapRectMake(upperLeft.x, upperLeft.y, 20000, 20000);
-//    boundingMapRect = bounds;
-//}
-
 @end

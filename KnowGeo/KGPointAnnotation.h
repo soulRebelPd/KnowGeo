@@ -1,0 +1,17 @@
+//
+//  KGPointAnnotation.h
+//  KnowGeo
+//
+//  Created by Corey Norford on 5/13/15.
+//  Copyright (c) 2015 Ten Pandas. All rights reserved.
+//
+
+#import <MapKit/MapKit.h>
+#import "Pin.h"
+
+@interface KGPointAnnotation : MKPointAnnotation
+
+@property (nonatomic) MKPinAnnotationColor pinColor;
+@property (nonatomic) Pin *pin;
+
+@end

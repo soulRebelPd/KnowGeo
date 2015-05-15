@@ -14,7 +14,4 @@
 
 - (instancetype)initWithPark:(SBPark *)park;
 
-// coordinate;
-//@synthesize boundingMapRect;
-
 @end

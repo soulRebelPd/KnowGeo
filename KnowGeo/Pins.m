@@ -2,7 +2,7 @@
 //  Pins.m
 //  KnowGeo
 //
-//  Created by Corey Norford on 5/7/15.
+//  Created by Corey Norford on 5/15/15.
 //  Copyright (c) 2015 Ten Pandas. All rights reserved.
 //
 
@@ -10,30 +10,47 @@
 
 @implementation Pins
 
--(Pins *)getAllPins{
-    return nil;
-}
-
--(Pins *)getPinsFromDisk{
-    return nil;
-}
-
--(void)clear{
+-(instancetype)initWithMutableArray:(NSMutableArray *)mutableArray{
+    self = [super init];
     
+    for(Pin *pin in mutableArray){
+        [self addObject:pin];
+    }
+    
+    return self;
 }
 
--(bool)deleteLine{
-    return YES;
+
+-(void)testLoop{
+    for(Pin *pin in self){
+        NSLog(@"Pin title is:%@", pin.title);
+    }
 }
 
--(bool)saveToCloud{
-    return YES;
++(Pins *)fetchAllWithContext:(NSManagedObjectContext *)context{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Pin" inManagedObjectContext:context];
+    [request setEntity:entityDescription];
+    
+    NSError *error;
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    NSMutableArray *mutableArray = [objects mutableCopy];
+    Pins *pins = [[Pins alloc] initWithMutableArray:mutableArray];
+    
+    return pins;
+    
+    //[(Pins *)objects mutableCopy];
 }
 
--(void)saveToDisk{
+-(NSUInteger)count{
+    if(self != nil){
+        return self.count;
+    }
+    else{
+        return 0;
+    }
+    
 }
 
 
 @end
-
-

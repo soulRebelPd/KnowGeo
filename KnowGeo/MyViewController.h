@@ -19,23 +19,34 @@
 #import "KGOverlay.h"
 #import "KGMapOverlayView.h"
 #import "KGAnnotationView.h"
+#import "KGPointAnnotation.h"
+#import "KGMyMapView.h"
 
 #import "SBPark.h"
-#import "SBCalloutView.h"
+#import "SBPin.h"
+
 #import "TestObject.h"
 #import "Pin.h"
+//#import "Pins.h"
+#import "KGPintoAnnotationConverter.h"
 
 #import "UIColor+KGColors.h"
 
-@interface ViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate>
+@interface MyViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet KGCalloutView *callout;
 @property (weak, nonatomic) IBOutlet KGMenuView *menu;
 @property (strong, nonatomic) IBOutlet KGCalloutTesterView *tester;
 @property (strong, nonatomic) IBOutlet KGMenuButton *button;
-@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (weak, nonatomic) IBOutlet KGMyMapView *map;
 @property (strong, nonatomic) NSArray *mapItems;
-@property (strong, nonatomic) NSManagedObjectContext *context;
+@property (strong, nonatomic) NSMutableArray *localPins;
+@property (strong, nonatomic) NSMutableArray *localAnnotations;
+@property (strong, nonatomic) NSArray *cloudAnnotations;
+@property (strong, nonatomic) NSMutableArray *cloudPins;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property NSEntityDescription *pinEntityDescription;
+@property NSNumber *counter;
 
 -(void)didLongTouch;
 -(void)didTouch;

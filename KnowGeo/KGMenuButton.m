@@ -45,7 +45,7 @@
     self.iconImageView.alpha = 1.0;
     self.titleLabel.alpha = 1.0;
 }
-    
+
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.

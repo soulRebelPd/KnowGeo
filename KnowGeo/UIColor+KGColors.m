@@ -27,7 +27,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         orangeColor = [UIColor colorWithRed:1 green:0.373 blue:0.259 alpha:1];
-        //[UIColor colorWithRed:254/255 green:100/255 blue:72/255 alpha:1];
     });
     
     return orangeColor;

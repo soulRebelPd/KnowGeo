@@ -106,7 +106,7 @@
 }
 
 - (IBAction)deletePin:(id)sender {
-    
+    [self.delegate kgCalloutView:self deleteButtonPressed:YES];
 }
 
 - (IBAction)closeCallout:(id)sender {

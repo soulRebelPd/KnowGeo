@@ -17,6 +17,7 @@
 		045F953A1B05365400B6B8D7 /* KGMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517E51AE57AB000C56FBC /* KGMenuView.m */; };
 		045F953D1B06317500B6B8D7 /* Pins.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F953C1B06317500B6B8D7 /* Pins.m */; };
 		045F95401B0641C200B6B8D7 /* KGPinToAnnotationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F953F1B0641C200B6B8D7 /* KGPinToAnnotationConverter.m */; };
+		045F957E1B0A59B300B6B8D7 /* SBTestPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F957D1B0A59B300B6B8D7 /* SBTestPin.m */; };
 		048EAE271AE7FE7C00974E03 /* KGMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048EAE261AE7FE7C00974E03 /* KGMenuButton.xib */; };
 		048EAE2D1AE7FF1400974E03 /* KGMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE2C1AE7FF1400974E03 /* KGMenuButton.m */; };
 		048EAE331AE9549300974E03 /* UIColor+KGColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE321AE9549300974E03 /* UIColor+KGColors.m */; };
@@ -75,6 +76,8 @@
 		045F953C1B06317500B6B8D7 /* Pins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pins.m; sourceTree = "<group>"; };
 		045F953E1B0641C200B6B8D7 /* KGPinToAnnotationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGPinToAnnotationConverter.h; sourceTree = "<group>"; };
 		045F953F1B0641C200B6B8D7 /* KGPinToAnnotationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGPinToAnnotationConverter.m; sourceTree = "<group>"; };
+		045F957C1B0A59B300B6B8D7 /* SBTestPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTestPin.h; sourceTree = "<group>"; };
+		045F957D1B0A59B300B6B8D7 /* SBTestPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTestPin.m; sourceTree = "<group>"; };
 		048EAE261AE7FE7C00974E03 /* KGMenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGMenuButton.xib; sourceTree = "<group>"; };
 		048EAE2B1AE7FF1400974E03 /* KGMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMenuButton.h; sourceTree = "<group>"; };
 		048EAE2C1AE7FF1400974E03 /* KGMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGMenuButton.m; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				0403B51E1AFC1672001875AD /* Settings.m */,
 				04C7A4371AF9515E00538A36 /* TestObject.h */,
 				04C7A4381AF9515E00538A36 /* TestObject.m */,
+				045F957C1B0A59B300B6B8D7 /* SBTestPin.h */,
+				045F957D1B0A59B300B6B8D7 /* SBTestPin.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				0403B52C1AFD48C5001875AD /* SBCalloutView.m in Sources */,
 				04D5C6401B0241C200B4E842 /* Pin.m in Sources */,
 				04FA6ED21B03D7B9002F213B /* SBPin.m in Sources */,
+				045F957E1B0A59B300B6B8D7 /* SBTestPin.m in Sources */,
 				04E517EF1AE6DEA300C56FBC /* KGCalloutTesterView.m in Sources */,
 				0403B51C1AFC1567001875AD /* LogEntries.m in Sources */,
 				048EAE331AE9549300974E03 /* UIColor+KGColors.m in Sources */,

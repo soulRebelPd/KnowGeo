@@ -10,7 +10,7 @@
 
 @implementation KGPinToAnnotationConverter
 
-+(NSMutableArray*)convertToAnnotations:(NSArray*)pins{
++(NSMutableArray *)convertToAnnotations:(NSArray*)pins{
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
     for(Pin *pin in pins){

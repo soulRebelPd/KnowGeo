@@ -16,31 +16,26 @@
 @synthesize managedObjectContext;
 @synthesize pinEntityDescription;
 
+#pragma mark ViewController
+
 - (void)viewDidLoad {
-    self.pinEntityDescription = [NSEntityDescription entityForName:@"Pin" inManagedObjectContext:self.managedObjectContext];
-    self.counter = @0;
-    
     [super viewDidLoad];
     self.map.delegate = self;
-
+    self.counter = @0;
+    
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    longPress.minimumPressDuration = 0.5; //user needs to press for half a second.
+    longPress.minimumPressDuration = 0.5;
     [self.map addGestureRecognizer:longPress];
     
-    self.localPins = [Pin fetchAllWithContext:self.managedObjectContext];
-    self.localAnnotations = [KGPinToAnnotationConverter convertToAnnotations:self.localPins];
-    [self.map addAnnotations:self.localAnnotations];
+    self.pinEntityDescription = [NSEntityDescription entityForName:@"Pin" inManagedObjectContext:self.managedObjectContext];
     
-    //self.localPinsStrong = [Pins fetchAllWithContext:self.managedObjectContext];
-    //[self.localPinsStrong testLoop];
-    
-    //[self placeLocallySavedPins:self.localPins];
+    self.localPins = [[NSMutableArray alloc] init];
+    [self addObserver:self forKeyPath:@"localPins" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    [self placeLocallySavedPinsWithKvo];
     
     self.cloudPins = [self fetchDummyCloudPins];
     self.cloudAnnotations = [KGPinToAnnotationConverter convertToAnnotations:self.cloudPins];
     [self.map addAnnotations:self.cloudAnnotations];
-    
-    //[self placeCloudSavedPins:self.cloudPins];
 
 //    NSArray *nibCallout = [[NSBundle mainBundle] loadNibNamed:@"KGCalloutView" owner:self options:nil];
 //    KGCalloutView *callout = [nibCallout objectAtIndex:0];
@@ -75,6 +70,178 @@
 //    [self testPlacingLine];
 //    [self testCoreDataSave];
 //    [self testCoreDataFind];
+    
+    //self.localPins = [Pin fetchAllWithContext:self.managedObjectContext];
+    //self.localAnnotations = [KGPinToAnnotationConverter convertToAnnotations:(NSMutableArray *)self.localPins];
+    //[self.map addAnnotations:self.localAnnotations];
+    
+    //[self placeCloudSavedPins:self.cloudPins];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [self removeObserver:self forKeyPath:@"localPins"];
+    //[self.localPins removeObserver:self forKeyPath:@"array"];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark DataRetrieval
+
+-(void)placeLocallySavedPinsWithKvo{
+    NSMutableArray *locallySavedPins = [Pin fetchAllWithContext:self.managedObjectContext];
+    
+    //NOTE: only this executed if this method executed once from viewDidLoad
+    if(self.localPins.count == 0){
+        self.localPins = locallySavedPins;
+    }
+    else{
+        NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
+        [mutableArrayWithKVO addObjectsFromArray:locallySavedPins];
+    }
+}
+
+-(void)placeCloudSavedPins:(NSMutableArray *)pins{
+    for(Pin *pin in self.cloudPins){
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([pin.latitude doubleValue], [pin.longitude doubleValue]);
+        
+        KGPointAnnotation *annotation = [[KGPointAnnotation alloc] init];
+        annotation.coordinate = coordinate;
+        annotation.title = pin.title;
+        annotation.subtitle = pin.subTitle;
+        annotation.pin = pin;
+        //annotation.pinColor = MKPinAnnotationColorRed;
+        
+        [self.map addAnnotation:annotation];
+    }
+}
+
+#pragma mark KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"localPins"]) {
+        int kindOfChange = [change[NSKeyValueChangeKindKey] intValue];
+        
+        if (kindOfChange == NSKeyValueChangeSetting) {
+            //NOTE: consider observing localAnnotations instead of localPins
+            self.localAnnotations = [KGPinToAnnotationConverter convertToAnnotations:(NSMutableArray *)self.localPins];
+            [self.map removeAnnotations:self.map.annotations];
+            [self.map addAnnotations:self.localAnnotations];
+            
+            //[self.tableView reloadData];
+        } else if (kindOfChange == NSKeyValueChangeInsertion ||
+                   kindOfChange == NSKeyValueChangeRemoval ||
+                   kindOfChange == NSKeyValueChangeReplacement) {
+            
+            NSIndexSet *indexSetOfChanges = change[NSKeyValueChangeIndexesKey];
+            
+            // Convert this NSIndexSet to an NSArray of NSIndexPaths (which is what the table view animation methods require)
+            NSMutableArray *indexPathsThatChanged = [NSMutableArray array];
+            [indexSetOfChanges enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+                NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+                [indexPathsThatChanged addObject:newIndexPath];
+            }];
+            
+            if (kindOfChange == NSKeyValueChangeInsertion) {
+                NSIndexPath *indexPath = [indexPathsThatChanged objectAtIndex:0];
+                
+                Pin *pin = [self.localPins objectAtIndex:indexPath.row];
+                KGPointAnnotation *annotation = [KGPinToAnnotationConverter convertToAnnotation:pin];
+                [self.localAnnotations addObject:annotation];
+                [self.map addAnnotation:annotation];
+                
+                //[self.tableView insertRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
+                
+            } else if (kindOfChange == NSKeyValueChangeRemoval) {
+                NSIndexPath *indexPath = [indexPathsThatChanged objectAtIndex:0];
+                NSLog(@"IndexPath: %d", indexPath.row);
+                
+                KGPointAnnotation *annotation = [self.localAnnotations objectAtIndex:indexPath.row];
+                
+                [self.map removeAnnotation:annotation];
+                [self.localAnnotations removeObject:annotation];
+                
+                //[self.tableView deleteRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
+                
+            } else if (kindOfChange == NSKeyValueChangeReplacement) {
+                //[self.tableView reloadRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
+                
+            }
+        }
+    }
+}
+
+//- (void) parseDataFromArray:(NSMutableArray *)array{
+//    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
+//
+//    if (1==1) {
+//        // This was a pull-to-refresh request, insert the items at beginning of array
+//        NSRange rangeOfIndexes = NSMakeRange(0, array.count);
+//        NSIndexSet *indexSetOfNewObjects = [NSIndexSet indexSetWithIndexesInRange:rangeOfIndexes];
+//
+//        [mutableArrayWithKVO insertObjects:array atIndexes:indexSetOfNewObjects];
+//    } else if(2==2) {
+//        // This was an infinite scroll request, insert the items at the end of the array
+//        if (array.count == 0) {
+//            // disable infinite scroll, since there are no more older messages
+//        }
+//
+//        [mutableArrayWithKVO addObjectsFromArray:array];
+//    } else {
+//        [self willChangeValueForKey:@"localPins"];
+//        self.localPins = array;
+//        [self didChangeValueForKey:@"localPins"];
+//    }
+//
+//    if (array.count > 0) {
+//        //[self saveMediaItemsToDisk];
+//        //NOTE: not needed as save pins as they are dropped
+//    }
+//}
+
+#pragma mark Events
+
+- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
+        return;
+    }
+    
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.map];
+    CLLocationCoordinate2D touchMapCoordinate = [self.map convertPoint:touchPoint toCoordinateFromView:self.map];
+    
+    Pin *pin = [[Pin alloc] initWithEntity:self.pinEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
+    pin.title = @"New Title";
+    pin.subTitle = @"New Subtitle";
+    pin.latitude = [NSNumber numberWithDouble:touchMapCoordinate.latitude];
+    pin.longitude = [NSNumber numberWithDouble:touchMapCoordinate.longitude];
+    pin.isLocallySaved = @1;
+    pin.isCloudSaved = @0;
+    [pin save];
+    
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
+    [mutableArrayWithKVO addObject:pin];
+    
+    //    KGPointAnnotation *annotation = [KGPinToAnnotationConverter convertToAnnotation:pin];
+    //    [self.map addAnnotation:annotation];
+}
+
+#pragma mark Tests
+
+-(void)createNewAndSave{
+    Pin *pin = [[Pin alloc] initWithEntity:self.pinEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
+    pin.title = @"Title";
+    pin.subTitle = @"Subtitle";
+    pin.latitude = @1;
+    pin.longitude = @1;
+    pin.locationTypeId = @1;
+    pin.isCloudSaved = @1;
+    pin.isLocallySaved = @0;
+    
+    [pin save];
 }
 
 -(NSMutableArray *)fetchDummyCloudPins{
@@ -101,29 +268,71 @@
     return pins;
 }
 
-- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer {
-    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
-        return;
+-(void)doKvoTest{
+    self.testPin = [[SBPin alloc] init];
+    
+    self.testPin.title = @"Test";
+    self.testPin.latitude = @15;
+    
+    NSLog(@"%@, %d", self.testPin.title, [self.testPin.latitude intValue]);
+    
+    [self.testPin addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    [self.testPin addObserver:self forKeyPath:@"latitude" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    
+    [self.testPin setValue:@"Successful" forKey:@"title"];
+    [self.testPin setValue:[NSNumber numberWithInteger:16] forKey:@"latitude"];
+    
+    [self.testPin willChangeValueForKey:@"title"];
+    self.testPin.title = @"Successful2";
+    [self.testPin didChangeValueForKey:@"title"];
+    
+//    self.testPins = [[KGMutableArray alloc] init];
+//    
+//    [self.testPins addObserver:self forKeyPath:@"array" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//    [self.testPins insertObject:@"Hello" inArrayAtIndex:0];
+}
+
+-(void)testPlacingImage{
+    SBPark *park = [[SBPark alloc] initWithFilename:@"BoldBean"];
+    
+    CLLocationDegrees latDelta = park.overlayTopLeftCoordinate.latitude - park.overlayBottomRightCoordinate.latitude;
+    // think of a span as a tv size, measure from one corner to another
+    MKCoordinateSpan span = MKCoordinateSpanMake(fabs(latDelta), 4.0);
+    
+    MKCoordinateRegion region = MKCoordinateRegionMake(park.midCoordinate, span);
+    self.map.region = region;
+    
+    KGOverlay *overlay = [[KGOverlay alloc] initWithPark:park];
+    [self.map addOverlay:overlay];
+    
+    //NOTE: bold bean location +30.31556400,-81.68919900
+}
+
+- (void)testPlacingLine {
+    NSString *thePath = [[NSBundle mainBundle] pathForResource:@"RiversideLine" ofType:@"plist"];
+    NSArray *pointsArray = [NSArray arrayWithContentsOfFile:thePath];
+    
+    NSInteger pointsCount = pointsArray.count;
+    
+    CLLocationCoordinate2D pointsToUse[pointsCount];
+    
+    for(int i = 0; i < pointsCount; i++) {
+        CGPoint p = CGPointFromString(pointsArray[i]);
+        pointsToUse[i] = CLLocationCoordinate2DMake(p.x,p.y);
     }
     
-    CGPoint touchPoint = [gestureRecognizer locationInView:self.map];
-    CLLocationCoordinate2D touchMapCoordinate = [self.map convertPoint:touchPoint toCoordinateFromView:self.map];
+    MKPolyline *myPolyline = [MKPolyline polylineWithCoordinates:pointsToUse count:pointsCount];
     
-    Pin *pin = [[Pin alloc] initWithEntity:self.pinEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
-    pin.title = @"New Title";
-    pin.subTitle = @"New Subtitle";
-    pin.latitude = [NSNumber numberWithDouble:touchMapCoordinate.latitude];
-    pin.longitude = [NSNumber numberWithDouble:touchMapCoordinate.longitude];
-    pin.isLocallySaved = @1;
-    pin.isCloudSaved = @0;
-    [pin save];
-    
-    self.localPins = [Pin fetchAllWithContext:self.managedObjectContext];
-    
-    KGPointAnnotation *annotation = [KGPinToAnnotationConverter convertToAnnotation:pin];
-
-    [self.map addAnnotation:annotation];
+    [self.map addOverlay:myPolyline];
 }
+
+-(NSMutableArray *)runCoreDataTest{
+    [self createNewAndSave];
+    NSMutableArray *pins = [Pin fetchAllWithContext:self.managedObjectContext];
+    return pins;
+}
+
+#pragma mark MapKit
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     KGAnnotationView *kgAnnotationView = (KGAnnotationView *)[self.map dequeueReusableAnnotationViewWithIdentifier: @"AnnotationView"];
@@ -202,9 +411,6 @@
     NSLog(@"Deleting Pin:%@", annotationView.pin);
 }
 
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-}
-
 - (void)mapView:(MKMapView *)mapView
     annotationView:(MKAnnotationView *)annotationView
     didChangeDragState:(MKAnnotationViewDragState)newState
@@ -215,43 +421,6 @@
         CLLocationCoordinate2D droppedAt = annotationView.annotation.coordinate;
         NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
     }
-}
-
--(void)testKvoBinding{
-}
-
--(void)testPlacingImage{
-    SBPark *park = [[SBPark alloc] initWithFilename:@"BoldBean"];
-    
-    CLLocationDegrees latDelta = park.overlayTopLeftCoordinate.latitude - park.overlayBottomRightCoordinate.latitude;
-    // think of a span as a tv size, measure from one corner to another
-    MKCoordinateSpan span = MKCoordinateSpanMake(fabs(latDelta), 4.0);
-    
-    MKCoordinateRegion region = MKCoordinateRegionMake(park.midCoordinate, span);
-    self.map.region = region;
-    
-    KGOverlay *overlay = [[KGOverlay alloc] initWithPark:park];
-    [self.map addOverlay:overlay];
-    
-    //NOTE: bold bean location +30.31556400,-81.68919900
-}
-
-- (void)testPlacingLine {
-    NSString *thePath = [[NSBundle mainBundle] pathForResource:@"RiversideLine" ofType:@"plist"];
-    NSArray *pointsArray = [NSArray arrayWithContentsOfFile:thePath];
-    
-    NSInteger pointsCount = pointsArray.count;
-    
-    CLLocationCoordinate2D pointsToUse[pointsCount];
-    
-    for(int i = 0; i < pointsCount; i++) {
-        CGPoint p = CGPointFromString(pointsArray[i]);
-        pointsToUse[i] = CLLocationCoordinate2DMake(p.x,p.y);
-    }
-    
-    MKPolyline *myPolyline = [MKPolyline polylineWithCoordinates:pointsToUse count:pointsCount];
-    
-    [self.map addOverlay:myPolyline];
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
@@ -271,25 +440,10 @@
     return nil;
 }
 
-- (void)requestNewItemsWithText:(NSString *)text withRegion:(MKCoordinateRegion)region completion:(void (^)(void))completionBlock{
-    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-    request.naturalLanguageQuery = text;
-    request.region = region;
-    MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
-    
-    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-        self.mapItems = response.mapItems;
-        
-        if(response.mapItems != nil && response.mapItems.count > 0){
-            completionBlock();
-        }
-    }];
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark CalloutTesterView
 
 -(BOOL)kGCalloutTesterView:(KGCalloutTesterView *)kGCalloutTesterView clearStatePressed:(BOOL)variable{
     [self.callout moveToState:@"Empty"];
@@ -326,15 +480,17 @@
     return YES;
 }
 
+#pragma mark MenuView
+
 -(BOOL)menuView:(KGMenuView *)menuView buttonPressed:(KGMenuButton *)button{
     NSString *buttonTitle = button.title;
     if([buttonTitle isEqualToString:@"Clear"]){
         NSLog(@"%@ Pressed", buttonTitle);
         
-        [self.map removeAnnotations:self.localAnnotations];
-        [Pin delete:self.localPins];
-        [self.localPins removeObjectsInArray:self.localPins];
-        [self.localAnnotations removeObjectsInArray:self.localAnnotations];
+        [Pin delete:(NSArray*)self.localPins];
+        
+        NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
+        [mutableArrayWithKVO removeObjectsInArray:(NSMutableArray *)self.localPins];
     }
     else if([buttonTitle isEqualToString:@"Refresh"]){
         NSLog(@"%@ Pressed", buttonTitle);
@@ -348,6 +504,8 @@
     
     return YES;
 }
+
+#pragma mark NotImplemented
 
 -(void)didLongTouch{
     //drops pin and open callout dialog
@@ -382,44 +540,6 @@
 }
 
 -(void)toggledDeleteWarnings{
-}
-
--(NSMutableArray *)runCoreDataTest{
-    [self createNewAndSave];
-    NSMutableArray *pins = [Pin fetchAllWithContext:self.managedObjectContext];
-    return pins;
-}
-
--(void)createNewAndSave{
-    Pin *pin = [[Pin alloc] initWithEntity:self.pinEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
-    pin.title = @"Title";
-    pin.subTitle = @"Subtitle";
-    pin.latitude = @1;
-    pin.longitude = @1;
-    pin.locationTypeId = @1;
-    pin.isCloudSaved = @1;
-    pin.isLocallySaved = @0;
-    
-    [pin save];
-}
-
--(void)placeCloudSavedPins:(NSMutableArray *)pins{
-    for(Pin *pin in self.cloudPins){
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([pin.latitude doubleValue], [pin.longitude doubleValue]);
-        
-        KGPointAnnotation *annotation = [[KGPointAnnotation alloc] init];
-        annotation.coordinate = coordinate;
-        annotation.title = pin.title;
-        annotation.subtitle = pin.subTitle;
-        annotation.pin = pin;
-        //annotation.pinColor = MKPinAnnotationColorRed;
-        
-        [self.map addAnnotation:annotation];
-    }
-}
-
--(void)kgAnnotationView:(KGAnnotationView *)kGAnnotationView deleteInitiated:(BOOL)variable{
-    [self.map removeAnnotation:kGAnnotationView.annotation];
 }
 
 //- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
@@ -464,18 +584,23 @@
 //    return nil;
 //}
 
-//-(void)placeLocallySavedPins:(NSMutableArray *)pins{
-//    for(Pin *pin in self.localPins){
-//        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([pin.latitude doubleValue], [pin.longitude doubleValue]);
+//- (void)requestNewItemsWithText:(NSString *)text withRegion:(MKCoordinateRegion)region completion:(void (^)(void))completionBlock{
+//    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+//    request.naturalLanguageQuery = text;
+//    request.region = region;
+//    MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
 //
-//        KGPointAnnotation *annotation = [[KGPointAnnotation alloc] init];
-//        annotation.coordinate = coordinate;
-//        annotation.title = pin.title;
-//        annotation.subtitle = pin.subTitle;
-//        annotation.pin = pin;
+//    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+//        self.mapItems = response.mapItems;
 //
-//        [self.map addAnnotation:annotation];
-//    }
+//        if(response.mapItems != nil && response.mapItems.count > 0){
+//            completionBlock();
+//        }
+//    }];
+//}
+
+//-(void)kgAnnotationView:(KGAnnotationView *)kGAnnotationView deleteInitiated:(BOOL)variable{
+//    [self.map removeAnnotation:kGAnnotationView.annotation];
 //}
 
 @end

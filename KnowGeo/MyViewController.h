@@ -27,7 +27,6 @@
 
 #import "TestObject.h"
 #import "Pin.h"
-//#import "Pins.h"
 #import "KGPintoAnnotationConverter.h"
 
 #import "UIColor+KGColors.h"
@@ -47,6 +46,8 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property NSEntityDescription *pinEntityDescription;
 @property NSNumber *counter;
+@property (strong, nonatomic) SBPin *testPin;
+@property (strong, nonatomic) NSMutableArray *testPins;
 
 -(void)didLongTouch;
 -(void)didTouch;

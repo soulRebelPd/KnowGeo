@@ -13,4 +13,13 @@
 -(void)delete{
 }
 
++(BOOL)automaticallyNotifiesObserversForKey:(NSString *)key{
+    if ([key isEqualToString:@"title"]) {
+        return NO;
+    }
+    else{
+        return [super automaticallyNotifiesObserversForKey:key];
+    }
+}
+
 @end

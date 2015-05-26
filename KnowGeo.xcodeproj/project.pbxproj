@@ -13,6 +13,7 @@
 		0403B5261AFC1A56001875AD /* LogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B5251AFC1A56001875AD /* LogTableViewController.m */; };
 		0403B52C1AFD48C5001875AD /* SBCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B52B1AFD48C5001875AD /* SBCalloutView.m */; };
 		0403B52F1AFE598F001875AD /* KGAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B52E1AFE598F001875AD /* KGAnnotationView.m */; };
+		043F52971B14E11000D38247 /* CalloutTail.m in Sources */ = {isa = PBXBuildFile; fileRef = 043F52961B14E11000D38247 /* CalloutTail.m */; };
 		045F95391B04EDF400B6B8D7 /* KGMyMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F95381B04EDF400B6B8D7 /* KGMyMapView.m */; };
 		045F953A1B05365400B6B8D7 /* KGMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517E51AE57AB000C56FBC /* KGMenuView.m */; };
 		045F953D1B06317500B6B8D7 /* Pins.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F953C1B06317500B6B8D7 /* Pins.m */; };
@@ -23,12 +24,13 @@
 		048EAE331AE9549300974E03 /* UIColor+KGColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE321AE9549300974E03 /* UIColor+KGColors.m */; };
 		048EAE451AE9948800974E03 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048EAE441AE9948800974E03 /* MapKit.framework */; };
 		048EAE541AEAA44C00974E03 /* KGOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE531AEAA44C00974E03 /* KGOverlay.m */; };
-		048EAE591AEAEE8B00974E03 /* KGMapOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE581AEAEE8B00974E03 /* KGMapOverlayView.m */; };
+		048EAE591AEAEE8B00974E03 /* KGOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE581AEAEE8B00974E03 /* KGOverlayRenderer.m */; };
 		04C7A42E1AF900C200538A36 /* SBPark.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7A42D1AF900C200538A36 /* SBPark.m */; };
 		04C7A4301AF90B1200538A36 /* BoldBean.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A42F1AF90B1200538A36 /* BoldBean.plist */; };
 		04C7A4341AF91FD400538A36 /* MagicMountain.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A4331AF91FD400538A36 /* MagicMountain.plist */; };
 		04C7A4361AF920E600538A36 /* RiversideLine.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A4351AF920E600538A36 /* RiversideLine.plist */; };
 		04C7A4391AF9515E00538A36 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7A4381AF9515E00538A36 /* TestObject.m */; };
+		04CA5EE21B0E604300A7FF25 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CA5EE11B0E604300A7FF25 /* QuartzCore.framework */; };
 		04D5C6401B0241C200B4E842 /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5C63F1B0241C200B4E842 /* Pin.m */; };
 		04E517D91AE16BC200C56FBC /* KGCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517D81AE16BC200C56FBC /* KGCalloutView.xib */; };
 		04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517DB1AE16BD100C56FBC /* KGCalloutView.m */; };
@@ -70,6 +72,8 @@
 		0403B52B1AFD48C5001875AD /* SBCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCalloutView.m; sourceTree = "<group>"; };
 		0403B52D1AFE598F001875AD /* KGAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGAnnotationView.h; sourceTree = "<group>"; };
 		0403B52E1AFE598F001875AD /* KGAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGAnnotationView.m; sourceTree = "<group>"; };
+		043F52951B14E11000D38247 /* CalloutTail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalloutTail.h; path = ../../SandBox/DrawingShapes/DrawingShapes/CalloutTail.h; sourceTree = "<group>"; };
+		043F52961B14E11000D38247 /* CalloutTail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalloutTail.m; path = ../../SandBox/DrawingShapes/DrawingShapes/CalloutTail.m; sourceTree = "<group>"; };
 		045F95371B04EDF400B6B8D7 /* KGMyMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMyMapView.h; sourceTree = "<group>"; };
 		045F95381B04EDF400B6B8D7 /* KGMyMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGMyMapView.m; sourceTree = "<group>"; };
 		045F953B1B06317500B6B8D7 /* Pins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pins.h; sourceTree = "<group>"; };
@@ -86,8 +90,8 @@
 		048EAE441AE9948800974E03 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		048EAE521AEAA44C00974E03 /* KGOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGOverlay.h; sourceTree = "<group>"; };
 		048EAE531AEAA44C00974E03 /* KGOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGOverlay.m; sourceTree = "<group>"; };
-		048EAE571AEAEE8B00974E03 /* KGMapOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMapOverlayView.h; sourceTree = "<group>"; };
-		048EAE581AEAEE8B00974E03 /* KGMapOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGMapOverlayView.m; sourceTree = "<group>"; };
+		048EAE571AEAEE8B00974E03 /* KGOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGOverlayRenderer.h; sourceTree = "<group>"; };
+		048EAE581AEAEE8B00974E03 /* KGOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGOverlayRenderer.m; sourceTree = "<group>"; };
 		04C7A42C1AF900C200538A36 /* SBPark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPark.h; sourceTree = "<group>"; };
 		04C7A42D1AF900C200538A36 /* SBPark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPark.m; sourceTree = "<group>"; };
 		04C7A42F1AF90B1200538A36 /* BoldBean.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BoldBean.plist; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		04C7A4351AF920E600538A36 /* RiversideLine.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RiversideLine.plist; sourceTree = "<group>"; };
 		04C7A4371AF9515E00538A36 /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
 		04C7A4381AF9515E00538A36 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
+		04CA5EE11B0E604300A7FF25 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		04D5C63E1B0241C200B4E842 /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
 		04D5C63F1B0241C200B4E842 /* Pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pin.m; sourceTree = "<group>"; };
 		04E517D81AE16BC200C56FBC /* KGCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGCalloutView.xib; sourceTree = "<group>"; };
@@ -131,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CA5EE21B0E604300A7FF25 /* QuartzCore.framework in Frameworks */,
 				048EAE451AE9948800974E03 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,12 +166,12 @@
 				04C7A42D1AF900C200538A36 /* SBPark.m */,
 				04FA6ED01B03D7B9002F213B /* SBPin.h */,
 				04FA6ED11B03D7B9002F213B /* SBPin.m */,
+				045F957C1B0A59B300B6B8D7 /* SBTestPin.h */,
+				045F957D1B0A59B300B6B8D7 /* SBTestPin.m */,
 				0403B51D1AFC1672001875AD /* Settings.h */,
 				0403B51E1AFC1672001875AD /* Settings.m */,
 				04C7A4371AF9515E00538A36 /* TestObject.h */,
 				04C7A4381AF9515E00538A36 /* TestObject.m */,
-				045F957C1B0A59B300B6B8D7 /* SBTestPin.h */,
-				045F957D1B0A59B300B6B8D7 /* SBTestPin.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -173,6 +179,14 @@
 		0403B5271AFC1B88001875AD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				043F52951B14E11000D38247 /* CalloutTail.h */,
+				043F52961B14E11000D38247 /* CalloutTail.m */,
+				0403B52D1AFE598F001875AD /* KGAnnotationView.h */,
+				0403B52E1AFE598F001875AD /* KGAnnotationView.m */,
+				04FA6ECD1B03B948002F213B /* KGPointAnnotation.h */,
+				04FA6ECE1B03B948002F213B /* KGPointAnnotation.m */,
+				045F95371B04EDF400B6B8D7 /* KGMyMapView.h */,
+				045F95381B04EDF400B6B8D7 /* KGMyMapView.m */,
 				04E517ED1AE6DEA300C56FBC /* KGCalloutTesterView.h */,
 				04E517EE1AE6DEA300C56FBC /* KGCalloutTesterView.m */,
 				04E517EB1AE6DE8300C56FBC /* KGCalloutTesterView.xib */,
@@ -191,9 +205,21 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		04CA5ED51B0D025700A7FF25 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				04F9CF9D1ADEEFF000B6ED9E /* MyViewController.h */,
+				04F9CF9E1ADEEFF000B6ED9E /* MyViewController.m */,
+				0403B5241AFC1A56001875AD /* LogTableViewController.h */,
+				0403B5251AFC1A56001875AD /* LogTableViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		04F9CF871ADEEFF000B6ED9E = {
 			isa = PBXGroup;
 			children = (
+				04CA5EE11B0E604300A7FF25 /* QuartzCore.framework */,
 				048EAE441AE9948800974E03 /* MapKit.framework */,
 				04F9CF921ADEEFF000B6ED9E /* KnowGeo */,
 				04F9CFAF1ADEEFF100B6ED9E /* KnowGeoTests */,
@@ -216,30 +242,17 @@
 				04F9CF971ADEEFF000B6ED9E /* AppDelegate.h */,
 				04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */,
 				04F9CFA31ADEEFF000B6ED9E /* Images.xcassets */,
+				048EAE521AEAA44C00974E03 /* KGOverlay.h */,
+				048EAE531AEAA44C00974E03 /* KGOverlay.m */,
+				048EAE571AEAEE8B00974E03 /* KGOverlayRenderer.h */,
+				048EAE581AEAEE8B00974E03 /* KGOverlayRenderer.m */,
 				04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */,
 				04F9CFA51ADEEFF000B6ED9E /* LaunchScreen.xib */,
 				04F9CFA01ADEEFF000B6ED9E /* Main.storyboard */,
-				04F9CF9D1ADEEFF000B6ED9E /* MyViewController.h */,
-				04F9CF9E1ADEEFF000B6ED9E /* MyViewController.m */,
-				0403B5241AFC1A56001875AD /* LogTableViewController.h */,
-				0403B5251AFC1A56001875AD /* LogTableViewController.m */,
-				048EAE311AE9549300974E03 /* UIColor+KGColors.h */,
-				048EAE321AE9549300974E03 /* UIColor+KGColors.m */,
-				048EAE571AEAEE8B00974E03 /* KGMapOverlayView.h */,
-				048EAE581AEAEE8B00974E03 /* KGMapOverlayView.m */,
-				048EAE521AEAA44C00974E03 /* KGOverlay.h */,
-				048EAE531AEAA44C00974E03 /* KGOverlay.m */,
-				0403B52D1AFE598F001875AD /* KGAnnotationView.h */,
-				0403B52E1AFE598F001875AD /* KGAnnotationView.m */,
-				04FA6ECD1B03B948002F213B /* KGPointAnnotation.h */,
-				04FA6ECE1B03B948002F213B /* KGPointAnnotation.m */,
-				045F95371B04EDF400B6B8D7 /* KGMyMapView.h */,
-				045F95381B04EDF400B6B8D7 /* KGMyMapView.m */,
-				045F953E1B0641C200B6B8D7 /* KGPinToAnnotationConverter.h */,
-				045F953F1B0641C200B6B8D7 /* KGPinToAnnotationConverter.m */,
 				0403B5231AFC1712001875AD /* Models */,
-				0403B5271AFC1B88001875AD /* Views */,
 				04F9CF931ADEEFF000B6ED9E /* Supporting Files */,
+				04CA5ED51B0D025700A7FF25 /* ViewControllers */,
+				0403B5271AFC1B88001875AD /* Views */,
 			);
 			path = KnowGeo;
 			sourceTree = "<group>";
@@ -247,11 +260,15 @@
 		04F9CF931ADEEFF000B6ED9E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				04C7A4351AF920E600538A36 /* RiversideLine.plist */,
 				04C7A42F1AF90B1200538A36 /* BoldBean.plist */,
-				04C7A4331AF91FD400538A36 /* MagicMountain.plist */,
 				04F9CF941ADEEFF000B6ED9E /* Info.plist */,
+				045F953E1B0641C200B6B8D7 /* KGPinToAnnotationConverter.h */,
+				045F953F1B0641C200B6B8D7 /* KGPinToAnnotationConverter.m */,
+				04C7A4331AF91FD400538A36 /* MagicMountain.plist */,
 				04F9CF951ADEEFF000B6ED9E /* main.m */,
+				04C7A4351AF920E600538A36 /* RiversideLine.plist */,
+				048EAE311AE9549300974E03 /* UIColor+KGColors.h */,
+				048EAE321AE9549300974E03 /* UIColor+KGColors.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -387,7 +404,7 @@
 			files = (
 				045F953A1B05365400B6B8D7 /* KGMenuView.m in Sources */,
 				04C7A4391AF9515E00538A36 /* TestObject.m in Sources */,
-				048EAE591AEAEE8B00974E03 /* KGMapOverlayView.m in Sources */,
+				048EAE591AEAEE8B00974E03 /* KGOverlayRenderer.m in Sources */,
 				045F953D1B06317500B6B8D7 /* Pins.m in Sources */,
 				0403B52C1AFD48C5001875AD /* SBCalloutView.m in Sources */,
 				04D5C6401B0241C200B4E842 /* Pin.m in Sources */,
@@ -410,6 +427,7 @@
 				045F95391B04EDF400B6B8D7 /* KGMyMapView.m in Sources */,
 				0403B52F1AFE598F001875AD /* KGAnnotationView.m in Sources */,
 				04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */,
+				043F52971B14E11000D38247 /* CalloutTail.m in Sources */,
 				04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

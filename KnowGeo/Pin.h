@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber * isCloudSaved;
 @property (nonatomic, retain) NSNumber * isLocallySaved;
 @property (nonatomic, retain) NSNumber * locationTypeId;
+@property (nonatomic, retain) NSNumber * subtypeId;
 @property (nonatomic, retain) NSString * subTitle;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * latitude;

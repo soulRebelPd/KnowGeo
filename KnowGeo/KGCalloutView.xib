@@ -11,42 +11,59 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QJE-9J-pmz">
-                    <rect key="frame" x="55" y="23" width="190" height="30"/>
+                    <rect key="frame" x="55" y="12" width="190" height="30"/>
+                    <color key="backgroundColor" red="0.45098039215686275" green="0.070588235294117646" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.45098039220000002" green="0.070588235289999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
-                </textField>
-                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dEl-hS-IoH">
-                    <rect key="frame" x="22" y="61" width="253" height="189"/>
-                </pickerView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7i-dW-h7e">
-                    <rect key="frame" x="8" y="23" width="44" height="30"/>
-                    <state key="normal" title="Delete">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
                     <connections>
-                        <action selector="deletePin:" destination="iN0-l3-epB" eventType="touchUpInside" id="Aps-vg-0pn"/>
+                        <action selector="titleFieldEditingDidEnd:" destination="iN0-l3-epB" eventType="editingDidEnd" id="Q0V-DM-ynC"/>
                     </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJR-V8-UzG">
-                    <rect key="frame" x="253" y="23" width="40" height="30"/>
-                    <state key="normal" title="Close">
+                </textField>
+                <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dEl-hS-IoH">
+                    <rect key="frame" x="22" y="30" width="113" height="189"/>
+                </pickerView>
+                <pickerView tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXo-do-gVe">
+                    <rect key="frame" x="156" y="30" width="113" height="189"/>
+                </pickerView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJR-V8-UzG">
+                    <rect key="frame" x="185" y="232" width="43" height="26"/>
+                    <state key="normal" image="Check-Big-Orange">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="closeCallout:" destination="iN0-l3-epB" eventType="touchUpInside" id="sNb-JW-Lu1"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7i-dW-h7e">
+                    <rect key="frame" x="65" y="232" width="43" height="26"/>
+                    <state key="normal" image="Trash-Big-Orange">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="deletePin:" destination="iN0-l3-epB" eventType="touchUpInside" id="Aps-vg-0pn"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1f-mp-AFG">
+                    <rect key="frame" x="0.0" y="274" width="300" height="35"/>
+                </imageView>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="closeButton" destination="KJR-V8-UzG" id="teF-pA-EF0"/>
                 <outlet property="deleteButton" destination="o7i-dW-h7e" id="DqD-un-QcA"/>
+                <outlet property="subtypePickerView" destination="hXo-do-gVe" id="LOl-0e-uK3"/>
                 <outlet property="titleField" destination="QJE-9J-pmz" id="BRx-d0-7uj"/>
+                <outlet property="trianglePlaceholder" destination="c1f-mp-AFG" id="mLM-1a-lou"/>
                 <outlet property="typePickerView" destination="dEl-hS-IoH" id="esf-jl-dda"/>
             </connections>
             <point key="canvasLocation" x="451" y="176.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="Check-Big-Orange" width="32" height="32"/>
+        <image name="Trash-Big-Orange" width="32" height="32"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

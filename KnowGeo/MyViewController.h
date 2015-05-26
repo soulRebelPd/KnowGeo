@@ -17,13 +17,14 @@
 #import "KGCalloutTesterView.h"
 #import "KGMenuButton.h"
 #import "KGOverlay.h"
-#import "KGMapOverlayView.h"
+#import "KGOverlayRenderer.h"
 #import "KGAnnotationView.h"
 #import "KGPointAnnotation.h"
 #import "KGMyMapView.h"
 
 #import "SBPark.h"
 #import "SBPin.h"
+#import "CalloutTail.h"
 
 #import "TestObject.h"
 #import "Pin.h"
@@ -31,7 +32,7 @@
 
 #import "UIColor+KGColors.h"
 
-@interface MyViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate>
+@interface MyViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate, KGMyMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet KGCalloutView *callout;
 @property (weak, nonatomic) IBOutlet KGMenuView *menu;
@@ -48,6 +49,7 @@
 @property NSNumber *counter;
 @property (strong, nonatomic) SBPin *testPin;
 @property (strong, nonatomic) NSMutableArray *testPins;
+@property (strong, nonatomic) KGAnnotationView *activeAnnotationView;
 
 -(void)didLongTouch;
 -(void)didTouch;

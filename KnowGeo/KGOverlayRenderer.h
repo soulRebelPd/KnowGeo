@@ -8,7 +8,7 @@
 
 #import <MapKit/MapKit.h>
 
-@interface KGMapOverlayView : MKOverlayRenderer
+@interface KGOverlayRenderer : MKOverlayRenderer
 
 - (instancetype)initWithOverlay:(id<MKOverlay>)overlay overlayImage:(UIImage *)overlayImage;
 

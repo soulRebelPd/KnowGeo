@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Ten Pandas. All rights reserved.
 //
 
-#import "KGMapOverlayView.h"
+#import "KGOverlayRenderer.h"
 
-@interface KGMapOverlayView ()
+@interface KGOverlayRenderer ()
 
 @property (nonatomic, strong) UIImage *overlayImage;
 
 @end
 
-@implementation KGMapOverlayView
+@implementation KGOverlayRenderer
 
 - (instancetype)initWithOverlay:(id<MKOverlay>)overlay overlayImage:(UIImage *)overlayImage {
     self = [super initWithOverlay:overlay];

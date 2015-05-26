@@ -10,4 +10,6 @@
 
 @implementation KGPointAnnotation
 
+@synthesize isDropping;
+
 @end

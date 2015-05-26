@@ -13,6 +13,7 @@
 @dynamic isCloudSaved;
 @dynamic isLocallySaved;
 @dynamic locationTypeId;
+@dynamic subtypeId;
 @dynamic subTitle;
 @dynamic title;
 @dynamic latitude;

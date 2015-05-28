@@ -48,13 +48,8 @@
 }
 
 -(void)kgMenuButtonTapped:(KGMenuButton *)kgMenuButton{
-//    if([kgMenuButton.title isEqualToString:@"Clear"]){
-//        [self.delegate menuView:self clearPressed:kgMenuButton];
-//    }
     [self.delegate menuView:self buttonPressed:kgMenuButton];
 }
-
-
 
 -(void)layoutSubviews{
 }

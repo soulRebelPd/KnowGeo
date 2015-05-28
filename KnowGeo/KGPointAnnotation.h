@@ -11,8 +11,8 @@
 
 @interface KGPointAnnotation : MKPointAnnotation
 
-@property (nonatomic) MKPinAnnotationColor pinColor;
 @property (nonatomic) Pin *pin;
+@property (nonatomic) MKPinAnnotationColor pinColor;
 @property bool isDropping;
 
 @end

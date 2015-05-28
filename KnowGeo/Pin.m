@@ -12,7 +12,7 @@
 
 @dynamic isCloudSaved;
 @dynamic isLocallySaved;
-@dynamic locationTypeId;
+@dynamic typeId;
 @dynamic subtypeId;
 @dynamic subTitle;
 @dynamic title;

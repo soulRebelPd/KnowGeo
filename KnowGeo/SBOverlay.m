@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Ten Pandas. All rights reserved.
 //
 
-#import "KGOverlay.h"
+#import "SBOverlay.h"
 #import "SBPark.h"
 
-@implementation KGOverlay
+@implementation SBOverlay
 
 @synthesize coordinate;
 @synthesize boundingMapRect;

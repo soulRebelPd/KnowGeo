@@ -16,14 +16,9 @@ IB_DESIGNABLE
 
 @protocol MenuViewDelegate <NSObject>
 - (BOOL)menuView:(KGMenuView *)menuView buttonPressed:(KGMenuButton*)button;
-//- (BOOL)menuView:(KGMenuView *)menuView clearPressed:(KGMenuButton*)button;
 @end
 
 @interface KGMenuView : UIView <UICollectionViewDelegateFlowLayout, KGMenuButtonDelegate>
-
-@property (nonatomic, weak) NSObject <MenuViewDelegate> *delegate;
-@property (nonatomic) IBInspectable NSString *title;
-@property (strong, nonatomic) NSDictionary *dataSource;
 
 @property (weak, nonatomic) IBOutlet KGMenuButton *menuButton1;
 @property (weak, nonatomic) IBOutlet KGMenuButton *menuButton2;
@@ -31,5 +26,9 @@ IB_DESIGNABLE
 @property (weak, nonatomic) IBOutlet KGMenuButton *menuButton4;
 @property (weak, nonatomic) IBOutlet UISwitch *warningSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
+
+@property (nonatomic, weak) NSObject <MenuViewDelegate> *delegate;
+@property (nonatomic) IBInspectable NSString *title;
+@property (strong, nonatomic) NSDictionary *dataSource;
 
 @end

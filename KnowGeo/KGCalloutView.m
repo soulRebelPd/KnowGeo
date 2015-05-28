@@ -27,12 +27,9 @@
     [self.layer setCornerRadius:10.0f];
     self.backgroundColor = [UIColor kgBrownColor];
     
-    CalloutTail *myView = [[CalloutTail alloc] initWithFrame: CGRectMake(self.trianglePlaceholder.frame.origin.x, self.trianglePlaceholder.frame.origin.y, 250, 250)];
-    myView.backgroundColor = [UIColor clearColor];
-    self.shapeView = myView;
-    [self addSubview:self.shapeView];
-    
     self.titleField.text = _title;
+    
+    [self addTail];
     
     self.typePickerView.alpha = 0;
     self.subtypePickerView.alpha = 0;
@@ -40,37 +37,13 @@
     self.closeButton.alpha = 0;
     self.deleteButton.alpha = 0;
     self.shapeView.alpha = 0;
-    
+
     [self expandOpen];
 }
 
 -(void)layoutSubviews{
     [self setSubviewColors];
     [self moveToStateRegularLocationAny];
-}
-
-- (void)setSubviewColors{
-    self.titleField.textColor = [UIColor kgOrangeColor];
-    
-    //    self.pinTypeLabel.textColor = [UIColor kgOrangeColor];
-    //    self.chooseTypeLabel.textColor = [UIColor kgOrangeColor];
-    
-    //    self.isLinePinLabel.textColor = [UIColor kgOrangeColor];
-    //
-    //    self.startLineButton.layer.cornerRadius = buttonCornerRadius;
-    //    self.startLineButton.backgroundColor = [UIColor kgOrangeColor];
-    //
-    //    self.selectParentButton.layer.cornerRadius = buttonCornerRadius;
-    //    self.selectParentButton.backgroundColor = [UIColor kgOrangeColor];
-    //
-    //    self.endLineButton.layer.cornerRadius = buttonCornerRadius;
-    //    self.endLineButton.backgroundColor = [UIColor kgOrangeColor];
-    //
-    //    self.startLineColoring.layer.cornerRadius = buttonCornerRadius;
-    //    self.startLineColoring.backgroundColor = [UIColor kgOrangeColor];
-    //
-    //    self.endLineColoring.layer.cornerRadius = buttonCornerRadius;
-    //    self.endLineColoring.backgroundColor = [UIColor kgOrangeColor];
 }
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
@@ -126,7 +99,6 @@
     
     [UIView setAnimationDidStopSelector:@selector(contractClosed)];
     [UIView commitAnimations];
-    
 }
 
 -(void)contractClosed{
@@ -192,17 +164,11 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if(pickerView.tag == 1){
-        [self.delegate kgCalloutView:self categoryChanged:[NSNumber numberWithInteger:row]];
+        [self.delegate kgCalloutView:self typeChanged:[NSNumber numberWithInteger:row]];
     }
     else{
         [self.delegate kgCalloutView:self subtypeChanged:[NSNumber numberWithInteger:row]];
     }
-}
-
-#pragma mark UITextFieldDelegate
-
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    //self.titleField.text = @"";
 }
 
 #pragma mark UI Events
@@ -221,12 +187,6 @@
 
 -(void)contractComplete{
     [self.delegate kgCalloutView:self closeButtonPressed:YES];
-}
-
--(void)didSetName{
-}
-
--(void)didSetLocationType{
 }
 
 #pragma mark Other
@@ -252,6 +212,37 @@
 
 -(void)removeFromSuperview2{
     [self removeFromSuperview];
+}
+
+-(void)addTail{
+    KGCalloutTail *calloutTail = [[KGCalloutTail alloc] initWithFrame: CGRectMake(self.trianglePlaceholder.frame.origin.x, self.trianglePlaceholder.frame.origin.y, 250, 250)];
+    calloutTail.backgroundColor = [UIColor clearColor];
+    self.shapeView = calloutTail;
+    [self addSubview:self.shapeView];
+}
+
+- (void)setSubviewColors{
+    self.titleField.textColor = [UIColor kgOrangeColor];
+    
+    //    self.pinTypeLabel.textColor = [UIColor kgOrangeColor];
+    //    self.chooseTypeLabel.textColor = [UIColor kgOrangeColor];
+    
+    //    self.isLinePinLabel.textColor = [UIColor kgOrangeColor];
+    //
+    //    self.startLineButton.layer.cornerRadius = buttonCornerRadius;
+    //    self.startLineButton.backgroundColor = [UIColor kgOrangeColor];
+    //
+    //    self.selectParentButton.layer.cornerRadius = buttonCornerRadius;
+    //    self.selectParentButton.backgroundColor = [UIColor kgOrangeColor];
+    //
+    //    self.endLineButton.layer.cornerRadius = buttonCornerRadius;
+    //    self.endLineButton.backgroundColor = [UIColor kgOrangeColor];
+    //
+    //    self.startLineColoring.layer.cornerRadius = buttonCornerRadius;
+    //    self.startLineColoring.backgroundColor = [UIColor kgOrangeColor];
+    //
+    //    self.endLineColoring.layer.cornerRadius = buttonCornerRadius;
+    //    self.endLineColoring.backgroundColor = [UIColor kgOrangeColor];
 }
 
 #pragma mark States
@@ -378,11 +369,6 @@
     //    self.endLineButton.hidden = YES;
     //    self.startLineColoring.hidden = YES;
     //    self.endLineColoring.hidden = NO;
-}
-
--(void)changeToState{
-    //“Regular - Drop - Location Pin”
-    //“Regular - Select - Location Pin” / same as “Regular - Dropped - Location Pin”
 }
 
 /*

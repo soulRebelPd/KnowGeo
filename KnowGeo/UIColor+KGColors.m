@@ -26,8 +26,13 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        orangeColor = [UIColor colorWithRed:1 green:0.373 blue:0.259 alpha:1];
+        // best to use a website to convert rgb to UIColor
+        orangeColor = [UIColor colorWithRed:0.937 green:0.38 blue:0.102 alpha:1];
     });
+    
+    //255 165 2
+    //orangeColor = [UIColor colorWithRed:1 green:0.373 blue:0.259 alpha:1];
+    //orangeColor = [UIColor colorWithRed:0.921 green:0.035 blue:0.098 alpha:1];
     
     return orangeColor;
 }

@@ -14,52 +14,55 @@
 
 #import "KGCalloutView.h"
 #import "KGMenuView.h"
-#import "KGCalloutTesterView.h"
+#import "SBCalloutTesterView.h"
 #import "KGMenuButton.h"
-#import "KGOverlay.h"
-#import "KGOverlayRenderer.h"
+#import "SBOverlay.h"
+#import "SBOverlayRenderer.h"
 #import "KGAnnotationView.h"
 #import "KGPointAnnotation.h"
-#import "KGMyMapView.h"
+#import "KGMapView.h"
 
 #import "SBPark.h"
 #import "SBPin.h"
-#import "CalloutTail.h"
+#import "KGCalloutTail.h"
 
-#import "TestObject.h"
+#import "SBObject.h"
 #import "Pin.h"
 #import "KGPintoAnnotationConverter.h"
 
 #import "UIColor+KGColors.h"
 
-@interface MyViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate, KGMyMapViewDelegate>
+@interface MainViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate, KGMapViewDelegate>
 
-@property (weak, nonatomic) IBOutlet KGCalloutView *callout;
+@property (weak, nonatomic) IBOutlet KGMapView *map;
 @property (weak, nonatomic) IBOutlet KGMenuView *menu;
-@property (strong, nonatomic) IBOutlet KGCalloutTesterView *tester;
 @property (strong, nonatomic) IBOutlet KGMenuButton *button;
-@property (weak, nonatomic) IBOutlet KGMyMapView *map;
+@property (weak, nonatomic) IBOutlet KGCalloutView *callout;
+@property (strong, nonatomic) IBOutlet SBCalloutTesterView *tester;
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
+
+
+@property (weak, nonatomic) IBOutlet UIView *menuPlaceholder;
+
 @property (strong, nonatomic) NSArray *mapItems;
 @property (strong, nonatomic) NSMutableArray *localPins;
 @property (strong, nonatomic) NSMutableArray *localAnnotations;
 @property (strong, nonatomic) NSArray *cloudAnnotations;
 @property (strong, nonatomic) NSMutableArray *cloudPins;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSMutableArray *testPins;
+@property (strong, nonatomic) SBPin *testPin;
+@property (strong, nonatomic) KGAnnotationView *activeAnnotationView;
 @property NSEntityDescription *pinEntityDescription;
 @property NSNumber *counter;
-@property (strong, nonatomic) SBPin *testPin;
-@property (strong, nonatomic) NSMutableArray *testPins;
-@property (strong, nonatomic) KGAnnotationView *activeAnnotationView;
 
--(void)didLongTouch;
--(void)didTouch;
 -(void)uploadToCloud;
 -(void)reloadData;
 -(bool)reloadCloudData;
 -(void)addedAnnotationView;
--(void)movePin;
--(void)clear;
 -(void)showLogViewController;
 -(void)toggledDeleteWarnings;
+
+- (IBAction)locationPressed:(id)sender;
 
 @end

@@ -10,6 +10,7 @@
 
 @implementation Pins
 
+
 -(instancetype)initWithMutableArray:(NSMutableArray *)mutableArray{
     self = [super init];
     
@@ -18,13 +19,6 @@
     }
     
     return self;
-}
-
-
--(void)testLoop{
-    for(Pin *pin in self){
-        NSLog(@"Pin title is:%@", pin.title);
-    }
 }
 
 +(Pins *)fetchAllWithContext:(NSManagedObjectContext *)context{
@@ -38,8 +32,6 @@
     Pins *pins = [[Pins alloc] initWithMutableArray:mutableArray];
     
     return pins;
-    
-    //[(Pins *)objects mutableCopy];
 }
 
 -(NSUInteger)count{
@@ -52,5 +44,10 @@
     
 }
 
+//-(void)testLoop{
+//    for(Pin *pin in self){
+//        NSLog(@"Pin title is:%@", pin.title);
+//    }
+//}
 
 @end

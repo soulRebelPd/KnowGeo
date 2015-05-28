@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Ten Pandas. All rights reserved.
 //
 
-#import "KGOverlayRenderer.h"
+#import "SBOverlayRenderer.h"
 
-@interface KGOverlayRenderer ()
+@interface SBOverlayRenderer ()
 
 @property (nonatomic, strong) UIImage *overlayImage;
 
 @end
 
-@implementation KGOverlayRenderer
+@implementation SBOverlayRenderer
 
 - (instancetype)initWithOverlay:(id<MKOverlay>)overlay overlayImage:(UIImage *)overlayImage {
     self = [super initWithOverlay:overlay];

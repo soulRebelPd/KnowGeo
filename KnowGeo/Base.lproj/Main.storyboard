@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--My View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MyViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Wp-wd-eTO"/>
                         <viewControllerLayoutGuide type="bottom" id="c3A-TK-Z7A"/>
@@ -17,20 +17,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sIs-qU-wFO" customClass="KGMyMapView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sIs-qU-wFO" customClass="KGMapView">
                                 <rect key="frame" x="20" y="20" width="728" height="1004"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkc-7z-9K0">
+                                <rect key="frame" x="658" y="960" width="87" height="32"/>
+                                <state key="normal" image="Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="locationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="94W-5R-Taj"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k4U-JK-T2L" customClass="KGMenuView">
+                                <rect key="frame" x="8" y="20" width="757" height="111"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sIs-qU-wFO" firstAttribute="top" secondItem="9Wp-wd-eTO" secondAttribute="bottom" id="Ak8-tk-o77"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sIs-qU-wFO" secondAttribute="trailing" constant="4" id="FFl-nI-sGl"/>
                             <constraint firstItem="c3A-TK-Z7A" firstAttribute="top" secondItem="sIs-qU-wFO" secondAttribute="bottom" id="ROs-Zv-NdM"/>
                             <constraint firstItem="sIs-qU-wFO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fZs-iT-TEa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="k4U-JK-T2L" secondAttribute="trailing" id="g50-ZU-pjV"/>
+                            <constraint firstItem="c3A-TK-Z7A" firstAttribute="top" secondItem="wkc-7z-9K0" secondAttribute="bottom" constant="32" id="maE-iv-dpR"/>
+                            <constraint firstItem="k4U-JK-T2L" firstAttribute="top" secondItem="9Wp-wd-eTO" secondAttribute="bottom" id="s4q-6Q-hkP"/>
                             <constraint firstItem="sIs-qU-wFO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="tEQ-vY-BF7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wkc-7z-9K0" secondAttribute="trailing" constant="40" id="vbf-8h-VUf"/>
+                            <constraint firstItem="k4U-JK-T2L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yf5-dm-PgP"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="locationButton" destination="wkc-7z-9K0" id="t6u-Nq-enu"/>
                         <outlet property="map" destination="sIs-qU-wFO" id="Jam-Sb-N9z"/>
+                        <outlet property="menuPlaceholder" destination="k4U-JK-T2L" id="wVf-zw-Y6g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -38,6 +59,9 @@
             <point key="canvasLocation" x="504" y="995"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Location" width="32" height="32"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

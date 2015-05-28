@@ -24,7 +24,6 @@
     else{
         return NO;
     }
-    
 }
 
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event{
@@ -56,7 +55,7 @@
 }
 
 -(void)openCallout{
-    self.deleting = NO;
+    self.isDeleting = NO;
     //http://stackoverflow.com/questions/15241340/how-to-add-custom-view-in-maps-annotations-callouts/19404994#19404994
     NSArray *nibCallout = [[NSBundle mainBundle] loadNibNamed:@"KGCalloutView" owner:self options:nil];
     KGCalloutView *callout = [nibCallout objectAtIndex:0];
@@ -64,7 +63,7 @@
     callout.title = self.pin.title;
     
     callout.types = @[@"Select Type", @"Bar", @"Bait", @"Charters", @"Dock", @"Hospital", @"Pier", @"Restaurant"];
-    callout.type = self.pin.locationTypeId;
+    callout.type = self.pin.typeId;
     callout.subTypes = @[@"Select Subtype", @"Sub 1", @"Sub 2", @"Sub 3", @"Sub 4", @"Sub 5", @"Sub 6", @"Sub 7"];
     callout.subtype = self.pin.subtypeId;
     
@@ -73,20 +72,15 @@
     [self addSubview:callout];
 }
 
--(void)kgCalloutView:(KGCalloutView *)kGCalloutView deleteButtonPressed:(BOOL)variable{
-    self.deleting = YES;
-    [self.delegate kgAnnotationView:self delete:YES];
-    
-//    KGMyMapView *mapView = (KGMyMapView *)self.parent;
-//    [mapView deleteAnnotation:self.annotation];
+#pragma mark KGCalloutViewDelegate
 
-//    KGMyMapView *mapView = (KGMyMapView *)self.parent;
-//    [mapView deleteAnnotation:kGCalloutView];
-//    [self.parent deleteAnnotation:self];
+-(void)kgCalloutView:(KGCalloutView *)kGCalloutView deleteButtonPressed:(BOOL)variable{
+    self.isDeleting = YES;
+    [self.delegate kgAnnotationView:self delete:YES];
 }
 
--(void)kgCalloutView:(KGCalloutView *)kGCalloutView categoryChanged:(NSNumber *)newCategoryId{
-    [self.delegate kgAnnotationView:self updateCategory:newCategoryId];
+-(void)kgCalloutView:(KGCalloutView *)kGCalloutView typeChanged:(NSNumber *)newTypeId{
+    [self.delegate kgAnnotationView:self updateType:newTypeId];
 }
 
 -(void)kgCalloutView:(KGCalloutView *)kGCalloutView subtypeChanged:(NSNumber *)newSubtypeId{
@@ -95,6 +89,7 @@
 
 -(void)kgCalloutView:(KGCalloutView *)kGCalloutView closeButtonPressed:(BOOL)variable{
     [self.calloutView removeFromSuperview2];
+    [self.delegate kgAnnotationView:self closing:YES];
 }
 
 -(void)kgCalloutView:(KGCalloutView *)kGCalloutView titleChanged:(NSString *)newTitle{

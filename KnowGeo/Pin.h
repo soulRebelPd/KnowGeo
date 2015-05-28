@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSNumber * isCloudSaved;
 @property (nonatomic, retain) NSNumber * isLocallySaved;
-@property (nonatomic, retain) NSNumber * locationTypeId;
+@property (nonatomic, retain) NSNumber * typeId;
 @property (nonatomic, retain) NSNumber * subtypeId;
 @property (nonatomic, retain) NSString * subTitle;
 @property (nonatomic, retain) NSString * title;
@@ -24,10 +24,10 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *objectContext;
 
--(void)save;
--(void)delete;
+- (void)save;
+- (void)delete;
 
-+(NSMutableArray *)fetchAllWithContext:(NSManagedObjectContext *)context;
-+(void)delete:(NSArray*)pins;
++ (NSMutableArray *)fetchAllWithContext:(NSManagedObjectContext *)context;
++ (void)delete:(NSArray*)pins;
     
 @end

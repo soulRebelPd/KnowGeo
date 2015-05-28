@@ -21,7 +21,7 @@
                     </connections>
                 </label>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8po-eu-71Y">
-                    <rect key="frame" x="23" y="3" width="70" height="70"/>
+                    <rect key="frame" x="38" y="25" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <gestureRecognizers/>
                     <connections>

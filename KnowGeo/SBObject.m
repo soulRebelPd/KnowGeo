@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Bloc. All rights reserved.
 //
 
-#import "TestObject.h"
+#import "SBObject.h"
 #import "AppDelegate.h"
 
 
-@implementation TestObject
+@implementation SBObject
 
 @dynamic name;
 @dynamic latitude;
@@ -31,7 +31,7 @@
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
     NSManagedObject *testObject = [NSEntityDescription
-                                insertNewObjectForEntityForName:@"TestObject"
+                                insertNewObjectForEntityForName:@"SBObject"
                                 inManagedObjectContext:context];
     
     [testObject setValue: self.name forKey:@"name"];
@@ -63,7 +63,7 @@
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"TestObject" inManagedObjectContext:context];
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SBObject" inManagedObjectContext:context];
     [request setEntity:entityDesc];
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", searchText];
@@ -86,7 +86,7 @@
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"TestObject" inManagedObjectContext:context];
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SBObject" inManagedObjectContext:context];
     [request setEntity:entityDesc];
     
     NSError *error;

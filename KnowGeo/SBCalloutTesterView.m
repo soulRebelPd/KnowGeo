@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Ten Pandas. All rights reserved.
 //
 
-#import "KGCalloutTesterView.h"
+#import "SBCalloutTesterView.h"
 
-@implementation KGCalloutTesterView
+@implementation SBCalloutTesterView
 
 @synthesize delegate;
 

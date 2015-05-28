@@ -11,7 +11,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 #import "UIColor+KGColors.h"
-#import "CalloutTail.h"
+#import "KGCalloutTail.h"
 
 IB_DESIGNABLE
 
@@ -19,42 +19,40 @@ IB_DESIGNABLE
 
 @protocol KGCalloutViewDelegate <NSObject>
 -(void)kgCalloutView:(KGCalloutView *)kGCalloutView deleteButtonPressed:(BOOL)variable;
--(void)kgCalloutView:(KGCalloutView *)kGCalloutView categoryChanged:(NSNumber *)newCategoryId;
+-(void)kgCalloutView:(KGCalloutView *)kGCalloutView typeChanged:(NSNumber *)newTypeId;
 -(void)kgCalloutView:(KGCalloutView *)kGCalloutView subtypeChanged:(NSNumber *)newSubtypeId;
 -(void)kgCalloutView:(KGCalloutView *)kGCalloutView titleChanged:(NSString *)newTitle;
 -(void)kgCalloutView:(KGCalloutView *)kGCalloutView closeButtonPressed:(BOOL)variable;
 @end
 
 @interface KGCalloutView : UIView <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
-//displays option to Delete or Choose Parent or Clear Parent or Drop A Child Pin
+
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
+@property (weak, nonatomic) IBOutlet UIPickerView *typePickerView;
+@property (weak, nonatomic) IBOutlet UIPickerView *subtypePickerView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (weak, nonatomic) IBOutlet UIImageView *trianglePlaceholder;
+@property (strong, nonatomic) IBOutlet KGCalloutView *view;
 
 @property (nonatomic) IBInspectable NSString *title;
 @property (nonatomic) NSNumber *subtype;
 @property (nonatomic) NSNumber *type;
 @property NSArray *types;
 @property NSArray *subTypes;
-@property (strong, nonatomic) IBOutlet KGCalloutView *view;
-@property MKAnnotationView *parent;
-@property (weak, nonatomic) IBOutlet UITextField *titleField;
-@property (weak, nonatomic) IBOutlet UIPickerView *typePickerView;
-@property (weak, nonatomic) IBOutlet UIPickerView *subtypePickerView;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) NSObject <KGCalloutViewDelegate> *delegate;
-@property (weak, nonatomic) IBOutlet UIImageView *trianglePlaceholder;
-@property (strong, nonatomic) CalloutTail *shapeView;
+@property (strong, nonatomic) KGCalloutTail *shapeView;
 
 - (void)moveToState:(NSString *)state;
+- (void)removeFromSuperview2;
+-(void)contractClosed;
+
 - (IBAction)deletePin:(id)sender;
 - (IBAction)closeCallout:(id)sender;
--(void)removeFromSuperview2;
 - (IBAction)titleFieldEditingDidEnd:(id)sender;
 
-//NOTE: not yet implemented
-- (void)didSetName;
-- (void)changeToState;
-
 @end
+
 
 //@property (weak, nonatomic) IBOutlet UILabel *chooseTypeLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *pinTypeLabel;

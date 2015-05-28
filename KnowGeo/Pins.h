@@ -9,13 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-//TODO: remove as tight coupling
 #import "Pin.h"
 
 @interface Pins : NSMutableArray
 
--(instancetype)initWithMutableArray:(NSMutableArray *)mutableArray;
--(void)testLoop;
 -(NSUInteger)count;
 
 +(Pins *)fetchAllWithContext:(NSManagedObjectContext *)context;

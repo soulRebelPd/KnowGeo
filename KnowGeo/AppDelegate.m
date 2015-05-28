@@ -15,7 +15,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    MyViewController *mainController = (MyViewController *)self.window.rootViewController;
+    
+    [NSThread sleepForTimeInterval:2.0];
+    
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        [application registerUserNotificationSettings:[UIUserNotificationSettings
+                                                       settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound
+                                                       categories:nil]];
+    }
+    
+    MainViewController *mainController = (MainViewController *)self.window.rootViewController;
     mainController.managedObjectContext = self.managedObjectContext;
     
     return YES;
@@ -122,6 +131,22 @@
             abort();
         }
     }
+}
+
+#pragma mark Location Services
+-(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    //application.applicationIconBadgeNumber = 0;
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:notification.alertTitle
+                                                        message:notification.alertBody
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    
+    [alertView show];
 }
 
 @end

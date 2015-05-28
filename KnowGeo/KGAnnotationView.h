@@ -17,18 +17,18 @@
 
 @protocol KGAnnotationViewDelegate <NSObject>
 -(void)kgAnnotationView:(KGAnnotationView *)kGAnnotationView delete:(BOOL)variable;
--(void)kgAnnotationView:(KGAnnotationView *)kGAnnotationView updateCategory:(NSNumber *)newCategoryId;
+-(void)kgAnnotationView:(KGAnnotationView *)kGAnnotationView updateType:(NSNumber *)newTypeId;
 -(void)kgAnnotationView:(KGAnnotationView *)kGAnnotationView updateSubtype:(NSNumber *)newSubtypeId;
 -(void)kgAnnotationView:(KGAnnotationView *)kGAnnotationView updateTitle:(NSString *)newTitle;
+-(void)kgAnnotationView:(KGAnnotationView *)kGAnnotationView closing:(bool)variable;
 @end
 
 @interface KGAnnotationView : MKPinAnnotationView <KGCalloutViewDelegate>
 
 @property (nonatomic, strong) Pin *pin;
 @property (nonatomic) KGCalloutView *calloutView;
-@property MKMapView *parent;
 @property (nonatomic, weak) NSObject <KGAnnotationViewDelegate> *delegate;
-@property bool deleting;
+@property bool isDeleting;
 
 -(void)openCallout;
 

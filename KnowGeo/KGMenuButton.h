@@ -16,13 +16,13 @@
 
 @interface KGMenuButton : UIView <UIGestureRecognizerDelegate>
 
-@property (nonatomic, weak) NSObject <KGMenuButtonDelegate> *delegate;
-@property (nonatomic) IBInspectable UIImage *image;
-@property (nonatomic) IBInspectable NSString *title;
-
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *tapGestureRecognizer;
+
+@property (nonatomic, weak) NSObject <KGMenuButtonDelegate> *delegate;
+@property (nonatomic) IBInspectable UIImage *image;
+@property (nonatomic) IBInspectable NSString *title;
 
 - (IBAction)tapped:(id)sender;
 

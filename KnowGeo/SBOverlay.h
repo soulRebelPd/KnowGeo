@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "SBPark.h"
 
-@interface KGOverlay : NSObject <MKOverlay>
+@interface SBOverlay : NSObject <MKOverlay>
 
 - (instancetype)initWithPark:(SBPark *)park;
 

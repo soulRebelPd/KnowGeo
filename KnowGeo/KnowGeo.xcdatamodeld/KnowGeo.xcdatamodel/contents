@@ -4,19 +4,19 @@
         <attribute name="isCloudSaved" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isLocallySaved" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="locationTypeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="subTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subtypeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="TestObject" representedClassName="TestObject" syncable="YES">
+    <entity name="SBObject" representedClassName="SBObject" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Pin" positionX="-63" positionY="9" width="128" height="165"/>
-        <element name="TestObject" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Pin" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="SBObject" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
 </model>

@@ -12,6 +12,7 @@
 		0403B51F1AFC1672001875AD /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B51E1AFC1672001875AD /* Settings.m */; };
 		0403B5261AFC1A56001875AD /* LogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B5251AFC1A56001875AD /* LogTableViewController.m */; };
 		0403B52F1AFE598F001875AD /* KGAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403B52E1AFE598F001875AD /* KGAnnotationView.m */; };
+		040D4CBC1B1CAB9000FC3152 /* Types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 040D4CBB1B1CAB9000FC3152 /* Types.plist */; };
 		043F52971B14E11000D38247 /* KGCalloutTail.m in Sources */ = {isa = PBXBuildFile; fileRef = 043F52961B14E11000D38247 /* KGCalloutTail.m */; };
 		045F95391B04EDF400B6B8D7 /* KGMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F95381B04EDF400B6B8D7 /* KGMapView.m */; };
 		045F953A1B05365400B6B8D7 /* KGMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517E51AE57AB000C56FBC /* KGMenuView.m */; };
@@ -23,6 +24,10 @@
 		048EAE451AE9948800974E03 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048EAE441AE9948800974E03 /* MapKit.framework */; };
 		048EAE541AEAA44C00974E03 /* SBOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE531AEAA44C00974E03 /* SBOverlay.m */; };
 		048EAE591AEAEE8B00974E03 /* SBOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE581AEAEE8B00974E03 /* SBOverlayRenderer.m */; };
+		049662901B1CF17E00383CB6 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496628E1B1CF17E00383CB6 /* CallViewController.m */; };
+		049662911B1CF17E00383CB6 /* CallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0496628F1B1CF17E00383CB6 /* CallViewController.xib */; };
+		049662931B1E48C700383CB6 /* KGPulloutMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049662921B1E48C700383CB6 /* KGPulloutMenu.xib */; };
+		049662961B1E48E200383CB6 /* KGPulloutMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 049662951B1E48E200383CB6 /* KGPulloutMenu.m */; };
 		04C7A42E1AF900C200538A36 /* SBPark.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7A42D1AF900C200538A36 /* SBPark.m */; };
 		04C7A4301AF90B1200538A36 /* BoldBean.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A42F1AF90B1200538A36 /* BoldBean.plist */; };
 		04C7A4361AF920E600538A36 /* RiversideLine.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C7A4351AF920E600538A36 /* RiversideLine.plist */; };
@@ -67,6 +72,7 @@
 		0403B5251AFC1A56001875AD /* LogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewController.m; sourceTree = "<group>"; };
 		0403B52D1AFE598F001875AD /* KGAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGAnnotationView.h; sourceTree = "<group>"; };
 		0403B52E1AFE598F001875AD /* KGAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGAnnotationView.m; sourceTree = "<group>"; };
+		040D4CBB1B1CAB9000FC3152 /* Types.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Types.plist; sourceTree = "<group>"; };
 		043F52951B14E11000D38247 /* KGCalloutTail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGCalloutTail.h; path = ../../SandBox/DrawingShapes/DrawingShapes/KGCalloutTail.h; sourceTree = "<group>"; };
 		043F52961B14E11000D38247 /* KGCalloutTail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGCalloutTail.m; path = ../../SandBox/DrawingShapes/DrawingShapes/KGCalloutTail.m; sourceTree = "<group>"; };
 		045F95371B04EDF400B6B8D7 /* KGMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGMapView.h; sourceTree = "<group>"; };
@@ -85,6 +91,12 @@
 		048EAE531AEAA44C00974E03 /* SBOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBOverlay.m; sourceTree = "<group>"; };
 		048EAE571AEAEE8B00974E03 /* SBOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBOverlayRenderer.h; sourceTree = "<group>"; };
 		048EAE581AEAEE8B00974E03 /* SBOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBOverlayRenderer.m; sourceTree = "<group>"; };
+		0496628D1B1CF17E00383CB6 /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CallViewController.h; path = ../../BlocSpot/BlocSpot/CallViewController.h; sourceTree = "<group>"; };
+		0496628E1B1CF17E00383CB6 /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CallViewController.m; path = ../../BlocSpot/BlocSpot/CallViewController.m; sourceTree = "<group>"; };
+		0496628F1B1CF17E00383CB6 /* CallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CallViewController.xib; path = ../../BlocSpot/BlocSpot/CallViewController.xib; sourceTree = "<group>"; };
+		049662921B1E48C700383CB6 /* KGPulloutMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGPulloutMenu.xib; sourceTree = "<group>"; };
+		049662941B1E48E200383CB6 /* KGPulloutMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGPulloutMenu.h; sourceTree = "<group>"; };
+		049662951B1E48E200383CB6 /* KGPulloutMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGPulloutMenu.m; sourceTree = "<group>"; };
 		04C7A42C1AF900C200538A36 /* SBPark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPark.h; sourceTree = "<group>"; };
 		04C7A42D1AF900C200538A36 /* SBPark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPark.m; sourceTree = "<group>"; };
 		04C7A42F1AF90B1200538A36 /* BoldBean.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BoldBean.plist; sourceTree = "<group>"; };
@@ -159,6 +171,9 @@
 		0403B5271AFC1B88001875AD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0496628D1B1CF17E00383CB6 /* CallViewController.h */,
+				0496628E1B1CF17E00383CB6 /* CallViewController.m */,
+				0496628F1B1CF17E00383CB6 /* CallViewController.xib */,
 				0403B52D1AFE598F001875AD /* KGAnnotationView.h */,
 				0403B52E1AFE598F001875AD /* KGAnnotationView.m */,
 				043F52951B14E11000D38247 /* KGCalloutTail.h */,
@@ -176,6 +191,9 @@
 				04E517E61AE57AB000C56FBC /* KGMenuView.xib */,
 				04FA6ECD1B03B948002F213B /* KGPointAnnotation.h */,
 				04FA6ECE1B03B948002F213B /* KGPointAnnotation.m */,
+				049662941B1E48E200383CB6 /* KGPulloutMenu.h */,
+				049662951B1E48E200383CB6 /* KGPulloutMenu.m */,
+				049662921B1E48C700383CB6 /* KGPulloutMenu.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -272,6 +290,7 @@
 				04F9CF951ADEEFF000B6ED9E /* main.m */,
 				048EAE311AE9549300974E03 /* UIColor+KGColors.h */,
 				048EAE321AE9549300974E03 /* UIColor+KGColors.m */,
+				040D4CBB1B1CAB9000FC3152 /* Types.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -342,6 +361,7 @@
 				TargetAttributes = {
 					04F9CF8F1ADEEFF000B6ED9E = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 45MD8KP67U;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -380,12 +400,15 @@
 			files = (
 				04F9CFA21ADEEFF000B6ED9E /* Main.storyboard in Resources */,
 				04E517EC1AE6DE8300C56FBC /* SBCalloutTesterView.xib in Resources */,
+				049662931B1E48C700383CB6 /* KGPulloutMenu.xib in Resources */,
 				04C7A4361AF920E600538A36 /* RiversideLine.plist in Resources */,
 				04C7A4301AF90B1200538A36 /* BoldBean.plist in Resources */,
 				04F9CFA71ADEEFF000B6ED9E /* LaunchScreen.xib in Resources */,
 				04E517E81AE57AB000C56FBC /* KGMenuView.xib in Resources */,
 				04F9CFA41ADEEFF000B6ED9E /* Images.xcassets in Resources */,
+				049662911B1CF17E00383CB6 /* CallViewController.xib in Resources */,
 				04E517D91AE16BC200C56FBC /* KGCalloutView.xib in Resources */,
+				040D4CBC1B1CAB9000FC3152 /* Types.plist in Resources */,
 				048EAE271AE7FE7C00974E03 /* KGMenuButton.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,8 +429,10 @@
 			files = (
 				045F953A1B05365400B6B8D7 /* KGMenuView.m in Sources */,
 				04C7A4391AF9515E00538A36 /* SBObject.m in Sources */,
+				049662961B1E48E200383CB6 /* KGPulloutMenu.m in Sources */,
 				048EAE591AEAEE8B00974E03 /* SBOverlayRenderer.m in Sources */,
 				045F953D1B06317500B6B8D7 /* Pins.m in Sources */,
+				049662901B1CF17E00383CB6 /* CallViewController.m in Sources */,
 				04D5C6401B0241C200B4E842 /* Pin.m in Sources */,
 				04FA6ED21B03D7B9002F213B /* SBPin.m in Sources */,
 				04E517EF1AE6DEA300C56FBC /* SBCalloutTesterView.m in Sources */,
@@ -556,10 +581,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = KnowGeo/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/KnowGeo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -567,10 +596,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = KnowGeo/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/KnowGeo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

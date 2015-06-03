@@ -53,10 +53,12 @@
 #pragma mark MapKit Customizations
 
 -(MKPinAnnotationColor)calculatePinColor:(Pin *)pin{
+    NSString *defaultTitle = [Pin defaultTitle];
+    
     if([pin.isCloudSaved isEqual:@1]){
         return MKPinAnnotationColorGreen;
     }
-    else if([pin.title isEqualToString:@"New Title"] ||
+    else if([pin.title isEqualToString:defaultTitle] ||
             [pin.typeId isEqualToNumber: @0] ||
             [pin.subtypeId isEqualToNumber:@0]){
         return MKPinAnnotationColorRed;
@@ -103,10 +105,10 @@
 #pragma mark MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView
- annotationView:(MKAnnotationView *)annotationView
-didChangeDragState:(MKAnnotationViewDragState)newState
-   fromOldState:(MKAnnotationViewDragState)oldState
-{
+    annotationView:(MKAnnotationView *)annotationView
+    didChangeDragState:(MKAnnotationViewDragState)newState
+    fromOldState:(MKAnnotationViewDragState)oldState{
+    
     if (newState == MKAnnotationViewDragStateEnding)
     {
         CLLocationCoordinate2D droppedAt = annotationView.annotation.coordinate;

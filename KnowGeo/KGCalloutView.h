@@ -12,6 +12,7 @@
 
 #import "UIColor+KGColors.h"
 #import "KGCalloutTail.h"
+#import "Pin.h"
 
 IB_DESIGNABLE
 
@@ -50,6 +51,7 @@ IB_DESIGNABLE
 - (IBAction)deletePin:(id)sender;
 - (IBAction)closeCallout:(id)sender;
 - (IBAction)titleFieldEditingDidEnd:(id)sender;
+- (IBAction)titleFieldEditingDidBegin:(id)sender;
 
 @end
 

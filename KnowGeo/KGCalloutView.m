@@ -7,6 +7,7 @@
 //
 
 #import "KGCalloutView.h"
+
 #define buttonCornerRadius 4
 
 @implementation KGCalloutView
@@ -147,12 +148,13 @@
     return (40.0);
 }
 
-- (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+    NSNumber *number = [NSNumber numberWithInt:1];
+    return [number integerValue];
 }
 
-- (int)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if(pickerView.tag == 1){
         return self.types.count;
@@ -183,6 +185,13 @@
 
 - (IBAction)titleFieldEditingDidEnd:(id)sender {
     [self.delegate kgCalloutView:self titleChanged:self.titleField.text];
+}
+
+- (IBAction)titleFieldEditingDidBegin:(id)sender {
+    NSString *defaultTitle = [Pin defaultTitle];
+    if([self.titleField.text isEqualToString:defaultTitle]){
+        self.titleField.text = @"";
+    }
 }
 
 -(void)contractComplete{

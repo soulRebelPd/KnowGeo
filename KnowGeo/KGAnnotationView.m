@@ -62,9 +62,9 @@
     callout.center = CGPointMake(self.bounds.size.width*0.5f, -self.bounds.size.height*4);
     callout.title = self.pin.title;
     
-    callout.types = @[@"Select Type", @"Bar", @"Bait", @"Charters", @"Dock", @"Hospital", @"Pier", @"Restaurant"];
+    callout.types = @[@"Select Type", @"Boat Ramp", @"Dive Site", @"Dive Shop", @"Marina", @"Marine Fuel", @"Sandbar", @"Services", @"Snorkel"];
     callout.type = self.pin.typeId;
-    callout.subTypes = @[@"Select Subtype", @"Sub 1", @"Sub 2", @"Sub 3", @"Sub 4", @"Sub 5", @"Sub 6", @"Sub 7"];
+    callout.subTypes = @[@"Select Subtype", @"Bahamas", @"Cali", @"G Lakes", @"Gulf", @"MS River", @"Pac NW", @"S. Atl"];
     callout.subtype = self.pin.subtypeId;
     
     self.calloutView = callout;

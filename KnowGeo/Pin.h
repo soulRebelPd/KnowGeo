@@ -21,13 +21,16 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
+@property (nonatomic, retain) NSNumber * isSearchResult;
 
 @property (strong, nonatomic) NSManagedObjectContext *objectContext;
 
 - (void)save;
 - (void)delete;
+- (void)setDefaultTitle;
 
 + (NSMutableArray *)fetchAllWithContext:(NSManagedObjectContext *)context;
 + (void)delete:(NSArray*)pins;
++ (NSString *)defaultTitle;
     
 @end

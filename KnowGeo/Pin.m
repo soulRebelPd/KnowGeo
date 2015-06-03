@@ -8,6 +8,8 @@
 
 #import "Pin.h"
 
+#define constDefaultTitle @"Title"
+
 @implementation Pin
 
 @dynamic isCloudSaved;
@@ -18,10 +20,10 @@
 @dynamic title;
 @dynamic latitude;
 @dynamic longitude;
+@dynamic isSearchResult;
 @synthesize objectContext;
 
-- (id)initWithEntity:(NSEntityDescription*)entity insertIntoManagedObjectContext:(NSManagedObjectContext*)context
-{
+- (id)initWithEntity:(NSEntityDescription*)entity insertIntoManagedObjectContext:(NSManagedObjectContext*)context{
     self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
     if (self != nil) {
         self.objectContext = context;
@@ -34,6 +36,14 @@
     self = [super init];
     
     return self;
+}
+
+-(void)setDefaultTitle{
+    self.title = constDefaultTitle;
+}
+
++(NSString *)defaultTitle{
+    return constDefaultTitle;
 }
 
 -(void)save{
@@ -69,7 +79,7 @@
     NSArray *objects = [context executeFetchRequest:request error:&error];
     
     for (Pin *pin in objects) {
-        NSLog(@"Pin %@ was retrieved, the object count is %d.", pin.title, objects.count);
+        NSLog(@"Pin %@ was retrieved, the object count is %lu.", pin.title, (unsigned long)objects.count);
     }
     
     return [(NSArray*)objects mutableCopy];

@@ -15,6 +15,7 @@
 
 @synthesize managedObjectContext;
 @synthesize pinEntityDescription;
+@synthesize pulloutMenuVisibility;
 
 #pragma mark ViewController
 
@@ -22,8 +23,13 @@
     [super viewDidLoad];
     self.map.delegate = self;
     self.map.delegate2 = self;
+    self.searchBar.delegate = self;
     self.map.showsUserLocation = YES;
+    self.map.mapType = MKMapTypeHybrid;
     self.counter = @0;
+    
+    [self.pulloutMenu.layer setCornerRadius:10.0f];
+    self.pulloutMenuVisibility = @"Virgin";
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     longPress.minimumPressDuration = 0.5;
@@ -45,27 +51,31 @@
     
     menu.dataSource = @{
                         @"Clear" : @"Clear.png",
-                        @"Refresh" : @"Refresh.png",
                         @"Upload" : @"Upload.png",
                         };
     
     menu.delegate = self;
     [self.menuPlaceholder addSubview:menu];
     
-    //    [self testPlacingImage];
-    //    [self testPlacingLine];
-    //    [self testCoreDataSave];
-    //    [self testCoreDataFind];
-    
-    //    NSArray *nibContentsForTester = [[NSBundle mainBundle] loadNibNamed:@"KGCalloutTesterView" owner:self options:nil];
-    //    KGCalloutTesterView *tester = [nibContentsForTester objectAtIndex:0];
-    //    self.tester = tester;
-    //    self.tester.frame = CGRectMake(400, 300, 350, 350);
-    //    [self.view addSubview:tester];
-    //    self.tester.delegate = self;
+//    [self testPlacingImage];
+//    [self testPlacingLine];
+//    [self testCoreDataSave];
+//    [self testCoreDataFind];
+//    [self showTester];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    //NOTE: recently added this to prevent crash on viewWillDisappear
+    //[self addObserver:self forKeyPath:@"localPins" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+}
+
+-(void)viewDidLayoutSubviews{
+    if([self.pulloutMenuVisibility isEqualToString: @"Virgin"]){
+        [self hidePulloutMenu:NO];
+    }
+    else if([self.pulloutMenuVisibility isEqualToString: @"Visible"]){
+        [self showPulloutMenu:NO];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -79,10 +89,182 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UISearchBarDelegate
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    self.searchBar.showsCancelButton = NO;
+    [self.searchBar resignFirstResponder];
+    [self search:self.searchBar.text];
+    [self hidePulloutMenu:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [self.searchBar resignFirstResponder];
+    self.searchBar.showsCancelButton = NO;
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    self.searchBar.showsCancelButton = YES;
+}
+
+-(void)search:(NSString*)text{
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
+    
+    [self requestNewItemsWithText:text withRegion:self.map.region completion:^{
+        
+        for (MKMapItem *item in self.searchItems)
+        {
+            Pin *pin = [[Pin alloc] initWithEntity:self.pinEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
+            pin.title = item.name;
+            pin.isSearchResult = @1;
+            pin.latitude = [NSNumber numberWithDouble:item.placemark.coordinate.latitude];
+            pin.longitude = [NSNumber numberWithDouble:item.placemark.coordinate.longitude];
+            
+            bool latitudeExists = [self latitudeExistsInLocalPins:pin.latitude];
+            bool longitudeExists = [self longitudeExistsInLocalPins:pin.longitude];
+            
+            if(latitudeExists && longitudeExists){
+            }
+            else{
+                [mutableArrayWithKVO addObject:pin];
+            }
+        }
+    }];
+}
+
+- (void)requestNewItemsWithText:(NSString *)text withRegion:(MKCoordinateRegion)region completion:(void (^)(void))completionBlock{
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    request.naturalLanguageQuery = text;
+    request.region = region;
+    MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
+    
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        self.searchItems = response.mapItems;
+        
+        if(response.mapItems != nil && response.mapItems.count > 0){
+            completionBlock();
+        }
+    }];
+}
+
+-(bool)latitudeExistsInLocalPins:(NSNumber *)latitude{
+    for(Pin *pin in self.localPins){
+        if(pin.latitude == latitude){
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(bool)longitudeExistsInLocalPins:(NSNumber *)longitude{
+    for(Pin *pin in self.localPins){
+        if(pin.longitude == longitude){
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+#pragma mark PulloutMenu
+
+- (IBAction)menuPulled:(id)sender {
+    if([self.pulloutMenuVisibility isEqualToString:@"Virgin"]){
+        self.pulloutMenuVisibility = @"Hidden";
+    }
+    
+    if(self.isPullingOutMenu == NO){
+        self.isPullingOutMenu = YES;
+        self.panGestureRecognizer.enabled = NO;
+        
+        if([self.pulloutMenuVisibility isEqualToString: @"Hidden"]){
+            [self showPulloutMenu:YES];
+        }
+        else{
+            [self hidePulloutMenu:YES];
+        }
+    }
+}
+
+-(void)hidePulloutMenu:(bool)animated{
+    CGFloat centerX = (self.view.frame.size.width / 2) - (self.pulloutMenu.frame.size.width / 2);
+    CGFloat hiddenY = self.view.frame.size.height - (self.pulloutMenu.frame.size.height / 8);
+    
+    CGFloat width = self.pulloutMenu.frame.size.width;
+    CGFloat height = self.pulloutMenu.frame.size.height;
+    
+    CGRect newFrame = CGRectMake(centerX, hiddenY, width, height);
+    
+    if(animated == YES){
+        [UIView beginAnimations:@"hidePulloutMenu" context:nil];
+        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationDelegate:self];
+        
+        [self.pulloutMenu setFrame:newFrame];
+        
+        [UIView setAnimationDidStopSelector:@selector(hidePulloutMenuComplete)];
+        [UIView commitAnimations];
+    }
+    else{
+        [self.pulloutMenu setFrame:newFrame];
+    }
+    
+    if(![self.pulloutMenuVisibility isEqualToString:@"Virgin"]){
+        self.pulloutMenuVisibility = @"Hidden";
+    }
+}
+
+-(void)hidePulloutMenuComplete{
+    self.pulloutMenu.alpha = 1;
+    self.panGestureRecognizer.enabled = YES;
+    self.isPullingOutMenu = NO;
+}
+
+-(void)showPulloutMenu:(bool)animated{
+    CGFloat centerX = (self.view.frame.size.width / 2) - (self.pulloutMenu.frame.size.width / 2);
+    CGFloat visibleY = self.view.frame.size.height - (self.pulloutMenu.frame.size.height * .80);
+    
+    CGFloat width = self.pulloutMenu.frame.size.width;
+    CGFloat height = self.pulloutMenu.frame.size.height;
+    
+    CGRect newFrame = CGRectMake(centerX, visibleY, width, height);
+    
+    if(animated == YES){
+        [UIView beginAnimations:@"showPulloutMenu" context:nil];
+        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationDelegate:self];
+        
+        [self.pulloutMenu setFrame:newFrame];
+        
+        [UIView setAnimationDidStopSelector:@selector(showPulloutMenuComplete)];
+        [UIView commitAnimations];
+    }
+    else{
+        [self.pulloutMenu setFrame:newFrame];
+    }
+    
+    self.pulloutMenuVisibility = @"Visible";
+}
+
+-(void)showPulloutMenuComplete{
+    self.panGestureRecognizer.enabled = YES;
+    self.isPullingOutMenu = NO;
+}
+
 #pragma mark Events
 
 - (IBAction)locationPressed:(id)sender {
     [self.map zoomToLastLocation];
+}
+
+- (IBAction)mapTypePressed:(id)sender {
+    if(self.map.mapType == MKMapTypeStandard){
+        self.map.mapType = MKMapTypeHybrid;
+    }
+    else{
+        self.map.mapType = MKMapTypeStandard;
+    }
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer {
@@ -100,12 +282,11 @@
        [className isEqualToString:@"MKNewAnnotationContainerView"] ){
         
         Pin *pin = [[Pin alloc] initWithEntity:self.pinEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
-        pin.title = @"New Title";
-        pin.subTitle = @"New Subtitle";
         pin.latitude = [NSNumber numberWithDouble:touchMapCoordinate.latitude];
         pin.longitude = [NSNumber numberWithDouble:touchMapCoordinate.longitude];
         pin.isLocallySaved = @1;
         pin.isCloudSaved = @0;
+        [pin setDefaultTitle];
         [pin save];
         
         NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
@@ -160,7 +341,6 @@
         annotation.title = pin.title;
         annotation.subtitle = pin.subTitle;
         annotation.pin = pin;
-        //annotation.pinColor = MKPinAnnotationColorRed;
         
         [self.map addAnnotation:annotation];
     }
@@ -198,26 +378,24 @@
                     
                     Pin *pin = [self.localPins objectAtIndex:indexPath.row];
                     KGPointAnnotation *annotation = [KGPinToAnnotationConverter convertToAnnotation:pin];
-                    annotation.isDropping = YES;
+                    
+                    if(!pin.isSearchResult){
+                        annotation.isDropping = YES;
+                    }
+                    
                     [self.localAnnotations addObject:annotation];
                     [self.map addAnnotation:annotation];
                     
-                    //[self.tableView insertRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
-                    
                 } else if (kindOfChange == NSKeyValueChangeRemoval) {
                     NSIndexPath *indexPath = [indexPathsThatChanged objectAtIndex:0];
-                    NSLog(@"IndexPath: %d", indexPath.row);
+                    NSLog(@"IndexPath: %ld", (long)indexPath.row);
                     
                     KGPointAnnotation *annotation = [self.localAnnotations objectAtIndex:indexPath.row];
                     
                     [self.map removeAnnotation:annotation];
                     [self.localAnnotations removeObject:annotation];
                     
-                    //[self.tableView deleteRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
-                    
                 } else if (kindOfChange == NSKeyValueChangeReplacement) {
-                    //[self.tableView reloadRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
-                    
                 }
             }
         }
@@ -276,81 +454,39 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(KGAnnotationView *)view{
-    if(self.activeAnnotationView){
-        [self.activeAnnotationView.calloutView removeFromSuperview2];
+    if (view.annotation != self.map.userLocation){
+        if(self.activeAnnotationView){
+            [self.activeAnnotationView.calloutView removeFromSuperview2];
+        }
+        
+        [view openCallout];
+        self.activeAnnotationView = view;
+        [self.map centerOnAnnotationView:view];
+        
+        NSLog(@"Annotation Selected:%@", view.annotation);
     }
-
-    [view openCallout];
-    self.activeAnnotationView = view;
-    [self.map centerOnAnnotationView:view];
-    
-    NSLog(@"Annotation Selected:%@", view.annotation);
 }
 
 -(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
-    KGAnnotationView *annotationView = (KGAnnotationView *)view;
-    
-    if(annotationView.isDeleting){
-        [self.map deselectAnnotation:[view annotation] animated:NO];
+    if(view.annotation != self.map.userLocation){
+        KGAnnotationView *annotationView = (KGAnnotationView *)view;
         
-        if([annotationView.pin.isCloudSaved isEqual:@1]){
-            [self.cloudPins removeObject:annotationView.pin];
+        if(annotationView.isDeleting){
+            [self.map deselectAnnotation:[view annotation] animated:NO];
+            
+            if([annotationView.pin.isCloudSaved isEqual:@1]){
+                [self.cloudPins removeObject:annotationView.pin];
+            }
+            else{
+                [self.localPins removeObject:annotationView.pin];
+            }
+            
+            [annotationView.pin delete];
+            
+            NSLog(@"Deleting Pin:%@", annotationView.pin);
         }
-        else{
-            [self.localPins removeObject:annotationView.pin];
-        }
-        
-        [annotationView.pin delete];
-        
-        NSLog(@"Deleting Pin:%@", annotationView.pin);
     }
 }
-
-//-(MKPinAnnotationColor)calculatePinColor:(Pin *)pin{
-//    if([pin.isCloudSaved isEqual:@1]){
-//        return MKPinAnnotationColorGreen;
-//    }
-//    else if([pin.title isEqualToString:@"New Title"] ||
-//            [pin.locationTypeId isEqualToNumber: @0] ||
-//            [pin.subtypeId isEqualToNumber:@0]){
-//        return MKPinAnnotationColorRed;
-//    }
-//    else{
-//        return MKPinAnnotationColorPurple;
-//    }
-//}
-
-//- (void)mapView:(MKMapView *)mapView
-//    annotationView:(MKAnnotationView *)annotationView
-//    didChangeDragState:(MKAnnotationViewDragState)newState
-//    fromOldState:(MKAnnotationViewDragState)oldState
-//{
-//    if (newState == MKAnnotationViewDragStateEnding)
-//    {
-//        CLLocationCoordinate2D droppedAt = annotationView.annotation.coordinate;
-//        NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
-//    }
-//}
-//
-//- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-//    if ([overlay isKindOfClass:SBOverlay.class]) {
-//        UIImage *image = [UIImage imageNamed:@"SBPark"];
-//        SBOverlayRenderer *overlayView = [[SBOverlayRenderer alloc] initWithOverlay:overlay overlayImage:image];
-//        
-//        return overlayView;
-//    } else if ([overlay isKindOfClass:MKPolyline.class]) {
-//        MKPolylineRenderer *lineView = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
-//        lineView.strokeColor = [UIColor kgOrangeColor];
-//        lineView.lineWidth = 3;
-//        
-//        return lineView;
-//    }
-//    
-//    return nil;
-//}
-//
-//-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-//}
 
 #pragma mark KGMyMapView
 
@@ -504,6 +640,15 @@
     MKPolyline *myPolyline = [MKPolyline polylineWithCoordinates:pointsToUse count:pointsCount];
     
     [self.map addOverlay:myPolyline];
+}
+
+-(void)showTester{
+        NSArray *nibContentsForTester = [[NSBundle mainBundle] loadNibNamed:@"KGCalloutTesterView" owner:self options:nil];
+        SBCalloutTesterView *tester = [nibContentsForTester objectAtIndex:0];
+        self.tester = tester;
+        self.tester.frame = CGRectMake(400, 300, 350, 350);
+        [self.view addSubview:tester];
+        self.tester.delegate = self;
 }
 
 #pragma mark CalloutTesterView

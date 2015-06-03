@@ -25,6 +25,7 @@
 #import "SBPark.h"
 #import "SBPin.h"
 #import "KGCalloutTail.h"
+#import "CallViewController.h"
 
 #import "SBObject.h"
 #import "Pin.h"
@@ -32,7 +33,7 @@
 
 #import "UIColor+KGColors.h"
 
-@interface MainViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate, KGMapViewDelegate>
+@interface MainViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate, KGMapViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet KGMapView *map;
 @property (weak, nonatomic) IBOutlet KGMenuView *menu;
@@ -40,11 +41,13 @@
 @property (weak, nonatomic) IBOutlet KGCalloutView *callout;
 @property (strong, nonatomic) IBOutlet SBCalloutTesterView *tester;
 @property (weak, nonatomic) IBOutlet UIButton *locationButton;
-
-
+@property (weak, nonatomic) IBOutlet UIView *pulloutMenu;
 @property (weak, nonatomic) IBOutlet UIView *menuPlaceholder;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGestureRecognizer;
 
 @property (strong, nonatomic) NSArray *mapItems;
+@property (strong, nonatomic) NSArray *searchItems;
 @property (strong, nonatomic) NSMutableArray *localPins;
 @property (strong, nonatomic) NSMutableArray *localAnnotations;
 @property (strong, nonatomic) NSArray *cloudAnnotations;
@@ -55,6 +58,8 @@
 @property (strong, nonatomic) KGAnnotationView *activeAnnotationView;
 @property NSEntityDescription *pinEntityDescription;
 @property NSNumber *counter;
+@property bool isPullingOutMenu;
+@property NSString *pulloutMenuVisibility;
 
 -(void)uploadToCloud;
 -(void)reloadData;
@@ -64,5 +69,7 @@
 -(void)toggledDeleteWarnings;
 
 - (IBAction)locationPressed:(id)sender;
+- (IBAction)mapTypePressed:(id)sender;
+- (IBAction)menuPulled:(id)sender;
 
 @end

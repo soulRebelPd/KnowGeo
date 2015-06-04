@@ -24,6 +24,7 @@
     self.subtypePickerView.delegate = self;
     
     self.titleField.delegate = self;
+    self.titleField.backgroundColor = [UIColor kgMediumBrownColor];
     
     [self.layer setCornerRadius:10.0f];
     self.backgroundColor = [UIColor kgBrownColor];

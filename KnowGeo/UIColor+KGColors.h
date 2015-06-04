@@ -12,5 +12,6 @@
 
 + (UIColor *)kgBrownColor;
 + (UIColor *)kgOrangeColor;
++ (UIColor *)kgMediumBrownColor;
 
 @end

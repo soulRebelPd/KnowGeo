@@ -24,8 +24,6 @@
 		048EAE451AE9948800974E03 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048EAE441AE9948800974E03 /* MapKit.framework */; };
 		048EAE541AEAA44C00974E03 /* SBOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE531AEAA44C00974E03 /* SBOverlay.m */; };
 		048EAE591AEAEE8B00974E03 /* SBOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 048EAE581AEAEE8B00974E03 /* SBOverlayRenderer.m */; };
-		049662901B1CF17E00383CB6 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496628E1B1CF17E00383CB6 /* CallViewController.m */; };
-		049662911B1CF17E00383CB6 /* CallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0496628F1B1CF17E00383CB6 /* CallViewController.xib */; };
 		049662931B1E48C700383CB6 /* KGPulloutMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049662921B1E48C700383CB6 /* KGPulloutMenu.xib */; };
 		049662961B1E48E200383CB6 /* KGPulloutMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 049662951B1E48E200383CB6 /* KGPulloutMenu.m */; };
 		04C7A42E1AF900C200538A36 /* SBPark.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7A42D1AF900C200538A36 /* SBPark.m */; };
@@ -39,6 +37,7 @@
 		04E517E81AE57AB000C56FBC /* KGMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517E61AE57AB000C56FBC /* KGMenuView.xib */; };
 		04E517EC1AE6DE8300C56FBC /* SBCalloutTesterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E517EB1AE6DE8300C56FBC /* SBCalloutTesterView.xib */; };
 		04E517EF1AE6DEA300C56FBC /* SBCalloutTesterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E517EE1AE6DEA300C56FBC /* SBCalloutTesterView.m */; };
+		04F2DD8E1B1F9C8300C3C546 /* SearchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DD8D1B1F9C8300C3C546 /* SearchHistory.m */; };
 		04F9CF961ADEEFF000B6ED9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF951ADEEFF000B6ED9E /* main.m */; };
 		04F9CF991ADEEFF000B6ED9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF981ADEEFF000B6ED9E /* AppDelegate.m */; };
 		04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04F9CF9A1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld */; };
@@ -91,9 +90,6 @@
 		048EAE531AEAA44C00974E03 /* SBOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBOverlay.m; sourceTree = "<group>"; };
 		048EAE571AEAEE8B00974E03 /* SBOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBOverlayRenderer.h; sourceTree = "<group>"; };
 		048EAE581AEAEE8B00974E03 /* SBOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBOverlayRenderer.m; sourceTree = "<group>"; };
-		0496628D1B1CF17E00383CB6 /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CallViewController.h; path = ../../BlocSpot/BlocSpot/CallViewController.h; sourceTree = "<group>"; };
-		0496628E1B1CF17E00383CB6 /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CallViewController.m; path = ../../BlocSpot/BlocSpot/CallViewController.m; sourceTree = "<group>"; };
-		0496628F1B1CF17E00383CB6 /* CallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CallViewController.xib; path = ../../BlocSpot/BlocSpot/CallViewController.xib; sourceTree = "<group>"; };
 		049662921B1E48C700383CB6 /* KGPulloutMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGPulloutMenu.xib; sourceTree = "<group>"; };
 		049662941B1E48E200383CB6 /* KGPulloutMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGPulloutMenu.h; sourceTree = "<group>"; };
 		049662951B1E48E200383CB6 /* KGPulloutMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGPulloutMenu.m; sourceTree = "<group>"; };
@@ -115,6 +111,8 @@
 		04E517EB1AE6DE8300C56FBC /* SBCalloutTesterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBCalloutTesterView.xib; sourceTree = "<group>"; };
 		04E517ED1AE6DEA300C56FBC /* SBCalloutTesterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCalloutTesterView.h; sourceTree = "<group>"; };
 		04E517EE1AE6DEA300C56FBC /* SBCalloutTesterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCalloutTesterView.m; sourceTree = "<group>"; };
+		04F2DD8C1B1F9C8300C3C546 /* SearchHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHistory.h; sourceTree = "<group>"; };
+		04F2DD8D1B1F9C8300C3C546 /* SearchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHistory.m; sourceTree = "<group>"; };
 		04F9CF901ADEEFF000B6ED9E /* KnowGeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowGeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F9CF941ADEEFF000B6ED9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F9CF951ADEEFF000B6ED9E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -158,6 +156,8 @@
 		0403B5231AFC1712001875AD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				04F2DD8C1B1F9C8300C3C546 /* SearchHistory.h */,
+				04F2DD8D1B1F9C8300C3C546 /* SearchHistory.m */,
 				04D5C63E1B0241C200B4E842 /* Pin.h */,
 				04D5C63F1B0241C200B4E842 /* Pin.m */,
 				045F953B1B06317500B6B8D7 /* Pins.h */,
@@ -171,9 +171,6 @@
 		0403B5271AFC1B88001875AD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0496628D1B1CF17E00383CB6 /* CallViewController.h */,
-				0496628E1B1CF17E00383CB6 /* CallViewController.m */,
-				0496628F1B1CF17E00383CB6 /* CallViewController.xib */,
 				0403B52D1AFE598F001875AD /* KGAnnotationView.h */,
 				0403B52E1AFE598F001875AD /* KGAnnotationView.m */,
 				043F52951B14E11000D38247 /* KGCalloutTail.h */,
@@ -406,7 +403,6 @@
 				04F9CFA71ADEEFF000B6ED9E /* LaunchScreen.xib in Resources */,
 				04E517E81AE57AB000C56FBC /* KGMenuView.xib in Resources */,
 				04F9CFA41ADEEFF000B6ED9E /* Images.xcassets in Resources */,
-				049662911B1CF17E00383CB6 /* CallViewController.xib in Resources */,
 				04E517D91AE16BC200C56FBC /* KGCalloutView.xib in Resources */,
 				040D4CBC1B1CAB9000FC3152 /* Types.plist in Resources */,
 				048EAE271AE7FE7C00974E03 /* KGMenuButton.xib in Resources */,
@@ -432,7 +428,6 @@
 				049662961B1E48E200383CB6 /* KGPulloutMenu.m in Sources */,
 				048EAE591AEAEE8B00974E03 /* SBOverlayRenderer.m in Sources */,
 				045F953D1B06317500B6B8D7 /* Pins.m in Sources */,
-				049662901B1CF17E00383CB6 /* CallViewController.m in Sources */,
 				04D5C6401B0241C200B4E842 /* Pin.m in Sources */,
 				04FA6ED21B03D7B9002F213B /* SBPin.m in Sources */,
 				04E517EF1AE6DEA300C56FBC /* SBCalloutTesterView.m in Sources */,
@@ -453,6 +448,7 @@
 				0403B52F1AFE598F001875AD /* KGAnnotationView.m in Sources */,
 				04F9CF9C1ADEEFF000B6ED9E /* KnowGeo.xcdatamodeld in Sources */,
 				043F52971B14E11000D38247 /* KGCalloutTail.m in Sources */,
+				04F2DD8E1B1F9C8300C3C546 /* SearchHistory.m in Sources */,
 				04E517DC1AE16BD100C56FBC /* KGCalloutView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

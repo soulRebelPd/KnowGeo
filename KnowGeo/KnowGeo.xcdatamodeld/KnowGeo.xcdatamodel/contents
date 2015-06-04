@@ -16,8 +16,13 @@
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="SearchHistory" representedClassName="SearchHistory" syncable="YES">
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Pin" positionX="0" positionY="0" width="128" height="180"/>
         <element name="SBObject" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="SearchHistory" positionX="27" positionY="99" width="128" height="75"/>
     </elements>
 </model>

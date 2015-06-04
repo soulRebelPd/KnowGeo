@@ -50,8 +50,16 @@
                                             <outletCollection property="gestureRecognizers" destination="c1s-b6-ek5" appends="YES" id="CDe-OV-qaY"/>
                                         </connections>
                                     </view>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="DdV-p6-83C">
-                                        <rect key="frame" x="0.0" y="45" width="300" height="44"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hAj-4H-ZcP">
+                                        <rect key="frame" x="8" y="98" width="284" height="145"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="kwv-4p-0i0"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="L8f-pG-sOk"/>
+                                        </connections>
+                                    </tableView>
+                                    <searchBar contentMode="redraw" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="6do-wd-8DD">
+                                        <rect key="frame" x="0.0" y="43" width="300" height="44"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
@@ -90,7 +98,9 @@
                         <outlet property="menuPlaceholder" destination="k4U-JK-T2L" id="wVf-zw-Y6g"/>
                         <outlet property="panGestureRecognizer" destination="c1s-b6-ek5" id="5fn-CP-Xq7"/>
                         <outlet property="pulloutMenu" destination="tcF-og-ksQ" id="eQy-qw-ikO"/>
-                        <outlet property="searchBar" destination="DdV-p6-83C" id="5Lq-Ht-KyL"/>
+                        <outlet property="searchBar" destination="6do-wd-8DD" id="V8H-mq-Jig"/>
+                        <outlet property="searchDisplayController" destination="Rxq-e8-qX4" id="5Rv-JS-zNN"/>
+                        <outlet property="searchHistoryTableView" destination="hAj-4H-ZcP" id="enb-ly-v6x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -99,6 +109,14 @@
                         <action selector="menuPulled:" destination="BYZ-38-t0r" id="sxo-bT-S7b"/>
                     </connections>
                 </panGestureRecognizer>
+                <searchDisplayController id="Rxq-e8-qX4">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="2YM-Mb-how"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="vcf-L8-fi2"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="JMS-h9-VHm"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="Aw5-R7-YjJ"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="504" y="995"/>
         </scene>

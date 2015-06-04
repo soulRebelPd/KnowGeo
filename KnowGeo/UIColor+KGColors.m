@@ -37,4 +37,15 @@
     return orangeColor;
 }
 
++ (UIColor *)kgMediumBrownColor {
+    static UIColor *mediumBrownColor;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        mediumBrownColor = [UIColor colorWithRed:0.153 green:0.118 blue:0.047 alpha:1]; /*#271e0c*/
+    });
+    
+    return mediumBrownColor;
+}
+
 @end

@@ -16,6 +16,53 @@
 @synthesize managedObjectContext;
 @synthesize pinEntityDescription;
 @synthesize pulloutMenuVisibility;
+@synthesize searchHistoryTableView;
+
+#pragma - markup UITableViewDelegate
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.searchHistory count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    cell.backgroundColor = [UIColor kgMediumBrownColor];
+    cell.textLabel.textColor = [UIColor kgOrangeColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    
+    SearchHistory *history = [self.searchHistory objectAtIndex:indexPath.row];
+    cell.textLabel.text = history.text;
+
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.searchBar.showsCancelButton = NO;
+    [self.searchBar resignFirstResponder];
+    
+    SearchHistory *history = [self.searchHistory objectAtIndex:indexPath.row];
+    [self search:history.text];
+    [self hidePulloutMenu:YES];
+    
+    self.searchBar.text = history.text;
+    [self.searchHistoryTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+//    UIAlertView *alertView = [[UIAlertView alloc]
+//                              initWithTitle:@"Alert"
+//                              message:[NSString stringWithFormat:@"Selected Value is %@",[self.searchHistory objectAtIndex:indexPath.row]]
+//                              delegate:self
+//                              cancelButtonTitle:@"Ok"
+//                              otherButtonTitles:nil];
+//    
+//    [alertView show];
+}
 
 #pragma mark ViewController
 
@@ -27,6 +74,17 @@
     self.map.showsUserLocation = YES;
     self.map.mapType = MKMapTypeHybrid;
     self.counter = @0;
+    
+    self.searchHistoryTableView.opaque = YES;
+    self.searchHistoryTableView.separatorColor = [UIColor blackColor];
+    self.searchHistoryTableView.backgroundColor = [UIColor blackColor];
+    
+    self.historyEntityDescription = [NSEntityDescription entityForName:@"SearchHistory" inManagedObjectContext:self.managedObjectContext];
+    self.searchHistory = [SearchHistory fetchAllWithContext:self.managedObjectContext];
+    
+//    for(SearchHistory *searchHistory in self.searchHistory){
+//        [searchHistory delete];
+//    }
     
     [self.pulloutMenu.layer setCornerRadius:10.0f];
     self.pulloutMenuVisibility = @"Virgin";
@@ -130,6 +188,28 @@
             }
         }
     }];
+    
+    bool existsInHistory = [self searchHistoryContains:text];
+    
+    if(!existsInHistory){
+        SearchHistory *history = [[SearchHistory alloc] initWithEntity:self.historyEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
+        history.text = text;
+        history.timeStamp = [NSDate date];
+        [history save];
+        
+        self.searchHistory = [SearchHistory fetchAllWithContext:self.managedObjectContext];
+        [self.searchHistoryTableView reloadData];
+    }
+}
+
+-(bool)searchHistoryContains:(NSString *)text{
+    for(SearchHistory *history in self.searchHistory){
+        if([history.text isEqualToString:text]){
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 - (void)requestNewItemsWithText:(NSString *)text withRegion:(MKCoordinateRegion)region completion:(void (^)(void))completionBlock{
@@ -149,7 +229,7 @@
 
 -(bool)latitudeExistsInLocalPins:(NSNumber *)latitude{
     for(Pin *pin in self.localPins){
-        if(pin.latitude == latitude){
+        if([pin.latitude isEqualToNumber:latitude]){
             return YES;
         }
     }
@@ -159,7 +239,7 @@
 
 -(bool)longitudeExistsInLocalPins:(NSNumber *)longitude{
     for(Pin *pin in self.localPins){
-        if(pin.longitude == longitude){
+        if([pin.longitude isEqualToNumber:longitude]){
             return YES;
         }
     }
@@ -216,7 +296,6 @@
 }
 
 -(void)hidePulloutMenuComplete{
-    self.pulloutMenu.alpha = 1;
     self.panGestureRecognizer.enabled = YES;
     self.isPullingOutMenu = NO;
 }
@@ -379,7 +458,10 @@
                     Pin *pin = [self.localPins objectAtIndex:indexPath.row];
                     KGPointAnnotation *annotation = [KGPinToAnnotationConverter convertToAnnotation:pin];
                     
-                    if(!pin.isSearchResult){
+                    if([pin.isSearchResult isEqualToNumber:@1]){
+                        annotation.isDropping = NO;
+                    }
+                    else{
                         annotation.isDropping = YES;
                     }
                     

@@ -25,15 +25,15 @@
 #import "SBPark.h"
 #import "SBPin.h"
 #import "KGCalloutTail.h"
-#import "CallViewController.h"
 
 #import "SBObject.h"
 #import "Pin.h"
+#import "SearchHistory.h"
 #import "KGPintoAnnotationConverter.h"
 
 #import "UIColor+KGColors.h"
 
-@interface MainViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate, KGMapViewDelegate, UISearchBarDelegate>
+@interface MainViewController : UIViewController <KGCalloutTesterDelegate, MenuViewDelegate, MKMapViewDelegate, KGMapViewDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate> //UITableViewDataSource is an option too
 
 @property (weak, nonatomic) IBOutlet KGMapView *map;
 @property (weak, nonatomic) IBOutlet KGMenuView *menu;
@@ -45,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet UIView *menuPlaceholder;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGestureRecognizer;
+@property (weak, nonatomic) IBOutlet UITableView *searchHistoryTableView;
 
 @property (strong, nonatomic) NSArray *mapItems;
 @property (strong, nonatomic) NSArray *searchItems;
@@ -54,9 +55,11 @@
 @property (strong, nonatomic) NSMutableArray *cloudPins;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSMutableArray *testPins;
+@property (strong, nonatomic) NSMutableArray *searchHistory;
 @property (strong, nonatomic) SBPin *testPin;
 @property (strong, nonatomic) KGAnnotationView *activeAnnotationView;
 @property NSEntityDescription *pinEntityDescription;
+@property NSEntityDescription *historyEntityDescription;
 @property NSNumber *counter;
 @property bool isPullingOutMenu;
 @property NSString *pulloutMenuVisibility;

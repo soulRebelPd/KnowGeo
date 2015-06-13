@@ -29,18 +29,18 @@ IB_DESIGNABLE
 @interface KGCalloutView : UIView <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
-@property (weak, nonatomic) IBOutlet UIPickerView *typePickerView;
-@property (weak, nonatomic) IBOutlet UIPickerView *subtypePickerView;
+@property (strong, nonatomic) IBOutlet UIPickerView *typePickerView;
+@property (strong, nonatomic) IBOutlet UIPickerView *subtypePickerView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UIImageView *trianglePlaceholder;
 @property (strong, nonatomic) IBOutlet KGCalloutView *view;
 
 @property (nonatomic) IBInspectable NSString *title;
-@property (nonatomic) NSNumber *subtype;
-@property (nonatomic) NSNumber *type;
-@property NSArray *types;
-@property NSArray *subTypes;
+@property (strong, nonatomic) NSNumber *subtype;
+@property (strong, nonatomic) NSNumber *type;
+@property (strong, nonatomic) NSArray *types;
+@property (strong, nonatomic) NSArray *subTypes;
 @property (weak, nonatomic) NSObject <KGCalloutViewDelegate> *delegate;
 @property (strong, nonatomic) KGCalloutTail *shapeView;
 

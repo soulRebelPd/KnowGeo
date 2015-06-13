@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -21,7 +22,7 @@
                     </connections>
                 </label>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8po-eu-71Y">
-                    <rect key="frame" x="38" y="25" width="40" height="40"/>
+                    <rect key="frame" x="8" y="8" width="100" height="96"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <gestureRecognizers/>
                     <connections>
@@ -33,7 +34,6 @@
             <connections>
                 <outlet property="iconImageView" destination="8po-eu-71Y" id="vSK-A9-Xeh"/>
                 <outlet property="tapGestureRecognizer" destination="EbI-1F-9FX" id="BoB-3z-EaM"/>
-                <outlet property="titleLabel" destination="Sm5-jc-a6V" id="sHA-kh-4et"/>
             </connections>
             <point key="canvasLocation" x="147" y="189"/>
         </view>

@@ -32,21 +32,11 @@
     return self;
 }
 
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        NSLog(@"Cancel Tapped.");
-    }
-    else if (buttonIndex == 1) {
-        [self removeAnnotation:self.annotationViewDeleting.annotation];
-        NSLog(@"Yes Tapped.");
-    }
-}
-
 -(void)centerOnAnnotationView:(KGAnnotationView *)annotationView{
     MKMapRect mapRect = [self visibleMapRect];
     MKMapPoint mapPoint = MKMapPointForCoordinate([annotationView.annotation coordinate]);
-    mapRect.origin.x = mapPoint.x - mapRect.size.width * 0.5;
-    mapRect.origin.y = mapPoint.y - mapRect.size.height * 0.75;
+    mapRect.origin.x = mapPoint.x - mapRect.size.width * 0.472;
+    mapRect.origin.y = mapPoint.y - mapRect.size.height * 0.85;
     [self setVisibleMapRect:mapRect animated:YES];
 }
 
@@ -55,7 +45,7 @@
 -(MKPinAnnotationColor)calculatePinColor:(Pin *)pin{
     NSString *defaultTitle = [Pin defaultTitle];
     
-    if([pin.isCloudSaved isEqual:@1]){
+    if([pin.isExported isEqual:@1]){
         return MKPinAnnotationColorGreen;
     }
     else if([pin.title isEqualToString:defaultTitle] ||
@@ -116,23 +106,6 @@
     }
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    if ([overlay isKindOfClass:SBOverlay.class]) {
-        UIImage *image = [UIImage imageNamed:@"SBPark"];
-        SBOverlayRenderer *overlayView = [[SBOverlayRenderer alloc] initWithOverlay:overlay overlayImage:image];
-        
-        return overlayView;
-    } else if ([overlay isKindOfClass:MKPolyline.class]) {
-        MKPolylineRenderer *lineView = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
-        lineView.strokeColor = [UIColor kgOrangeColor];
-        lineView.lineWidth = 3;
-        
-        return lineView;
-    }
-    
-    return nil;
-}
-
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 }
 
@@ -166,12 +139,15 @@
     [alert show];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        NSLog(@"Cancel Tapped.");
+    }
+    else if (buttonIndex == 1) {
+        [self removeAnnotation:self.annotationViewDeleting.annotation];
+        NSLog(@"Yes Tapped.");
+    }
 }
-*/
+
 
 @end

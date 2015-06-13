@@ -11,5 +11,6 @@
 @implementation KGPointAnnotation
 
 @synthesize isDropping;
+@synthesize isUpdatingColor;
 
 @end

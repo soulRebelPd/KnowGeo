@@ -7,6 +7,7 @@
 //
 
 #import "KGCalloutView.h"
+#import "AppDelegate.h"
 
 #define buttonCornerRadius 4
 
@@ -24,6 +25,7 @@
     self.subtypePickerView.delegate = self;
     
     self.titleField.delegate = self;
+    self.titleField.returnKeyType = UIReturnKeyGo;
     self.titleField.backgroundColor = [UIColor kgMediumBrownColor];
     
     [self.layer setCornerRadius:10.0f];
@@ -65,7 +67,7 @@
     [UIView setAnimationDuration:0.4];
     [UIView setAnimationDelegate:self];
     
-    CGRect newBounds = CGRectMake(originalX, originalY, 300, 275);
+    CGRect newBounds = CGRectMake(originalX, originalY, 270, 275);
     [self setBounds:newBounds];
     
     [UIView setAnimationDidStopSelector:@selector(fadeInControls)];
@@ -127,12 +129,16 @@
         tView.textAlignment = NSTextAlignmentCenter;
     }
     
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
     NSString *title;
     if(pickerView.tag == 1){
-        title = self.types[row];
+        Type *type = appDelegate.types[row];
+        title = type.name;
     }
     else{
-        title = self.subTypes[row];
+        Type *subType = appDelegate.subTypes[row];
+        title = subType.name;
     }
     
     if([title isEqualToString:@"Select Type"] || [title isEqualToString:@"Select Subtype"]){
@@ -155,9 +161,9 @@
     return [number integerValue];
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     if(pickerView.tag == 1){
+        NSLog(@"Type count: %d", self.types.count);
         return self.types.count;
     }
     else{
@@ -172,6 +178,12 @@
     else{
         [self.delegate kgCalloutView:self subtypeChanged:[NSNumber numberWithInteger:row]];
     }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark UI Events
@@ -209,14 +221,30 @@
 -(void)setSubtype:(NSNumber *)subtype{
     _subtype = subtype;
     
-    NSInteger rowNumber = [subtype integerValue];
+    NSInteger rowNumber;
+    
+    if(subtype == 0){
+        rowNumber = 0;
+    }
+    else{
+        [subtype integerValue];
+    }
+    
     [self.subtypePickerView selectRow:rowNumber inComponent:0 animated:YES];
 }
 
 -(void)setType:(NSNumber *)type{
     _type = type;
     
-    NSInteger rowNumber = [type integerValue];
+    NSInteger rowNumber;
+    
+    if(type == 0){
+        rowNumber = 0;
+    }
+    else{
+        [type integerValue];
+    }
+    
     [self.typePickerView selectRow:rowNumber inComponent:0 animated:YES];
 }
 

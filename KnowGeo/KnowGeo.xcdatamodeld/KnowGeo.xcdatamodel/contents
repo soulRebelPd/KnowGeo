@@ -2,14 +2,17 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Pin" representedClassName="Pin" syncable="YES">
         <attribute name="isCloudSaved" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isExported" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isLocallySaved" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isSearchResult" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="subTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subtypeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="subTypeName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="typeName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="SBObject" representedClassName="SBObject" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -21,7 +24,7 @@
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Pin" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="Pin" positionX="0" positionY="0" width="128" height="225"/>
         <element name="SBObject" positionX="0" positionY="0" width="128" height="90"/>
         <element name="SearchHistory" positionX="27" positionY="99" width="128" height="75"/>
     </elements>

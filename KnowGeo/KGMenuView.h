@@ -15,20 +15,27 @@ IB_DESIGNABLE
 @class KGMenuView;
 
 @protocol MenuViewDelegate <NSObject>
-- (BOOL)menuView:(KGMenuView *)menuView buttonPressed:(KGMenuButton*)button;
+- (BOOL)menuView:(KGMenuView *)menuView buttonPressed:(UIButton*)button;
 @end
 
-@interface KGMenuView : UIView <UICollectionViewDelegateFlowLayout, KGMenuButtonDelegate>
+@interface KGMenuView : UIView <UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet KGMenuButton *menuButton1;
-@property (weak, nonatomic) IBOutlet KGMenuButton *menuButton2;
-@property (weak, nonatomic) IBOutlet KGMenuButton *menuButton3;
-@property (weak, nonatomic) IBOutlet KGMenuButton *menuButton4;
 @property (weak, nonatomic) IBOutlet UISwitch *warningSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
+@property (weak, nonatomic) IBOutlet UIButton *exportButton;
+@property (weak, nonatomic) IBOutlet UIButton *clearButton;
 
 @property (nonatomic, weak) NSObject <MenuViewDelegate> *delegate;
 @property (nonatomic) IBInspectable NSString *title;
-@property (strong, nonatomic) NSDictionary *dataSource;
+
+- (IBAction)clearPressed:(UIButton *)sender;
+- (IBAction)exportPressed:(UIButton *)sender;
+- (void)hideLogo;
+- (void)disableExportButton;
+- (void)enableExportButton;
+- (void)disableClearButton;
+- (void)enableClearButton;
 
 @end
+

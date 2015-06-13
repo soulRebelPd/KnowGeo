@@ -17,7 +17,6 @@
 @interface KGMenuButton : UIView <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *tapGestureRecognizer;
 
 @property (nonatomic, weak) NSObject <KGMenuButtonDelegate> *delegate;

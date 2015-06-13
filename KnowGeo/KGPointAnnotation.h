@@ -14,5 +14,6 @@
 @property (nonatomic) Pin *pin;
 @property (nonatomic) MKPinAnnotationColor pinColor;
 @property bool isDropping;
+@property bool isUpdatingColor;
 
 @end

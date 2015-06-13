@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -17,12 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sIs-qU-wFO" customClass="KGMapView">
-                                <rect key="frame" x="20" y="20" width="768" height="1004"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sIs-qU-wFO" customClass="KGMapView">
+                                <rect key="frame" x="20" y="20" width="728" height="1004"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkc-7z-9K0" userLabel="LocationButton">
-                                <rect key="frame" x="658" y="960" width="87" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkc-7z-9K0" userLabel="LocationButton">
+                                <rect key="frame" x="651" y="960" width="87" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="87" id="Don-XO-ULB"/>
+                                </constraints>
                                 <state key="normal" image="Location">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -30,43 +34,11 @@
                                     <action selector="locationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="94W-5R-Taj"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tcF-og-ksQ" userLabel="pulloutMenuView">
-                                <rect key="frame" x="234" y="716" width="300" height="300"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8lF-sc-yIZ" userLabel="pullableView">
-                                        <rect key="frame" x="100" y="-2" width="100" height="24"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZgK-ql-DPA" userLabel="Handle">
-                                                <rect key="frame" x="25" y="10" width="50" height="5"/>
-                                                <color key="backgroundColor" red="0.2666666667" green="0.20000000000000001" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="c1s-b6-ek5" appends="YES" id="CDe-OV-qaY"/>
-                                        </connections>
-                                    </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hAj-4H-ZcP">
-                                        <rect key="frame" x="8" y="98" width="284" height="145"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="kwv-4p-0i0"/>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="L8f-pG-sOk"/>
-                                        </connections>
-                                    </tableView>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="6do-wd-8DD">
-                                        <rect key="frame" x="0.0" y="43" width="300" height="44"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </searchBar>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dba-7e-2J4" userLabel="MapTypeButton">
-                                <rect key="frame" x="13" y="970" width="87" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dba-7e-2J4" userLabel="MapTypeButton">
+                                <rect key="frame" x="30" y="960" width="87" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="87" id="6n1-pR-8mN"/>
+                                </constraints>
                                 <state key="normal" image="MapType">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -74,22 +46,24 @@
                                     <action selector="mapTypePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fn8-Rf-vtp"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k4U-JK-T2L" customClass="KGMenuView">
-                                <rect key="frame" x="8" y="20" width="757" height="111"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4U-JK-T2L" customClass="KGMenuView">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="111"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="sIs-qU-wFO" firstAttribute="top" secondItem="9Wp-wd-eTO" secondAttribute="bottom" id="Ak8-tk-o77"/>
+                            <constraint firstItem="sIs-qU-wFO" firstAttribute="top" secondItem="9Wp-wd-eTO" secondAttribute="top" id="Ak8-tk-o77"/>
+                            <constraint firstItem="k4U-JK-T2L" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="DPn-oF-Rq9"/>
+                            <constraint firstAttribute="bottom" secondItem="k4U-JK-T2L" secondAttribute="bottom" constant="913" id="Mmh-FJ-quh"/>
                             <constraint firstItem="c3A-TK-Z7A" firstAttribute="top" secondItem="sIs-qU-wFO" secondAttribute="bottom" id="ROs-Zv-NdM"/>
                             <constraint firstItem="c3A-TK-Z7A" firstAttribute="top" secondItem="Dba-7e-2J4" secondAttribute="bottom" constant="32" id="aLV-Sn-p7X"/>
                             <constraint firstItem="sIs-qU-wFO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fZs-iT-TEa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="k4U-JK-T2L" secondAttribute="trailing" id="g50-ZU-pjV"/>
                             <constraint firstItem="c3A-TK-Z7A" firstAttribute="top" secondItem="wkc-7z-9K0" secondAttribute="bottom" constant="32" id="maE-iv-dpR"/>
-                            <constraint firstItem="k4U-JK-T2L" firstAttribute="top" secondItem="9Wp-wd-eTO" secondAttribute="bottom" id="s4q-6Q-hkP"/>
+                            <constraint firstAttribute="trailing" secondItem="k4U-JK-T2L" secondAttribute="trailing" id="meA-Rq-pOo"/>
                             <constraint firstItem="sIs-qU-wFO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="tEQ-vY-BF7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wkc-7z-9K0" secondAttribute="trailing" constant="40" id="vbf-8h-VUf"/>
-                            <constraint firstItem="Dba-7e-2J4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="xac-ih-d3b"/>
+                            <constraint firstItem="k4U-JK-T2L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uMD-Hp-BFL"/>
+                            <constraint firstAttribute="trailing" secondItem="wkc-7z-9K0" secondAttribute="trailing" constant="30" id="vbf-8h-VUf"/>
+                            <constraint firstItem="Dba-7e-2J4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="xac-ih-d3b"/>
                         </constraints>
                     </view>
                     <connections>
@@ -97,10 +71,7 @@
                         <outlet property="map" destination="sIs-qU-wFO" id="Jam-Sb-N9z"/>
                         <outlet property="menuPlaceholder" destination="k4U-JK-T2L" id="wVf-zw-Y6g"/>
                         <outlet property="panGestureRecognizer" destination="c1s-b6-ek5" id="5fn-CP-Xq7"/>
-                        <outlet property="pulloutMenu" destination="tcF-og-ksQ" id="eQy-qw-ikO"/>
-                        <outlet property="searchBar" destination="6do-wd-8DD" id="V8H-mq-Jig"/>
                         <outlet property="searchDisplayController" destination="Rxq-e8-qX4" id="5Rv-JS-zNN"/>
-                        <outlet property="searchHistoryTableView" destination="hAj-4H-ZcP" id="enb-ly-v6x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

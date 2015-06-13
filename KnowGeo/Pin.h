@@ -22,6 +22,9 @@
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSNumber * isSearchResult;
+@property (nonatomic, retain) NSNumber * isExported;
+@property (nonatomic, retain) NSString * subTypeName;
+@property (nonatomic, retain) NSString * typeName;
 
 @property (strong, nonatomic) NSManagedObjectContext *objectContext;
 

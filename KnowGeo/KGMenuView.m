@@ -14,55 +14,48 @@
 -(void)drawRect:(CGRect)rect{
     self.backgroundColor = [UIColor kgBrownColor];
     self.warningLabel.textColor = [UIColor kgOrangeColor];
+}
 
-    if(self.dataSource != nil){
-        NSNumber *counter = [NSNumber numberWithInt:1];
-        
-        for(NSString *key in self.dataSource){
-            NSArray *nibContentsForButton = [[NSBundle mainBundle] loadNibNamed:@"KGMenuButton" owner:self options:nil];
-            KGMenuButton *button = [nibContentsForButton objectAtIndex:0];
-            UIImage *image = [UIImage imageNamed:self.dataSource[key]];
-            button.image = image;
-            button.title = key;
-    
-            if([counter isEqual:@1]){
-                button.frame = self.menuButton1.frame;
-            }
-            else if([counter isEqual:@2]){
-                button.frame = self.menuButton2.frame;
-            }
-            else if([counter isEqual:@3]){
-                button.frame = self.menuButton3.frame;
-            }
-            else if([counter isEqual:@4]){
-                button.frame = self.menuButton4.frame;
-            }
-    
-            button.delegate = self;
-            [self addSubview:button];
-    
-            int value = [counter intValue];
-            counter = [NSNumber numberWithInt:value + 1];
-        }
+- (IBAction)clearPressed:(UIButton *)sender {
+    sender.tag = 1;
+    [self.delegate menuView:self buttonPressed:sender];
+}
+
+- (IBAction)exportPressed:(UIButton *)sender {
+    sender.tag = 2;
+    [self.delegate menuView:self buttonPressed:sender];
+}
+
+-(void)hideLogo{
+    self.logo.hidden = YES;
+}
+
+-(void)showLogo{
+    self.logo.hidden = NO;
+}
+
+-(void)enableExportButton{
+    if(self.exportButton.enabled == NO){
+        self.exportButton.enabled = YES;
     }
 }
 
--(void)kgMenuButtonTapped:(KGMenuButton *)kgMenuButton{
-    [self.delegate menuView:self buttonPressed:kgMenuButton];
+-(void)disableExportButton{
+    if(self.exportButton.enabled == YES){
+        self.exportButton.enabled = NO;
+    }
 }
 
--(void)layoutSubviews{
+-(void)enableClearButton{
+    if(self.clearButton.enabled == NO){
+        self.clearButton.enabled = YES;
+    }
 }
 
--(void)buttonAction:(bool)variable{
+-(void)disableClearButton{
+    if(self.clearButton.enabled == YES){
+        self.clearButton.enabled = NO;
+    }
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

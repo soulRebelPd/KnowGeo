@@ -9,6 +9,11 @@
 #import "MainViewController.h"
 
 @interface  MainViewController ()
+#define exportEmail @"cnorford@rocketmail.com"
+#define exportFileName @"Export"
+#define pulloutMenuWidth 300
+#define pulloutMenuHeight 300
+#define menuPlaceholderHeight 111
 @end
 
 @implementation MainViewController
@@ -16,104 +21,110 @@
 @synthesize managedObjectContext;
 @synthesize pinEntityDescription;
 @synthesize pulloutMenuVisibility;
-@synthesize searchHistoryTableView;
+@synthesize dataFilePath;
 
-#pragma - markup UITableViewDelegate
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.searchHistory count];
+-(void)handleExportEligibilityWithColor:(MKPinAnnotationColor)newColor withAnnotationView:(KGAnnotationView *)annotationView{
+    if(newColor == MKPinAnnotationColorRed && annotationView.pinColor != MKPinAnnotationColorRed){
+        
+        bool exportablePinsExist = [self checkExportablePinsExist];
+        
+        if(exportablePinsExist){
+            [self.menu enableExportButton];
+        }
+        else{
+            [self.menu disableExportButton];
+        }
+    }
+    else if(newColor == MKPinAnnotationColorPurple){
+        [self.menu enableExportButton];
+    }
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+-(bool)checkExportablePinsExist{
+    bool exportablePinsExist = NO;
+    for(KGPointAnnotation *annotation in self.map.annotations){
+        
+        id<MKAnnotation> mkAnnotation = (id<MKAnnotation>)annotation;
+        if (mkAnnotation != self.map.userLocation){
+            
+            if(annotation.pinColor == MKPinAnnotationColorPurple){
+                exportablePinsExist = YES;
+                break;
+            }
+        }
     }
     
-    cell.backgroundColor = [UIColor kgMediumBrownColor];
-    cell.textLabel.textColor = [UIColor kgOrangeColor];
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    
-    SearchHistory *history = [self.searchHistory objectAtIndex:indexPath.row];
-    cell.textLabel.text = history.text;
-
-    return cell;
+    return exportablePinsExist;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.searchBar.showsCancelButton = NO;
-    [self.searchBar resignFirstResponder];
+-(bool)checkClearablePinsExist{
+    bool clearablePinsExist = NO;
+    for(KGPointAnnotation *annotation in self.map.annotations){
+        
+        id<MKAnnotation> mkAnnotation = (id<MKAnnotation>)annotation;
+        if (mkAnnotation != self.map.userLocation){
+            
+            if(annotation.pinColor == MKPinAnnotationColorPurple || annotation.pinColor == MKPinAnnotationColorRed){
+                clearablePinsExist = YES;
+                break;
+            }
+        }
+    }
     
-    SearchHistory *history = [self.searchHistory objectAtIndex:indexPath.row];
-    [self search:history.text];
-    [self hidePulloutMenu:YES];
-    
-    self.searchBar.text = history.text;
-    [self.searchHistoryTableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    UIAlertView *alertView = [[UIAlertView alloc]
-//                              initWithTitle:@"Alert"
-//                              message:[NSString stringWithFormat:@"Selected Value is %@",[self.searchHistory objectAtIndex:indexPath.row]]
-//                              delegate:self
-//                              cancelButtonTitle:@"Ok"
-//                              otherButtonTitles:nil];
-//    
-//    [alertView show];
+    return clearablePinsExist;
 }
 
 #pragma mark ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //set properties
     self.map.delegate = self;
     self.map.delegate2 = self;
-    self.searchBar.delegate = self;
     self.map.showsUserLocation = YES;
     self.map.mapType = MKMapTypeHybrid;
     self.counter = @0;
-    
-    self.searchHistoryTableView.opaque = YES;
-    self.searchHistoryTableView.separatorColor = [UIColor blackColor];
-    self.searchHistoryTableView.backgroundColor = [UIColor blackColor];
-    
-    self.historyEntityDescription = [NSEntityDescription entityForName:@"SearchHistory" inManagedObjectContext:self.managedObjectContext];
-    self.searchHistory = [SearchHistory fetchAllWithContext:self.managedObjectContext];
-    
-//    for(SearchHistory *searchHistory in self.searchHistory){
-//        [searchHistory delete];
-//    }
-    
-    [self.pulloutMenu.layer setCornerRadius:10.0f];
     self.pulloutMenuVisibility = @"Virgin";
     
+    //instantiate objects
+    self.lastExport = [[NSMutableArray alloc] init];
+    self.localPins = [[NSMutableArray alloc] init];
+    self.historyEntityDescription = [NSEntityDescription entityForName:@"SearchHistory" inManagedObjectContext:self.managedObjectContext];
+    self.pinEntityDescription = [NSEntityDescription entityForName:@"Pin" inManagedObjectContext:self.managedObjectContext];
+    
+    //add gesture recognizer
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     longPress.minimumPressDuration = 0.5;
     [self.map addGestureRecognizer:longPress];
+
+    //load some nibs
+    NSArray *nibContentsForPulloutMenu = [[NSBundle mainBundle] loadNibNamed:@"KGPulloutMenu" owner:self options:nil];
+    self.pulloutMenu = [nibContentsForPulloutMenu objectAtIndex:0];
+    self.pulloutMenu.delegate = self;
+    self.pulloutMenu.managedObjectContext = self.managedObjectContext;
+    [self.view addSubview:self.pulloutMenu];
     
-    self.pinEntityDescription = [NSEntityDescription entityForName:@"Pin" inManagedObjectContext:self.managedObjectContext];
-    
-    self.localPins = [[NSMutableArray alloc] init];
+    NSArray *nibContentsForMenu = [[NSBundle mainBundle] loadNibNamed:@"KGMenuView" owner:self options:nil];
+    self.menu = [nibContentsForMenu objectAtIndex:0];
+    self.menu.delegate = self;
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, menuPlaceholderHeight);
+    self.menu.frame = frame;
+    [self.view addSubview:self.menu];
+
+    // setup observation
     [self addObserver:self forKeyPath:@"localPins" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(orientationChanged) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
+    
+    //load data
     [self placeLocallySavedPinsWithKvo];
     
-    self.cloudPins = [self fetchDummyCloudPins];
-    self.cloudAnnotations = [KGPinToAnnotationConverter convertToAnnotations:self.cloudPins];
-    [self.map addAnnotations:self.cloudAnnotations];
-    
-    //NOTE: option #4
-    NSArray *nibContentsForMenu = [[NSBundle mainBundle] loadNibNamed:@"KGMenuView" owner:self options:nil];
-    KGMenuView *menu = [nibContentsForMenu objectAtIndex:0];
-    
-    menu.dataSource = @{
-                        @"Clear" : @"Clear.png",
-                        @"Upload" : @"Upload.png",
-                        };
-    
-    menu.delegate = self;
-    [self.menuPlaceholder addSubview:menu];
+    //self.cloudPins = [self fetchDummyCloudPins];
+    //self.cloudAnnotations = [KGPinToAnnotationConverter convertToAnnotations:self.cloudPins];
+    //[self.map addAnnotations:self.cloudAnnotations];
     
 //    [self testPlacingImage];
 //    [self testPlacingLine];
@@ -123,8 +134,11 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    //NOTE: recently added this to prevent crash on viewWillDisappear
-    //[self addObserver:self forKeyPath:@"localPins" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+    }
+    else{
+        [self.menu hideLogo];
+    }
 }
 
 -(void)viewDidLayoutSubviews{
@@ -138,8 +152,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    
-    [self removeObserver:self forKeyPath:@"localPins"];
+    //[self removeObserver:self forKeyPath:@"localPins"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -147,34 +160,157 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UISearchBarDelegate
+-(void)keyboardDidHide:(NSNotification *)notification{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+    }
+}
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    self.searchBar.showsCancelButton = NO;
-    [self.searchBar resignFirstResponder];
-    [self search:self.searchBar.text];
+-(void)keyboardDidShow:(NSNotification *)notification{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        // The device is an iPad running iOS 3.2 or later.
+    }
+}
+
+-(void)orientationChanged{
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = 111;
+    
+    CGRect frame = CGRectMake(0, 0, width, height);
+    self.menu.frame = frame;
+    
     [self hidePulloutMenu:YES];
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    [self.searchBar resignFirstResponder];
-    self.searchBar.showsCancelButton = NO;
+#pragma mark Export
+
+-(void)sendExport{
+    if(self.dataFilePath == nil){
+        [self setDataFilePath];
+    }
+    
+    [DiskOperations createFileWithFullPath:self.dataFilePath];
+    NSString *dataString = [self convertElgibleAnnotationsToExportString];
+    [DiskOperations saveToDiskWithFullPath:self.dataFilePath andDataString:dataString];
+    NSData *data = [[NSFileManager defaultManager] contentsAtPath:self.dataFilePath];
+    [self emailExportWithData:data];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    self.searchBar.showsCancelButton = YES;
+-(void)setDataFilePath{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:exportFileName];
+    self.dataFilePath = filePath;
 }
+
+-(NSString *)convertElgibleAnnotationsToExportString{
+    self.lastExport = [[NSMutableArray alloc] init];
+    NSNumber *zero = @0;
+    NSMutableString *dataString = [NSMutableString stringWithCapacity:0];
+    
+    for(KGPointAnnotation *annotation in self.map.annotations){
+        id<MKAnnotation> mkAnnotation = (id<MKAnnotation>)annotation;
+        if (mkAnnotation != self.map.userLocation){
+
+            Pin *pin = annotation.pin;
+
+            if(pin.typeId != zero &&
+               pin.subtypeId != zero &&
+               [pin.isExported isEqualToNumber:zero] &&
+               ![pin.title isEqualToString:@""]){
+
+                [self.lastExport addObject:pin];
+
+                [dataString appendString:[NSString stringWithFormat:@"%@, %@, %@, %@, %@ \n", pin.title, pin.latitude, pin.longitude, pin.typeName, pin.subTypeName]];
+            }
+        }
+    }
+    
+    return dataString;
+}
+
+-(void)emailExportWithData:(NSData *)data{
+    if([MFMailComposeViewController canSendMail]) {
+        self.mailController = [[MFMailComposeViewController alloc] init];
+        self.mailController.mailComposeDelegate = self;
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat: @"yyyy-MM-dd HH_mm_ss"];
+        NSString *nowFull = [formatter stringFromDate:[NSDate date]];
+        
+        NSString *subject = [NSString stringWithFormat: @"Interest Point Export"];
+        [self.mailController setToRecipients:[NSArray arrayWithObject:exportEmail]];
+        [self.mailController setSubject:subject];
+        [self.mailController setMessageBody:@"Attached KnowWake Utility Interest Point Export" isHTML:NO];
+        
+        NSString *fileName = [NSString stringWithFormat:@"%@ %@", exportFileName, nowFull];
+        [self.mailController addAttachmentData:data mimeType:@"text/csv" fileName:fileName];
+        
+        [self presentViewController:self.mailController animated:YES completion:^{
+        }];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    if(result == MFMailComposeResultSent){
+        [self updateExportedPins];
+        
+        bool clearablePinsExist = [self checkClearablePinsExist];
+        if(clearablePinsExist){
+            [self.menu enableClearButton];
+        }
+        else{
+            [self.menu disableClearButton];
+        }
+        
+        bool exportablePinsExist = [self checkExportablePinsExist];
+        if(exportablePinsExist){
+            [self.menu enableExportButton];
+        }
+        else{
+            [self.menu disableExportButton];
+        }
+    }
+    else if(result == MFMailComposeResultCancelled){
+        self.lastExport = nil;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
+}
+
+- (void)updateExportedPins{
+    for(Pin *pin in self.lastExport){
+        pin.isExported = @1;
+        [pin save];
+        
+        NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
+        NSUInteger index = [mutableArrayWithKVO indexOfObject:pin];
+        [mutableArrayWithKVO replaceObjectAtIndex:index withObject:pin];
+    }
+}
+
+//
+//-(int)countOfClearablePins{
+//    for(KGPointAnnotation *annotation in self.map.annotations){
+//        if(annotation.pinColor == MKPinAnnotationColorRed || annotation.pinColor == MKPinAnnotationColorPurple){
+//        }
+//    }
+//    
+//    return 1;
+//}
+
+#pragma mark - Search
 
 -(void)search:(NSString*)text{
     NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
     
     [self requestNewItemsWithText:text withRegion:self.map.region completion:^{
         
-        for (MKMapItem *item in self.searchItems)
-        {
+        for (MKMapItem *item in self.searchItems){
             Pin *pin = [[Pin alloc] initWithEntity:self.pinEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
             pin.title = item.name;
             pin.isSearchResult = @1;
+            pin.isExported = @0;
             pin.latitude = [NSNumber numberWithDouble:item.placemark.coordinate.latitude];
             pin.longitude = [NSNumber numberWithDouble:item.placemark.coordinate.longitude];
             
@@ -188,28 +324,6 @@
             }
         }
     }];
-    
-    bool existsInHistory = [self searchHistoryContains:text];
-    
-    if(!existsInHistory){
-        SearchHistory *history = [[SearchHistory alloc] initWithEntity:self.historyEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
-        history.text = text;
-        history.timeStamp = [NSDate date];
-        [history save];
-        
-        self.searchHistory = [SearchHistory fetchAllWithContext:self.managedObjectContext];
-        [self.searchHistoryTableView reloadData];
-    }
-}
-
--(bool)searchHistoryContains:(NSString *)text{
-    for(SearchHistory *history in self.searchHistory){
-        if([history.text isEqualToString:text]){
-            return YES;
-        }
-    }
-    
-    return NO;
 }
 
 - (void)requestNewItemsWithText:(NSString *)text withRegion:(MKCoordinateRegion)region completion:(void (^)(void))completionBlock{
@@ -250,6 +364,10 @@
 #pragma mark PulloutMenu
 
 - (IBAction)menuPulled:(id)sender {
+    if(self.activeAnnotationView){
+        [self.activeAnnotationView.calloutView removeFromSuperview2];
+    }
+    
     if([self.pulloutMenuVisibility isEqualToString:@"Virgin"]){
         self.pulloutMenuVisibility = @"Hidden";
     }
@@ -268,12 +386,10 @@
 }
 
 -(void)hidePulloutMenu:(bool)animated{
-    CGFloat centerX = (self.view.frame.size.width / 2) - (self.pulloutMenu.frame.size.width / 2);
-    CGFloat hiddenY = self.view.frame.size.height - (self.pulloutMenu.frame.size.height / 8);
-    
-    CGFloat width = self.pulloutMenu.frame.size.width;
-    CGFloat height = self.pulloutMenu.frame.size.height;
-    
+    CGFloat centerX = (self.view.frame.size.width / 2) - (pulloutMenuHeight / 2);
+    CGFloat hiddenY = menuPlaceholderHeight - (pulloutMenuHeight * 0.95);
+    CGFloat width = pulloutMenuWidth;
+    CGFloat height = pulloutMenuHeight;
     CGRect newFrame = CGRectMake(centerX, hiddenY, width, height);
     
     if(animated == YES){
@@ -301,11 +417,11 @@
 }
 
 -(void)showPulloutMenu:(bool)animated{
-    CGFloat centerX = (self.view.frame.size.width / 2) - (self.pulloutMenu.frame.size.width / 2);
-    CGFloat visibleY = self.view.frame.size.height - (self.pulloutMenu.frame.size.height * .80);
+    CGFloat centerX = (self.view.frame.size.width / 2) - (pulloutMenuWidth / 2);
+    CGFloat visibleY = menuPlaceholderHeight - (pulloutMenuHeight * 0.05);
     
-    CGFloat width = self.pulloutMenu.frame.size.width;
-    CGFloat height = self.pulloutMenu.frame.size.height;
+    CGFloat width = pulloutMenuWidth;
+    CGFloat height = pulloutMenuHeight;
     
     CGRect newFrame = CGRectMake(centerX, visibleY, width, height);
     
@@ -329,6 +445,15 @@
 -(void)showPulloutMenuComplete{
     self.panGestureRecognizer.enabled = YES;
     self.isPullingOutMenu = NO;
+}
+
+-(void)kgPulloutMenu:(KGPulloutMenu *)kgPulloutMenu pulled:(bool)wasPulled{
+    [self menuPulled:kgPulloutMenu];
+}
+
+-(void)kgPulloutMenu:(KGPulloutMenu *)kgPulloutMenu searched:(NSString *)searchText{
+    [self search:searchText];
+    [self hidePulloutMenu:YES];
 }
 
 #pragma mark Events
@@ -365,6 +490,7 @@
         pin.longitude = [NSNumber numberWithDouble:touchMapCoordinate.longitude];
         pin.isLocallySaved = @1;
         pin.isCloudSaved = @0;
+        pin.isExported = @0;
         [pin setDefaultTitle];
         [pin save];
         
@@ -374,25 +500,67 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        NSLog(@"Cancel Tapped.");
-    }
-    else if (buttonIndex == 1) {
-        if(self.activeAnnotationView.isDeleting){
-            if([self.activeAnnotationView.pin.isCloudSaved isEqual:@1]){
-                [self.cloudPins removeObject:self.activeAnnotationView.pin];
+    if([alertView.title isEqualToString:@"Clear pins?"]){
+        if (buttonIndex == 0) {
+            NSLog(@"No Tapped.");
+        }
+        else if (buttonIndex == 1) {
+            NSLog(@"Yes Tapped.");
+            
+            NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
+            
+            for(Pin *pin in self.localPins){
+                if([pin.isExported isEqualToNumber:@0]){
+                    [pin delete];
+                    [mutableArrayWithKVO removeObject:pin];
+                }
+            }
+            
+            if(self.activeAnnotationView){
+                [self.activeAnnotationView.calloutView removeFromSuperview2];
+                self.activeAnnotationView = nil;
+            }
+            
+            bool exportablePinsExist = [self checkExportablePinsExist];
+            if(exportablePinsExist){
+                [self.menu enableExportButton];
             }
             else{
-                [self.localPins removeObject:self.activeAnnotationView.pin];
+                [self.menu disableExportButton];
             }
-            
-            NSLog(@"Deleting Pin:%@", self.activeAnnotationView.pin);
-            
-            [self.activeAnnotationView.pin delete];
-            self.activeAnnotationView = nil;
         }
-        
-        NSLog(@"OK Tapped. Hello World!");
+    }
+    
+    if([alertView.title isEqualToString:@"Delete pin?"]){
+        if (buttonIndex == 0) {
+            NSLog(@"No Tapped.");
+        }
+        else if (buttonIndex == 1) {
+            NSLog(@"Yes Tapped.");
+            
+            if(self.activeAnnotationView.isDeleting){
+                if([self.activeAnnotationView.pin.isCloudSaved isEqual:@1]){
+                    [self.cloudPins removeObject:self.activeAnnotationView.pin];
+                }
+                else{
+                    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
+                    [mutableArrayWithKVO removeObject:self.activeAnnotationView.pin];
+                    
+                    bool clearablePinsExist = [self checkClearablePinsExist];
+                    if(clearablePinsExist){
+                        [self.menu enableClearButton];
+                    }
+                    else{
+                        [self.menu disableClearButton];
+                    }
+                }
+                
+                NSLog(@"Deleting Pin:%@", self.activeAnnotationView.pin);
+                
+                [self.activeAnnotationView.pin delete];
+                self.activeAnnotationView = nil;
+            }
+        }
     }
 }
 
@@ -452,9 +620,9 @@
                     [indexPathsThatChanged addObject:newIndexPath];
                 }];
                 
+                NSIndexPath *indexPath = [indexPathsThatChanged objectAtIndex:0];
+                
                 if (kindOfChange == NSKeyValueChangeInsertion) {
-                    NSIndexPath *indexPath = [indexPathsThatChanged objectAtIndex:0];
-                    
                     Pin *pin = [self.localPins objectAtIndex:indexPath.row];
                     KGPointAnnotation *annotation = [KGPinToAnnotationConverter convertToAnnotation:pin];
                     
@@ -465,11 +633,14 @@
                         annotation.isDropping = YES;
                     }
                     
+                    annotation.isUpdatingColor = NO;
+                    
                     [self.localAnnotations addObject:annotation];
                     [self.map addAnnotation:annotation];
                     
-                } else if (kindOfChange == NSKeyValueChangeRemoval) {
-                    NSIndexPath *indexPath = [indexPathsThatChanged objectAtIndex:0];
+                    [self.menu enableClearButton];
+                }
+                else if (kindOfChange == NSKeyValueChangeRemoval) {
                     NSLog(@"IndexPath: %ld", (long)indexPath.row);
                     
                     KGPointAnnotation *annotation = [self.localAnnotations objectAtIndex:indexPath.row];
@@ -477,7 +648,22 @@
                     [self.map removeAnnotation:annotation];
                     [self.localAnnotations removeObject:annotation];
                     
-                } else if (kindOfChange == NSKeyValueChangeReplacement) {
+                }
+                else if (kindOfChange == NSKeyValueChangeReplacement) {
+                    //right now NSKeyValueChangeReplacement could only be export process
+                    KGPointAnnotation *existingAnnotation = [self.localAnnotations objectAtIndex:indexPath.row];
+                    
+                    Pin *pin = [self.localPins objectAtIndex:indexPath.row];
+                    
+                    KGPointAnnotation *newAnnotation = [KGPinToAnnotationConverter convertToAnnotation:pin];
+                    newAnnotation.isDropping = NO;
+                    newAnnotation.isUpdatingColor = YES;
+                    
+                    [self.localAnnotations removeObject:existingAnnotation];
+                    [self.localAnnotations addObject:newAnnotation];
+                    
+                    [self.map removeAnnotation:existingAnnotation];
+                    [self.map addAnnotation:newAnnotation];
                 }
             }
         }
@@ -505,14 +691,16 @@
     
     KGPointAnnotation *kgPointAnnotation = (KGPointAnnotation *)annotation;
     kgAnnotationView.pin = kgPointAnnotation.pin;
-    
-    if([kgAnnotationView.pin.title isEqualToString:@"New"]){
-        
-    }
-    
     kgAnnotationView.pinColor = [self.map calculatePinColor:kgAnnotationView.pin];
     
-    kgAnnotationView.animatesDrop = YES;
+    if(kgPointAnnotation.isUpdatingColor){
+        kgAnnotationView.animatesDrop = NO;
+        kgPointAnnotation.isUpdatingColor = NO;
+    }
+    else{
+        kgAnnotationView.animatesDrop = YES;
+    }
+    
     kgAnnotationView.draggable = YES;
     kgAnnotationView.userInteractionEnabled = YES;
     kgAnnotationView.enabled = YES;
@@ -575,9 +763,21 @@
 -(void)kgMyMapView:(KGMapView *)mapView kgAnnotationView:(KGAnnotationView *)annotationView updateType:(NSNumber *)newTypeId{
     Pin *pin = annotationView.pin;
     pin.typeId = newTypeId;
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    Type *type = [appDelegate.types objectAtIndex:[newTypeId integerValue]];
+    pin.typeName = type.name;
+    
     [pin save];
     
-    annotationView.pinColor = [self.map calculatePinColor:pin];
+    MKPinAnnotationColor newColor = [self.map calculatePinColor:pin];
+    
+    if(newColor == MKPinAnnotationColorPurple || newColor == MKPinAnnotationColorRed){
+        [self.menu enableClearButton];
+    }
+    
+    [self handleExportEligibilityWithColor:newColor withAnnotationView:annotationView];
+    annotationView.pinColor = newColor;
 }
 
 -(void)kgMyMapView:(KGMapView *)mapView kgAnnotationView:(KGAnnotationView *)annotationView updateTitle:(NSString *)newTitle{
@@ -585,37 +785,58 @@
     pin.title = newTitle;
     [pin save];
     
-    annotationView.pinColor = [self.map calculatePinColor:pin];
+    MKPinAnnotationColor newColor = [self.map calculatePinColor:pin];
+    
+    if(newColor == MKPinAnnotationColorPurple || newColor == MKPinAnnotationColorRed){
+        [self.menu enableClearButton];
+    }
+    
+    [self handleExportEligibilityWithColor:newColor withAnnotationView:annotationView];
+    annotationView.pinColor = newColor;
 }
 
 -(void)kgMyMapView:(KGMapView *)mapView kgAnnotationView:(KGAnnotationView *)annotationView updateSubtype:(NSNumber *)newSubtypeId{
     Pin *pin = annotationView.pin;
     pin.subtypeId = newSubtypeId;
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    Type *type = [appDelegate.subTypes objectAtIndex:[newSubtypeId integerValue]];
+    pin.subTypeName = type.name;
+    
     [pin save];
     
-    annotationView.pinColor = [self.map calculatePinColor:pin];
+    MKPinAnnotationColor newColor = [self.map calculatePinColor:pin];
+    
+    if(newColor == MKPinAnnotationColorPurple || newColor == MKPinAnnotationColorRed){
+        [self.menu enableClearButton];
+    }
+    
+    [self handleExportEligibilityWithColor:newColor withAnnotationView:annotationView];
+    annotationView.pinColor = newColor;
 }
+
 
 #pragma mark MenuView
 
--(BOOL)menuView:(KGMenuView *)menuView buttonPressed:(KGMenuButton *)button{
-    NSString *buttonTitle = button.title;
-    if([buttonTitle isEqualToString:@"Clear"]){
-        NSLog(@"%@ Pressed", buttonTitle);
+-(BOOL)menuView:(KGMenuView *)menuView buttonPressed:(UIButton *)button{
+    NSNumber *tag = [NSNumber numberWithInteger:button.tag];
+    NSNumber *clearTag = [NSNumber numberWithInt:1];
+    NSNumber *exportTag = [NSNumber numberWithInt:2];
+
+    if([tag isEqualToNumber:clearTag]){
+        NSLog(@"Clear Pressed.");
         
-        [Pin delete:(NSArray*)self.localPins];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clear pins?"
+                                                        message:@""
+                                                       delegate:self
+                                              cancelButtonTitle:@"No"
+                                              otherButtonTitles:@"Yes",nil];
         
-        NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
-        [mutableArrayWithKVO removeObjectsInArray:(NSMutableArray *)self.localPins];
+        [alert show];
     }
-    else if([buttonTitle isEqualToString:@"Refresh"]){
-        NSLog(@"%@ Pressed", buttonTitle);
-    }
-    else if([buttonTitle isEqualToString:@"Upload"]){
-        NSLog(@"%@ Pressed", buttonTitle);
-    }
-    else if([buttonTitle isEqualToString:@"Logs"]){
-        NSLog(@"%@ Pressed", buttonTitle);
+    else if([tag isEqualToNumber:exportTag]){
+        NSLog(@"Export Pressed.");
+        [self sendExport];
     }
     
     return YES;
@@ -645,67 +866,6 @@
 -(void)toggledDeleteWarnings{
 }
 
-#pragma mark Tests
-
--(NSMutableArray *)fetchDummyCloudPins{
-    SBPin *pin = [[SBPin alloc] init];
-    pin.title = @"Test1";
-    pin.subTitle = @"TestSubtitle1";
-    pin.latitude = @37;
-    pin.longitude = @37;
-    pin.isLocallySaved = @0;
-    pin.isCloudSaved = @1;
-    
-    SBPin *pin2 = [[SBPin alloc] init];
-    pin2.title = @"Test2";
-    pin2.subTitle = @"TestSubtitle2";
-    pin2.latitude = @38;
-    pin2.longitude = @38;
-    pin2.isLocallySaved = @0;
-    pin2.isCloudSaved = @1;
-    
-    NSMutableArray *pins = [[NSMutableArray alloc] init];
-    [pins addObject:pin];
-    [pins addObject:pin2];
-    
-    return pins;
-}
-
--(void)doKvoTest{
-    self.testPin = [[SBPin alloc] init];
-    
-    self.testPin.title = @"Test";
-    self.testPin.latitude = @15;
-    
-    NSLog(@"%@, %d", self.testPin.title, [self.testPin.latitude intValue]);
-    
-    [self.testPin addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-    [self.testPin addObserver:self forKeyPath:@"latitude" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-    
-    [self.testPin setValue:@"Successful" forKey:@"title"];
-    [self.testPin setValue:[NSNumber numberWithInteger:16] forKey:@"latitude"];
-    
-    [self.testPin willChangeValueForKey:@"title"];
-    self.testPin.title = @"Successful2";
-    [self.testPin didChangeValueForKey:@"title"];
-}
-
--(void)testPlacingImage{
-    SBPark *park = [[SBPark alloc] initWithFilename:@"BoldBean"];
-    
-    CLLocationDegrees latDelta = park.overlayTopLeftCoordinate.latitude - park.overlayBottomRightCoordinate.latitude;
-    // think of a span as a tv size, measure from one corner to another
-    MKCoordinateSpan span = MKCoordinateSpanMake(fabs(latDelta), 4.0);
-    
-    MKCoordinateRegion region = MKCoordinateRegionMake(park.midCoordinate, span);
-    self.map.region = region;
-    
-    SBOverlay *overlay = [[SBOverlay alloc] initWithPark:park];
-    [self.map addOverlay:overlay];
-    
-    //NOTE: bold bean location +30.31556400,-81.68919900
-}
-
 - (void)testPlacingLine {
     NSString *thePath = [[NSBundle mainBundle] pathForResource:@"RiversideLine" ofType:@"plist"];
     NSArray *pointsArray = [NSArray arrayWithContentsOfFile:thePath];
@@ -733,41 +893,44 @@
         self.tester.delegate = self;
 }
 
-#pragma mark CalloutTesterView
-
--(BOOL)kGCalloutTesterView:(SBCalloutTesterView *)kGCalloutTesterView clearStatePressed:(BOOL)variable{
-    [self.callout moveToState:@"Empty"];
-    return YES;
-}
-
--(BOOL)kGCalloutTesterView:(SBCalloutTesterView *)kGCalloutTesterView testRegularLocationAnyPressed:(BOOL)variable{
-    [self.callout moveToState:@"Regular-Location-Dropped"];
-    return YES;
-}
-
--(BOOL)kGCalloutTesterView:(SBCalloutTesterView *)kGCalloutTesterView testRegularLineDroppedPressed:(BOOL)variable{
-    [self.callout moveToState:@"Regular-Line-Dropped"];
-    return YES;
-}
-
--(BOOL)kGCalloutTesterView:(SBCalloutTesterView *)kGCalloutTesterView testDrawingLineDroppedPressed:(BOOL)variable{
-    [self.callout moveToState:@"Drawing-Line-Dropped"];
-    return YES;
-}
-
--(BOOL)kGCalloutTesterView:(SBCalloutTesterView *)kGCalloutTesterView testColoringLineSelectedPressed:(BOOL)variable{
-    [self.callout moveToState:@"Coloring-Line-Selected"];
-    return YES;
-}
-
--(BOOL)kGCalloutTesterView:(SBCalloutTesterView *)kGCalloutTesterView testRegularLineSelected_WithParentPressed:(BOOL)variable{
-    [self.callout moveToState:@"Regular-Line-Selected_WithParent"];
-    return YES;
-}
-
--(BOOL)kGCalloutTesterView:(SBCalloutTesterView *)kGCalloutTesterView testRegularLineSelected_NoParentPressed:(BOOL)variable{
-    [self.callout moveToState:@"Regular-Line-Selected_NoParent"];
-    return YES;
-}
-
 @end
+
+//-(NSMutableArray *)fetchDummyCloudPins{
+//    SBPin *pin = [[SBPin alloc] init];
+//    pin.title = @"Test1";
+//    pin.subTitle = @"TestSubtitle1";
+//    pin.latitude = @37;
+//    pin.longitude = @37;
+//    pin.isLocallySaved = @0;
+//    pin.isCloudSaved = @1;
+//
+//    SBPin *pin2 = [[SBPin alloc] init];
+//    pin2.title = @"Test2";
+//    pin2.subTitle = @"TestSubtitle2";
+//    pin2.latitude = @38;
+//    pin2.longitude = @38;
+//    pin2.isLocallySaved = @0;
+//    pin2.isCloudSaved = @1;
+//
+//    NSMutableArray *pins = [[NSMutableArray alloc] init];
+//    [pins addObject:pin];
+//    [pins addObject:pin2];
+//
+//    return pins;
+//}
+
+//-(void)testPlacingImage{
+//    SBPark *park = [[SBPark alloc] initWithFilename:@"BoldBean"];
+//
+//    CLLocationDegrees latDelta = park.overlayTopLeftCoordinate.latitude - park.overlayBottomRightCoordinate.latitude;
+//    // think of a span as a tv size, measure from one corner to another
+//    MKCoordinateSpan span = MKCoordinateSpanMake(fabs(latDelta), 4.0);
+//
+//    MKCoordinateRegion region = MKCoordinateRegionMake(park.midCoordinate, span);
+//    self.map.region = region;
+//
+////    SBOverlay *overlay = [[SBOverlay alloc] initWithPark:park];
+////    [self.map addOverlay:overlay];
+//
+//    //NOTE: bold bean location +30.31556400,-81.68919900
+//}

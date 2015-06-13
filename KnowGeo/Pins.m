@@ -44,10 +44,4 @@
     
 }
 
-//-(void)testLoop{
-//    for(Pin *pin in self){
-//        NSLog(@"Pin title is:%@", pin.title);
-//    }
-//}
-
 @end

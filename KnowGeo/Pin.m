@@ -21,6 +21,9 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic isSearchResult;
+@dynamic isExported;
+@dynamic typeName;
+@dynamic subTypeName;
 @synthesize objectContext;
 
 - (id)initWithEntity:(NSEntityDescription*)entity insertIntoManagedObjectContext:(NSManagedObjectContext*)context{

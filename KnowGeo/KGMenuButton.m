@@ -20,17 +20,12 @@
 }
 
 -(void)layoutSubviews{
-    self.titleLabel.text = _title;
-    self.titleLabel.textColor = [UIColor kgOrangeColor];
-    
     self.iconImageView.image = _image;
 }
 
 - (IBAction)tapped:(id)sender {
     self.iconImageView.opaque = YES;
     self.iconImageView.alpha = 0.5;
-    self.titleLabel.opaque = YES;
-    self.titleLabel.alpha = 0.5;
     
     [self.delegate kgMenuButtonTapped:self];
     
@@ -43,7 +38,6 @@
 
 - (void)ticked:(bool)variable{
     self.iconImageView.alpha = 1.0;
-    self.titleLabel.alpha = 1.0;
 }
 
 /*

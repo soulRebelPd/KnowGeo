@@ -16,6 +16,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    NSArray *typeNames = @[@"Select Type", @"Boat Ramp", @"Dive Site", @"Dive Shop", @"Marina", @"Marine Fuel", @"Sandbar", @"Services", @"Snorkel"];
+    self.types = [self convertStringArrayToTypeArray:typeNames];
+    
+    NSArray *subTypeNames = @[@"Select Subtype", @"Bahamas", @"Cali", @"G Lakes", @"Gulf", @"MS River", @"Pac NW", @"S. Atl"];
+    self.subTypes = [self convertStringArrayToTypeArray:subTypeNames];
+    
     [NSThread sleepForTimeInterval:2.0];
     
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
@@ -138,8 +144,6 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    //application.applicationIconBadgeNumber = 0;
-    
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:notification.alertTitle
                                                         message:notification.alertBody
                                                        delegate:nil
@@ -147,6 +151,22 @@
                                               otherButtonTitles:nil];
     
     [alertView show];
+}
+
+#pragma mark Global Variables
+- (NSMutableArray*)convertStringArrayToTypeArray:(NSArray*)array{
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    
+    int counter = 0;
+    for(NSString *name in array){
+        Type *type = [[Type alloc] init];
+        type.name = name;
+        type.typeId = [NSNumber numberWithInt:counter];
+        [mutableArray addObject:type];
+        counter = counter + 1;
+    }
+    
+    return mutableArray;
 }
 
 @end

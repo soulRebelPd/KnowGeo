@@ -11,7 +11,6 @@
 
 #import "Pin.h"
 #import "KGCalloutView.h"
-#import "KGAnnotationView.h"
 
 @class KGAnnotationView;
 

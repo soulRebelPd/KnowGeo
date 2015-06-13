@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KGMenuView"/>
@@ -11,44 +12,69 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="111"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cyb-cu-N8V" customClass="KGMenuButton">
-                    <rect key="frame" x="14" y="0.0" width="116" height="112"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Asv-pc-9rW" customClass="KGMenuButton">
-                    <rect key="frame" x="140" y="0.0" width="115" height="112"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="szZ-tJ-oha" customClass="KGMenuButton">
-                    <rect key="frame" x="269" y="0.0" width="116" height="112"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8CT-4h-SFe" customClass="KGMenuButton">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CT-4h-SFe" customClass="KGMenuButton">
                     <rect key="frame" x="398" y="0.0" width="116" height="112"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="tdb-Je-kJm">
-                    <rect key="frame" x="700" y="0.0" width="271" height="98"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="tdb-Je-kJm">
+                    <rect key="frame" x="377" y="0.0" width="271" height="98"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="271" id="3AQ-se-hkm"/>
-                        <constraint firstAttribute="height" constant="98" id="W5U-vT-QQY"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="271" id="3AQ-se-hkm"/>
+                        <constraint firstAttribute="width" secondItem="tdb-Je-kJm" secondAttribute="height" multiplier="271:98" id="9Na-LV-4uo"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="98" id="W5U-vT-QQY"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwe-Jx-9rs" userLabel="Clear">
+                    <rect key="frame" x="30" y="40" width="88" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="88" id="AGV-cC-Xq1"/>
+                    </constraints>
+                    <state key="normal" image="Clear">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clearPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Lkw-kX-FWe"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xmb-ml-M66" userLabel="Export">
+                    <rect key="frame" x="906" y="40" width="88" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="88" id="fqo-LJ-bHk"/>
+                    </constraints>
+                    <state key="normal" image="Upload">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="exportPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="FEm-zd-jwO"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="0.054901960784313725" green="0.027450980392156862" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <color key="tintColor" red="0.6588235294117647" green="0.10196078431372549" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="rightMargin" secondItem="tdb-Je-kJm" secondAttribute="right" constant="300" id="C8a-ry-xt2"/>
+                <constraint firstItem="jwe-Jx-9rs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="40Y-eS-NKH"/>
+                <constraint firstItem="jwe-Jx-9rs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="99I-Tj-J7E"/>
+                <constraint firstItem="jwe-Jx-9rs" firstAttribute="centerY" secondItem="8CT-4h-SFe" secondAttribute="centerY" id="Mf2-2Z-6Gx"/>
+                <constraint firstItem="Xmb-ml-M66" firstAttribute="top" secondItem="jwe-Jx-9rs" secondAttribute="top" id="Skc-zU-Mcy"/>
+                <constraint firstItem="8CT-4h-SFe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="398" id="VFZ-5x-zlC"/>
+                <constraint firstItem="Xmb-ml-M66" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-30" id="bYE-Q5-FCp"/>
+                <constraint firstAttribute="centerX" secondItem="tdb-Je-kJm" secondAttribute="centerX" id="ikX-Wd-Mvg"/>
+                <constraint firstAttribute="trailing" secondItem="8CT-4h-SFe" secondAttribute="trailing" constant="510" id="tAB-Cp-6Vx"/>
+                <constraint firstItem="8CT-4h-SFe" firstAttribute="top" secondItem="tdb-Je-kJm" secondAttribute="top" id="wdF-lf-KOS"/>
+                <constraint firstItem="tdb-Je-kJm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xeF-xx-tHk"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="menuButton1" destination="Cyb-cu-N8V" id="xfW-Op-sB2"/>
-                <outlet property="menuButton2" destination="Asv-pc-9rW" id="JfM-cz-JXo"/>
-                <outlet property="menuButton3" destination="szZ-tJ-oha" id="7pc-k4-Xl4"/>
-                <outlet property="menuButton4" destination="8CT-4h-SFe" id="fDW-KZ-m5p"/>
+                <outlet property="clearButton" destination="jwe-Jx-9rs" id="hWS-bb-7w7"/>
+                <outlet property="exportButton" destination="Xmb-ml-M66" id="NSf-el-uMU"/>
+                <outlet property="logo" destination="tdb-Je-kJm" id="i7G-7l-cSm"/>
             </connections>
             <point key="canvasLocation" x="412" y="106.5"/>
         </view>
         <searchDisplayController id="1gN-v7-L8j"/>
     </objects>
     <resources>
+        <image name="Clear" width="32" height="32"/>
         <image name="Logo" width="1111" height="360"/>
+        <image name="Upload" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

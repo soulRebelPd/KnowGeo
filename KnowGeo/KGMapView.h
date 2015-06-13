@@ -9,8 +9,6 @@
 #import <MapKit/MapKit.h>
 #import "KGAnnotationView.h"
 #import "KGPointAnnotation.h"
-#import "SBOverlay.h"
-#import "SBOverlayRenderer.h"
 
 @class KGMapView;
 

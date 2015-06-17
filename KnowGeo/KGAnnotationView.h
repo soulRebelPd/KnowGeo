@@ -28,6 +28,7 @@
 @property (nonatomic) KGCalloutView *calloutView;
 @property (nonatomic, weak) NSObject <KGAnnotationViewDelegate> *delegate;
 @property bool isDeleting;
+@property bool isMoving;
 
 -(void)openCallout;
 

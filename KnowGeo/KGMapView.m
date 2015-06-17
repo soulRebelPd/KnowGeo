@@ -49,6 +49,7 @@
         return MKPinAnnotationColorGreen;
     }
     else if([pin.title isEqualToString:defaultTitle] ||
+            [pin.title isEqualToString:@""] ||
             [pin.typeId isEqualToNumber: @0] ||
             [pin.subtypeId isEqualToNumber:@0]){
         return MKPinAnnotationColorRed;
@@ -92,20 +93,6 @@
     NSLog(@"Location: %@", [locations lastObject]);
 }
 
-#pragma mark MKMapViewDelegate
-
-- (void)mapView:(MKMapView *)mapView
-    annotationView:(MKAnnotationView *)annotationView
-    didChangeDragState:(MKAnnotationViewDragState)newState
-    fromOldState:(MKAnnotationViewDragState)oldState{
-    
-    if (newState == MKAnnotationViewDragStateEnding)
-    {
-        CLLocationCoordinate2D droppedAt = annotationView.annotation.coordinate;
-        NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
-    }
-}
-
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 }
 
@@ -128,26 +115,28 @@
 }
 
 -(void)kgAnnotationView:(KGAnnotationView *)kGAnnotationView delete:(BOOL)variable{
-    self.annotationViewDeleting = kGAnnotationView;
+    [self.delegate2 kgMyMapView:self kgAnnotationView:kGAnnotationView deletePin:YES];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete pin?"
-                                                    message:@""
-                                                   delegate:self
-                                          cancelButtonTitle:@"No"
-                                          otherButtonTitles:@"Yes",nil];
-    
-    [alert show];
+//    self.annotationViewDeleting = kGAnnotationView;
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete pin?"
+//                                                    message:@""
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"No"
+//                                          otherButtonTitles:@"Yes",nil];
+//    
+//    [alert show];
 }
 
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        NSLog(@"Cancel Tapped.");
-    }
-    else if (buttonIndex == 1) {
-        [self removeAnnotation:self.annotationViewDeleting.annotation];
-        NSLog(@"Yes Tapped.");
-    }
-}
+//-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+//    if (buttonIndex == 0) {
+//        NSLog(@"Cancel Tapped.");
+//    }
+//    else if (buttonIndex == 1) {
+//        [self removeAnnotation:self.annotationViewDeleting.annotation];
+//        NSLog(@"Yes Tapped.");
+//    }
+//}
 
 
 @end

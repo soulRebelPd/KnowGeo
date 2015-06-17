@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>76F5520A-B8DA-4ED1-B3E6-4FCC5BE2D06B</string>
+	<string>439A3405-F4E5-4314-944E-8AE4AC67BF8B</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>KnowUtility</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>216535B4684BD80702217022C53FE86F33337943</key>
 		<string>https://github.com/soulRebelPd/KnowGeo.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>KnowGeo.xcodeproj/project.xcworkspace</string>
+	<string>KnowUtility.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>216535B4684BD80702217022C53FE86F33337943</key>

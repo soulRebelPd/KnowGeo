@@ -37,8 +37,8 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet KGCalloutView *view;
 
 @property (nonatomic) IBInspectable NSString *title;
-@property (strong, nonatomic) NSNumber *subtype;
-@property (strong, nonatomic) NSNumber *type;
+@property (strong, nonatomic) NSNumber *subTypeId;
+@property (strong, nonatomic) NSNumber *typeId;
 @property (strong, nonatomic) NSArray *types;
 @property (strong, nonatomic) NSArray *subTypes;
 @property (weak, nonatomic) NSObject <KGCalloutViewDelegate> *delegate;

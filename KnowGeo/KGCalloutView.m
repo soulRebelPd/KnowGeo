@@ -41,7 +41,7 @@
     self.closeButton.alpha = 0;
     self.deleteButton.alpha = 0;
     self.shapeView.alpha = 0;
-
+    
     [self expandOpen];
 }
 
@@ -52,6 +52,12 @@
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     return NO;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark Animations
@@ -180,12 +186,6 @@
     }
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    [textField resignFirstResponder];
-    return YES;
-}
-
 #pragma mark UI Events
 
 - (IBAction)deletePin:(id)sender {
@@ -197,6 +197,12 @@
 }
 
 - (IBAction)titleFieldEditingDidEnd:(id)sender {
+    if (self.titleField.text.length || self.titleField.text.length > 0){
+    }
+    else{
+        self.titleField.text = [Pin defaultTitle];
+    }
+         
     [self.delegate kgCalloutView:self titleChanged:self.titleField.text];
 }
 
@@ -218,31 +224,31 @@
     self.titleField.text = title;
 }
 
--(void)setSubtype:(NSNumber *)subtype{
-    _subtype = subtype;
+-(void)setSubTypeId:(NSNumber *)subTypeId{
+    _subTypeId = subTypeId;
     
     NSInteger rowNumber;
     
-    if(subtype == 0){
+    if(subTypeId == 0){
         rowNumber = 0;
     }
     else{
-        [subtype integerValue];
+        rowNumber = [subTypeId integerValue];
     }
     
     [self.subtypePickerView selectRow:rowNumber inComponent:0 animated:YES];
 }
 
--(void)setType:(NSNumber *)type{
-    _type = type;
+-(void)setTypeId:(NSNumber *)typeId{
+    _typeId = typeId;
     
     NSInteger rowNumber;
     
-    if(type == 0){
+    if(typeId == 0){
         rowNumber = 0;
     }
     else{
-        [type integerValue];
+        rowNumber = [typeId integerValue];
     }
     
     [self.typePickerView selectRow:rowNumber inComponent:0 animated:YES];

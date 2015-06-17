@@ -9,7 +9,7 @@
 #import "MainViewController.h"
 
 @interface  MainViewController ()
-#define exportEmail @"cnorford@rocketmail.com"
+#define exportEmail @"info@knowwake.com"
 #define exportFileName @"Export"
 #define pulloutMenuWidth 300
 #define pulloutMenuHeight 300
@@ -22,21 +22,54 @@
 @synthesize pinEntityDescription;
 @synthesize pulloutMenuVisibility;
 @synthesize dataFilePath;
+@synthesize annotationViewDeleting;
+
+-(void)handleClearEligibility{
+    bool clearablePinsExist = [self checkClearablePinsExist];
+    if(clearablePinsExist){
+        [self.menu enableClearButton];
+    }
+    else{
+        [self.menu disableClearButton];
+    }
+}
+
+-(bool)checkClearablePinsExist{
+    bool clearablePinsExist = NO;
+    for(KGPointAnnotation *annotation in self.map.annotations){
+        
+        id<MKAnnotation> mkAnnotation = (id<MKAnnotation>)annotation;
+        if (mkAnnotation != self.map.userLocation){
+            
+            MKPinAnnotationColor pinColor = [self.map calculatePinColor:annotation.pin];
+            
+            if(pinColor == MKPinAnnotationColorPurple || pinColor == MKPinAnnotationColorRed){
+                clearablePinsExist = YES;
+                break;
+            }
+        }
+    }
+    
+    return clearablePinsExist;
+}
 
 -(void)handleExportEligibilityWithColor:(MKPinAnnotationColor)newColor withAnnotationView:(KGAnnotationView *)annotationView{
     if(newColor == MKPinAnnotationColorRed && annotationView.pinColor != MKPinAnnotationColorRed){
-        
-        bool exportablePinsExist = [self checkExportablePinsExist];
-        
-        if(exportablePinsExist){
-            [self.menu enableExportButton];
-        }
-        else{
-            [self.menu disableExportButton];
-        }
+        [self handleExportEligibility];
     }
     else if(newColor == MKPinAnnotationColorPurple){
         [self.menu enableExportButton];
+    }
+}
+
+-(void)handleExportEligibility{
+    bool exportablePinsExist = [self checkExportablePinsExist];
+    
+    if(exportablePinsExist){
+        [self.menu enableExportButton];
+    }
+    else{
+        [self.menu disableExportButton];
     }
 }
 
@@ -47,7 +80,9 @@
         id<MKAnnotation> mkAnnotation = (id<MKAnnotation>)annotation;
         if (mkAnnotation != self.map.userLocation){
             
-            if(annotation.pinColor == MKPinAnnotationColorPurple){
+            MKPinAnnotationColor pinColor = [self.map calculatePinColor:annotation.pin];
+            
+            if(pinColor == MKPinAnnotationColorPurple){
                 exportablePinsExist = YES;
                 break;
             }
@@ -57,22 +92,6 @@
     return exportablePinsExist;
 }
 
--(bool)checkClearablePinsExist{
-    bool clearablePinsExist = NO;
-    for(KGPointAnnotation *annotation in self.map.annotations){
-        
-        id<MKAnnotation> mkAnnotation = (id<MKAnnotation>)annotation;
-        if (mkAnnotation != self.map.userLocation){
-            
-            if(annotation.pinColor == MKPinAnnotationColorPurple || annotation.pinColor == MKPinAnnotationColorRed){
-                clearablePinsExist = YES;
-                break;
-            }
-        }
-    }
-    
-    return clearablePinsExist;
-}
 
 #pragma mark ViewController
 
@@ -148,6 +167,9 @@
     else if([self.pulloutMenuVisibility isEqualToString: @"Visible"]){
         [self showPulloutMenu:NO];
     }
+    
+    [self handleClearEligibility];
+    [self handleExportEligibility];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -253,14 +275,7 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     if(result == MFMailComposeResultSent){
         [self updateExportedPins];
-        
-        bool clearablePinsExist = [self checkClearablePinsExist];
-        if(clearablePinsExist){
-            [self.menu enableClearButton];
-        }
-        else{
-            [self.menu disableClearButton];
-        }
+        [self handleClearEligibility];
         
         bool exportablePinsExist = [self checkExportablePinsExist];
         if(exportablePinsExist){
@@ -279,25 +294,19 @@
 }
 
 - (void)updateExportedPins{
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
+    
     for(Pin *pin in self.lastExport){
         pin.isExported = @1;
         [pin save];
         
-        NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
         NSUInteger index = [mutableArrayWithKVO indexOfObject:pin];
-        [mutableArrayWithKVO replaceObjectAtIndex:index withObject:pin];
+        NSNumber *indexNumber = [NSNumber numberWithUnsignedInt:index];
+        NSLog(@"Replacing local pin at index: %@", indexNumber);
+        [mutableArrayWithKVO removeObjectAtIndex:index];
+        [mutableArrayWithKVO addObject:pin];
     }
 }
-
-//
-//-(int)countOfClearablePins{
-//    for(KGPointAnnotation *annotation in self.map.annotations){
-//        if(annotation.pinColor == MKPinAnnotationColorRed || annotation.pinColor == MKPinAnnotationColorPurple){
-//        }
-//    }
-//    
-//    return 1;
-//}
 
 #pragma mark - Search
 
@@ -366,6 +375,7 @@
 - (IBAction)menuPulled:(id)sender {
     if(self.activeAnnotationView){
         [self.activeAnnotationView.calloutView removeFromSuperview2];
+        //TODO: add self.activeAnnotationView = nil
     }
     
     if([self.pulloutMenuVisibility isEqualToString:@"Virgin"]){
@@ -540,24 +550,16 @@
             
             if(self.activeAnnotationView.isDeleting){
                 if([self.activeAnnotationView.pin.isCloudSaved isEqual:@1]){
-                    [self.cloudPins removeObject:self.activeAnnotationView.pin];
                 }
                 else{
+                    NSLog(@"Deleting Pin:%@", self.activeAnnotationView.pin);
                     NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"localPins"];
                     [mutableArrayWithKVO removeObject:self.activeAnnotationView.pin];
                     
-                    bool clearablePinsExist = [self checkClearablePinsExist];
-                    if(clearablePinsExist){
-                        [self.menu enableClearButton];
-                    }
-                    else{
-                        [self.menu disableClearButton];
-                    }
+                    [self handleClearEligibility];
                 }
-                
-                NSLog(@"Deleting Pin:%@", self.activeAnnotationView.pin);
-                
-                [self.activeAnnotationView.pin delete];
+            
+                [self.activeAnnotationView.calloutView removeFromSuperview2];
                 self.activeAnnotationView = nil;
             }
         }
@@ -633,7 +635,13 @@
                         annotation.isDropping = YES;
                     }
                     
-                    annotation.isUpdatingColor = NO;
+                    if([self.lastExport containsObject:pin]){
+                        annotation.isUpdatingColor = YES;
+                        annotation.isDropping = NO;
+                    }
+                    else{
+                        annotation.isUpdatingColor = NO;
+                    }
                     
                     [self.localAnnotations addObject:annotation];
                     [self.map addAnnotation:annotation];
@@ -641,29 +649,25 @@
                     [self.menu enableClearButton];
                 }
                 else if (kindOfChange == NSKeyValueChangeRemoval) {
-                    NSLog(@"IndexPath: %ld", (long)indexPath.row);
-                    
                     KGPointAnnotation *annotation = [self.localAnnotations objectAtIndex:indexPath.row];
                     
-                    [self.map removeAnnotation:annotation];
                     [self.localAnnotations removeObject:annotation];
-                    
+                    [self.map removeAnnotation:annotation];
                 }
                 else if (kindOfChange == NSKeyValueChangeReplacement) {
                     //right now NSKeyValueChangeReplacement could only be export process
                     KGPointAnnotation *existingAnnotation = [self.localAnnotations objectAtIndex:indexPath.row];
-                    
-                    Pin *pin = [self.localPins objectAtIndex:indexPath.row];
-                    
-                    KGPointAnnotation *newAnnotation = [KGPinToAnnotationConverter convertToAnnotation:pin];
+                    NSLog(@"Replaced Index: %d", indexPath.row);
+
+                    KGPointAnnotation *newAnnotation = [KGPinToAnnotationConverter convertToAnnotation:existingAnnotation.pin];
                     newAnnotation.isDropping = NO;
                     newAnnotation.isUpdatingColor = YES;
                     
-                    [self.localAnnotations removeObject:existingAnnotation];
                     [self.localAnnotations addObject:newAnnotation];
+                    [self.localAnnotations removeObject:existingAnnotation];
                     
-                    [self.map removeAnnotation:existingAnnotation];
                     [self.map addAnnotation:newAnnotation];
+                    [self.map removeAnnotation:existingAnnotation];
                 }
             }
         }
@@ -681,7 +685,7 @@
         return nil;
     }
     
-    KGAnnotationView *kgAnnotationView = (KGAnnotationView *)[self.map dequeueReusableAnnotationViewWithIdentifier: @"AnnotationView"];
+    KGAnnotationView *kgAnnotationView = (KGAnnotationView *)[self.map dequeueReusableAnnotationViewWithIdentifier: @"AnnotationV¥iew"];
     
     if (kgAnnotationView == nil) {
         kgAnnotationView = [[KGAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"AnnotationView"]; // If you use ARC, take out 'autorelease'
@@ -725,11 +729,18 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(KGAnnotationView *)view{
     if (view.annotation != self.map.userLocation){
-        if(self.activeAnnotationView){
+        if(self.activeAnnotationView && self.activeAnnotationView != view){
             [self.activeAnnotationView.calloutView removeFromSuperview2];
+            self.activeAnnotationView = nil;
         }
         
-        [view openCallout];
+        if(view.isMoving){
+            view.isMoving = NO;
+        }
+        else{
+            [view openCallout];
+        }
+        
         self.activeAnnotationView = view;
         [self.map centerOnAnnotationView:view];
         
@@ -743,18 +754,23 @@
         
         if(annotationView.isDeleting){
             [self.map deselectAnnotation:[view annotation] animated:NO];
-            
-            if([annotationView.pin.isCloudSaved isEqual:@1]){
-                [self.cloudPins removeObject:annotationView.pin];
-            }
-            else{
-                [self.localPins removeObject:annotationView.pin];
-            }
-            
+    
             [annotationView.pin delete];
-            
-            NSLog(@"Deleting Pin:%@", annotationView.pin);
         }
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView
+    annotationView:(MKAnnotationView *)annotationView
+    didChangeDragState:(MKAnnotationViewDragState)newState
+    fromOldState:(MKAnnotationViewDragState)oldState{
+    
+    KGAnnotationView *kgAnnotationView = (KGAnnotationView *)annotationView;
+    kgAnnotationView.isMoving = YES;
+    
+    if (newState == MKAnnotationViewDragStateEnding){
+        CLLocationCoordinate2D droppedAt = annotationView.annotation.coordinate;
+        NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
     }
 }
 
@@ -782,6 +798,14 @@
 
 -(void)kgMyMapView:(KGMapView *)mapView kgAnnotationView:(KGAnnotationView *)annotationView updateTitle:(NSString *)newTitle{
     Pin *pin = annotationView.pin;
+    
+    if([newTitle isEqualToString:@""]){
+        [pin setDefaultTitle];
+    }
+    else{
+        pin.title = newTitle;
+    }
+    
     pin.title = newTitle;
     [pin save];
     
@@ -792,7 +816,10 @@
     }
     
     [self handleExportEligibilityWithColor:newColor withAnnotationView:annotationView];
-    annotationView.pinColor = newColor;
+    
+    if(annotationView.pinColor != newColor){
+        annotationView.pinColor = newColor;
+    }
 }
 
 -(void)kgMyMapView:(KGMapView *)mapView kgAnnotationView:(KGAnnotationView *)annotationView updateSubtype:(NSNumber *)newSubtypeId{
@@ -815,6 +842,17 @@
     annotationView.pinColor = newColor;
 }
 
+-(void)kgMyMapView:(KGMapView *)mapView kgAnnotationView:(KGAnnotationView *)annotationView deletePin:(bool)pin{
+        self.annotationViewDeleting = annotationView;
+    
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete pin?"
+                                                        message:@""
+                                                       delegate:self
+                                              cancelButtonTitle:@"No"
+                                              otherButtonTitles:@"Yes",nil];
+    
+        [alert show];
+}
 
 #pragma mark MenuView
 

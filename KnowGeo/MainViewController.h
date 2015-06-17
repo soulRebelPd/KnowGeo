@@ -47,6 +47,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSMutableArray *testPins;
 @property (strong, nonatomic) KGAnnotationView *activeAnnotationView;
+@property (strong, nonatomic) KGAnnotationView *annotationViewDeleting;
 @property (strong, nonatomic) NSArray *searchItems;
 @property NSEntityDescription *pinEntityDescription;
 @property NSEntityDescription *historyEntityDescription;
@@ -68,19 +69,3 @@
 - (IBAction)mapTypePressed:(id)sender;
 
 @end
-
-//#import "SBPark.h"
-//#import "SBPin.h"
-//#import "SBOverlay.h"
-//#import "SBOverlayRenderer.h"
-//#import "SBObject.h"
-//UITableViewDataSource is an option too
-//UISearchBarDelegate
-//UITableViewDataSource, UITableViewDelegate
-//- (IBAction)menuPulled:(id)sender;
-//@property (strong, nonatomic) SBPin *testPin;
-//@property (weak, nonatomic) IBOutlet UIView *pulloutMenu;
-//@property (weak, nonatomic) IBOutlet UITableView *searchHistoryTableView;
-//@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-//@property (strong, nonatomic) NSMutableArray *searchHistory;
-//-(void)addedAnnotationView;

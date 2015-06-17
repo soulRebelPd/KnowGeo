@@ -24,8 +24,8 @@
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Pin" positionX="0" positionY="0" width="128" height="225"/>
-        <element name="SBObject" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="SearchHistory" positionX="27" positionY="99" width="128" height="75"/>
+        <element name="Pin" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SBObject" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SearchHistory" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

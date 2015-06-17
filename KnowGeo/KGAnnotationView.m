@@ -63,9 +63,9 @@
     callout.title = self.pin.title;
     
     callout.types = @[@"Select Type", @"Boat Ramp", @"Dive Site", @"Dive Shop", @"Marina", @"Marine Fuel", @"Sandbar", @"Services", @"Snorkel"];
-    callout.type = self.pin.typeId;
+    callout.typeId = self.pin.typeId;
     callout.subTypes = @[@"Select Subtype", @"Bahamas", @"Cali", @"G Lakes", @"Gulf", @"MS River", @"Pac NW", @"S. Atl"];
-    callout.subtype = self.pin.subtypeId;
+    callout.subTypeId = self.pin.subtypeId;
     
     self.calloutView = callout;
     self.calloutView.delegate = self;
